@@ -1,8 +1,10 @@
 # IoT-Based-Smart-Home-Automation-System
 
-## Project Setup Instructions
+## Edge AI Home Automation
 
-### Prerequisites
+### Project Setup Instructions
+
+#### Prerequisites
 
 Before setting up the project, make sure you have the following:
 
@@ -16,7 +18,7 @@ To install TensorFlow, use the following command:
 pip install tensorflow==2.16.1
 ```
 
-### Setting up the Environment Variables
+#### Setting up the Environment Variables
 
 1. **Create a .env file**:
    In your project directory, create a new file named .env.
@@ -32,7 +34,7 @@ pip install tensorflow==2.16.1
 
 3. **Save the .env file**.
 
-### Installing Dependencies
+#### Installing Dependencies
 
 Once your .env file is set up, install the required dependencies for the project. You can use the following commands to install the necessary packages:
 
@@ -48,7 +50,7 @@ Once your .env file is set up, install the required dependencies for the project
    venv\Scripts\activate
    ```
    
-   On macOS/Linux:
+   On macOS/Linux: (didn't check)
    ```bash
    source venv/bin/activate
    ```
@@ -58,13 +60,13 @@ Once your .env file is set up, install the required dependencies for the project
    pip install boto3 python-dotenv
    ```
 
-### Updating File Paths
+#### Updating File Paths
 
 Make sure to replace any hardcoded file paths in the code with paths specific to your local environment.
 
 For example, replace paths in download.py, upload.py, and other scripts where paths are hardcoded.
 
-### Running the Project
+#### Running the Project
 
 1. **Upload a file**:
    To upload a CSV file to S3 using the upload.py script, run the following command:
