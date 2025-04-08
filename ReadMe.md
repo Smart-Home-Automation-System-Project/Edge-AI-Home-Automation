@@ -4,6 +4,17 @@
 
 ### Project Setup Instructions
 
+### Note
+iot.csv - the training dataset for a week .(which is uploaded to S3 )
+
+#### the following files will be auto generated after running all 3 scripts.  
+
+model.tar.gz - file downloaded from S3. (after running download.py)
+
+model.h5 - file extracted from model.tar.gz (after running download.py)
+
+predictions.csv - the output file containing predictions ( after running predictions.py)
+
 #### Prerequisites
 
 Before setting up the project, make sure you have the following:
