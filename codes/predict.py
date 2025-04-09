@@ -47,5 +47,5 @@ print(f"✅ Predictions: {final_predictions}")
 
 # Save to CSV
 predictions_df = pd.DataFrame(final_predictions, columns=["l1", "l2", "l3", "t1", "t2", "t3"])
-predictions_df.to_csv('predictions.csv', index=False)
+predictions_df.to_csv(r'C:\Users\sahan\OneDrive\Desktop\Project\predictions.csv', index=False)
 print("✅ Predictions saved to predictions.csv")
