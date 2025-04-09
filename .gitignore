@@ -20,3 +20,7 @@ Thumbs.db  # Windows
 __pycache__/
 *.pyc
 *.pyo
+
+# Ignore compressed files
+model.tar.gz
+
