@@ -19,9 +19,9 @@ s3 = boto3.client(
 )
 
 # File info
-local_file_path = 'C:/Users/sahan/OneDrive/Desktop/Project/iot.csv' #path to  iot.csv file
+local_file_path = '/train.csv'  #path to  train.csv file
 bucket_name = 'smart-home-automation-data' # don't change
-s3_key = 'uploads/iot.csv' # don't change
+s3_key = 'uploads/iottrain.csv' # don't change
 
 # Upload
 try:

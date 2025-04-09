@@ -1,7 +1,9 @@
+# Laptop B (Publisher - Group 13)
+
 import json
 import paho.mqtt.client as mqtt
 
-broker_ip = "192.168.1.101"  # IP of Broker
+broker_ip = "192.168.1.22"  # IP of Broker
 topic = "home/automation/predictions"
 
 client = mqtt.Client()
