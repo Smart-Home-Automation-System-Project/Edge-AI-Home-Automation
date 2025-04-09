@@ -3,6 +3,10 @@ venv/
 
 # Ignore environment variable files
 .env
+.env.sample
+
+# Ignore AWS folder
+aws/
 
 # Ignore IDE-specific files (for PyCharm, for example)
 .idea/

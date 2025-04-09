@@ -1,4 +1,6 @@
 # Laptop C (Subscriber - Simulated Actuators)
+# NOTE : works with weekly_check.py but,
+#        not with weekly_check_loop.py(thread seems blocking mqtt_subscriber.py).but works in a separate pc.
 
 import paho.mqtt.client as mqtt
 import json

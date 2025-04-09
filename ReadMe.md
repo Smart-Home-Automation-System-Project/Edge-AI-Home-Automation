@@ -1,3 +1,5 @@
+# (Ignore ReadMe.md file. It's not updated)
+
 # IoT-Based-Smart-Home-Automation-System
 
 ## Edge AI Home Automation
