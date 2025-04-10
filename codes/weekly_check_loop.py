@@ -2,7 +2,20 @@ import os
 import subprocess
 from datetime import datetime
 import time
+from dotenv import load_dotenv
 
+# Load environment variables from the .env file
+load_dotenv()
+
+# Retrieve the project path and mqtt_publish path from environment variables
+project_path = os.getenv('PATH_TO_PROJECT')
+
+# Paths to train.py and predict.py inside 'codes' directory
+train_path = os.path.join(project_path, 'codes', 'train.py')
+predict_path = os.path.join(project_path, 'codes', 'predict.py')
+
+# MQTT publish path from the environment
+mqtt_publish_path = os.path.join(project_path, 'mqtt', 'mqtt_publish.py')
 
 # Function to check if it's the end of the week (Sunday)
 def is_end_of_week():
@@ -27,18 +40,18 @@ def main():
     if end_of_week:
         print("It's the end of the week! Training model...")
         # Call train.py to train the model
-        result = subprocess.run(['python', 'train.py'], capture_output=True, text=True, encoding='utf-8')
+        result = subprocess.run(['python', train_path], capture_output=True, text=True, encoding='utf-8')
 
         if result.returncode == 0:
             print("Model trained successfully. Running predictions...")
             # After training, call predict.py to make predictions
-            result = subprocess.run(['python', 'predict.py'], capture_output=True, text=True, encoding='utf-8')
+            result = subprocess.run(['python', predict_path], capture_output=True, text=True, encoding='utf-8')
             if result.returncode == 0:
                 print("Predictions completed successfully.")
 
                 # After running predictions, invoke mqtt_publish.py to send the latest prediction data
                 print("Sending prediction data via MQTT...")
-                result = subprocess.run(['python', 'C:\\Users\\sahan\\OneDrive\\Desktop\\Project\\mqtt\\mqtt_publish.py'], capture_output=True, text=True, encoding='utf-8')
+                result = subprocess.run(['python', mqtt_publish_path], capture_output=True, text=True, encoding='utf-8')
                 if result.returncode == 0:
                     print("Data successfully sent via MQTT.")
                 else:
@@ -54,13 +67,13 @@ def main():
     else:
         print("It's not the end of the week. Running predictions...")
         # If it's not the end of the week, just call predict.py
-        result = subprocess.run(['python', 'predict.py'], capture_output=True, text=True, encoding='utf-8')
+        result = subprocess.run(['python', predict_path], capture_output=True, text=True, encoding='utf-8')
         if result.returncode == 0:
             print("Predictions completed successfully.")
 
             # After running predictions, invoke mqtt_publish.py to send the latest prediction data
             print("Sending prediction data via MQTT...")
-            result = subprocess.run(['python', 'C:\\Users\\sahan\\OneDrive\\Desktop\\Project\\mqtt\\mqtt_publish.py'], capture_output=True, text=True, encoding='utf-8')
+            result = subprocess.run(['python', mqtt_publish_path], capture_output=True, text=True, encoding='utf-8')
             if result.returncode == 0:
                 print("Data successfully sent via MQTT.")
             else:

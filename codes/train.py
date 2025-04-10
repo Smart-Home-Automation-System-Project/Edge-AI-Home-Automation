@@ -2,9 +2,16 @@ import os
 import pandas as pd
 import numpy as np
 import tensorflow as tf
+from dotenv import load_dotenv
+
+# Load environment variables from the .env file
+load_dotenv()
+
+# Retrieve the project path from environment variable
+project_path = os.getenv('PATH_TO_PROJECT')
 
 # === Load CSV ===
-data_path = os.path.join('C:/Users/sahan/OneDrive/Desktop/Project/', 'train.csv')  # train data path
+data_path = os.path.join(project_path, 'train.csv')  # train data path
 df = pd.read_csv(data_path)
 
 # === Normalize time features ===
@@ -45,4 +52,5 @@ model.compile(optimizer='adam', loss='mse')
 model.fit(X, y, epochs=10, batch_size=32)
 
 # === Save .h5 model ===
-model.save('C:/Users/sahan/OneDrive/Desktop/Project/model.h5')
+model_save_path = os.path.join(project_path, 'model.h5')
+model.save(model_save_path)

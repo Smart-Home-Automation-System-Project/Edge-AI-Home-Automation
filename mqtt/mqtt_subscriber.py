@@ -1,11 +1,13 @@
-# Laptop C (Subscriber - Simulated Actuators)
-# NOTE : works with weekly_check.py but,
-#        not with weekly_check_loop.py(thread seems blocking mqtt_subscriber.py).but works in a separate pc.
-
 import paho.mqtt.client as mqtt
 import json
+import os
+from dotenv import load_dotenv
 
-broker_ip = "192.168.1.22"  # IP of Broker
+# Load environment variables from .env file
+load_dotenv()
+
+# === MQTT Setup ===
+broker_ip = os.getenv("MQTT_BROKER")  # IP of Broker (from .env)
 topic = "home/automation/predictions"
 
 def on_connect(client, userdata, flags, rc):

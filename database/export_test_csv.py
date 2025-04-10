@@ -1,15 +1,21 @@
-# This script fetches the latest row of sensor data from the SQLite database.
-# It simulates the process of sending(preparing) the most recent data to a prediction model
-# It saves the latest data to test.csv for predictions.
-# The database is queried for the most recent entry based on the timestamp.
-
+import os
 import sqlite3
 import pandas as pd
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
+
+# Fetch the project path from the environment variables
+project_path = os.getenv("PATH_TO_PROJECT")
+
+# === ONLY CHANGE ABSOLUTE PATHS ===
+# Absolute paths
+csv_path = os.path.join(project_path, 'test.csv')
 
 
 # Function to get the latest row from the sensor_data table
 def get_latest_row_from_db():
-    # Connect to the SQLite database
     conn = sqlite3.connect('database1.db')
     cursor = conn.cursor()
 
@@ -35,7 +41,7 @@ def save_to_csv(latest_row):
     df = pd.DataFrame([latest_row], columns=['timestamp', 'day_of_week', 'hour', 'l1', 'l2', 'l3', 't1', 't2', 't3'])
 
     # Write the DataFrame to a CSV file in the specified path
-    df.to_csv(r'C:\Users\sahan\OneDrive\Desktop\Project\test.csv', index=False)
+    df.to_csv(csv_path, index=False)
     print("✅ Latest row saved to test.csv")
 
 

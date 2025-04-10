@@ -1,10 +1,19 @@
-# This script queries data from the past 7 days from the SQLite database and saves in train.csv.
-# It retrieves all records from the 'sensor_data' table where the timestamp is within the last 7 days.
-
-
+import os
 import sqlite3
 import pandas as pd
 from datetime import datetime, timedelta
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
+
+# Fetch the project path from the environment variables
+project_path = os.getenv("PATH_TO_PROJECT")
+
+# === ONLY CHANGE ABSOLUTE PATHS ===
+# Absolute paths
+csv_path = os.path.join(project_path, 'train.csv')
+
 
 # Connect to DB
 conn = sqlite3.connect('database1.db')
@@ -22,7 +31,7 @@ ORDER BY timestamp ASC
 df = pd.read_sql_query(query, conn, params=(seven_days_ago.strftime('%Y-%m-%d %H:%M:%S'),))
 
 # Save as train.csv in the specified directory
-df.to_csv(r'C:\Users\sahan\OneDrive\Desktop\Project\train.csv', index=False)
+df.to_csv(csv_path, index=False)
 
 conn.close()
 print("✅ Data from past 7 days exported to train.csv")

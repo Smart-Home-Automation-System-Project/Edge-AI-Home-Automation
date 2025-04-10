@@ -7,49 +7,24 @@
 ### Project Setup Instructions
 
 ### Note
-iot.csv - the training dataset for a week .(which is uploaded to S3 )
-
-#### the following files will be auto generated after running all 3 scripts.  
-
-model.tar.gz - file downloaded from S3. (after running download.py)
-
-model.h5 - file extracted from model.tar.gz (after running download.py)
-
-predictions.csv - the output file containing predictions ( after running predictions.py)
+- train.csv - the training dataset for a week . (timestamp, day_of_week, hour, 3 lights , 3 thermostats)
+- radar_sensors.csv - contains radar sensor data (which indicate whether a person is in a room or not)
+- test.csv  - test data (contains data that needs to be send to predict.py every 15mins)(only 1 row/line of data)
+- predictions.csv - predicted results received from predict.py 
+- model.h5  - mode returned after running train.py
 
 #### Prerequisites
 
 Before setting up the project, make sure you have the following:
 
-- **Python 3.11.8** installed
-- **TensorFlow 2.16.1** installed
+- [**Python 3.11.8**](https://www.python.org/downloads/release/python-3118/)   installed
+- [**TensorFlow 2.16.1**](https://pypi.org/project/tensorflow/2.16.1/#files) installed
+- [**How to  install Tensorflow(Youtube)**](https://youtu.be/0w-D6YaNxk8?feature=shared)
 
-You can install Python from the official website: [Python Downloads](https://www.python.org/downloads/)  
-To install TensorFlow, use the following command:
-
-```bash
-pip install tensorflow==2.16.1
-```
-
-#### Setting up the Environment Variables
-
-1. **Create a .env file**:
-   In your project directory, create a new file named .env.
-
-2. **Edit the .env file**:
-   Inside your .env file, add your AWS credentials. Here's an example:
-   ```
-   AWS_ACCESS_KEY_ID=your_aws_access_key_id
-   AWS_SECRET_ACCESS_KEY=your_aws_secret_access_key
-   AWS_REGION=us-east-1
-   ```
-   Replace your_aws_access_key_id and your_aws_secret_access_key with your actual AWS credentials.
-
-3. **Save the .env file**.
 
 #### Installing Dependencies
 
-Once your .env file is set up, install the required dependencies for the project. You can use the following commands to install the necessary packages:
+Install the required dependencies for the project. You can use the following commands to install the necessary packages:
 
 1. **Create a virtual environment**: 
    ```bash
@@ -67,34 +42,58 @@ Once your .env file is set up, install the required dependencies for the project
    ```bash
    source venv/bin/activate
    ```
-
-3. **Install the required Python packages**:
+3. **Install the MQTT Python client(on both publisher and subscriber PCs)**:
    ```bash
-   pip install boto3 python-dotenv
+   pip install paho-mqtt
    ```
 
-#### Updating File Paths
-
-Make sure to replace any hardcoded file paths in the code with paths specific to your local environment.
-
-For example, replace paths in download.py, upload.py, and other scripts where paths are hardcoded.
-
-#### Running the Project
-
-1. **Upload a file**:
-   To upload a CSV file to S3 using the upload.py script, run the following command:
+4. **Install the MQTT Broker (on another laptop/ vbox of running on the same PC)**:
+   Linux (Ubuntu/Debian)
    ```bash
-   python upload.py
-   ```
+   sudo apt update
+   sudo apt install -y mosquitto mosquitto-clients
+   sudo systemctl enable mosquitto
+   sudo systemctl start mosquitto
+   sudo systemctl status mosquitto
+   sudo systemctl stop mosquitto 
+   ```   
+   Windows
+   Download the installer from the official Mosquitto site:
+   https://mosquitto.org/download/
 
-2. **Download a model**:
-   To download the latest model from S3 using the download.py script, run:
-   ```bash
-   python download.py
-   ```
+   Choose the Windows installer (.exe), run it, and follow the install instructions.
+   Make sure to install the service when prompted.
 
-3. **Predict using the model**:
-   Once the model is downloaded and extracted (which happens automatically), you can run the predict.py script to make predictions:
+   If you want to start Mosquitto manually later, you can do:
    ```bash
-   python predict.py
+   "C:\Program Files\mosquitto\mosquitto.exe"
    ```
+   Optional: Add C:\Program Files\mosquitto to your PATH for easier access via command line. 
+
+#### Updating File Paths in .env
+
+Make sure to replace any hardcoded file paths in the .env file with paths specific to your local environment.
+
+- Paste the path to the project.
+
+- Paste the IP address of the MQTT Broker
+
+### Setup the Project (only need to do once)
+
+**Setup DB**:   Inside database folder run db_setup.py, insert_data.py, export_train_csv.py and export_test_csv.py respectively.
+
+
+### Running the Project
+#### Need 3 machines
+1. **Start MQTT Broker (on another laptop/ vbox of running on the same PC)**:
+   Start broker by using (linux)
+   ```bash
+   sudo systemctl start mosquitto
+   ```
+   Or run mosquitto.exe in Windows.
+ 
+2. **Run mqtt_subscriber.py (on another laptop/ vbox of running on the same PC)**
+
+3. **Run random_test_write.py.py**
+ 
+4. **Run weekly_check_loop.py**

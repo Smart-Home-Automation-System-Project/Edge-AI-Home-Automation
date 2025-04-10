@@ -1,9 +1,18 @@
-# Simulates sending data to model for predictions
-
 import csv
 import random
 import time
 from datetime import datetime
+from dotenv import load_dotenv
+import os
+
+# Load environment variables from the .env file
+load_dotenv()
+
+# Retrieve the project path from environment variable
+project_path = os.getenv('PATH_TO_PROJECT')
+
+# Define the file path using the loaded environment variable
+file_path = os.path.join(project_path, 'test.csv')
 
 
 # Function to generate random test data
@@ -23,9 +32,6 @@ def generate_test_data():
 
 # Function to overwrite the existing CSV with random test data every 30 seconds
 def write_data_to_csv():
-    # Define the file path
-    file_path = r'C:\Users\sahan\OneDrive\Desktop\Project\test.csv'
-
     while True:
         # Generate random test data
         test_data = generate_test_data()

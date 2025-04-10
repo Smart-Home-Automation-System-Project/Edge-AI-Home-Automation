@@ -1,22 +1,25 @@
-# Laptop B (Publisher - Group 13)
-
 import json
 import pandas as pd
 import paho.mqtt.client as mqtt
+import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 # === MQTT Setup ===
-broker_ip = "192.168.1.22"  # IP of Broker
+broker_ip = os.getenv("MQTT_BROKER")  # IP of Broker (from .env)
 topic = "home/automation/predictions"
 client = mqtt.Client()
 client.connect(broker_ip, 1883)
 
 # === Load predictions ===
-predictions_path = r"C:\Users\sahan\OneDrive\Desktop\Project\predictions.csv"
+predictions_path = os.path.join(os.getenv("PATH_TO_PROJECT"), 'predictions.csv')
 df_preds = pd.read_csv(predictions_path)
 preds = df_preds.iloc[0].to_dict()  # Take first row
 
 # === Load radar sensor presence data ===
-radar_path = r"C:\Users\sahan\OneDrive\Desktop\Project\radar_sensors.csv"
+radar_path = os.path.join(os.getenv("PATH_TO_PROJECT"), 'radar_sensors.csv')
 df_radar = pd.read_csv(radar_path)
 radar = df_radar.iloc[0].to_dict()  # Get first (latest) radar data
 
@@ -44,8 +47,3 @@ client.publish(topic, payload)
 print(f"📤 Adjusted Prediction sent: {payload}")
 
 client.disconnect()
-
-# Radar	      Prediction (l1,l2,l3)	  Sent Value	      Reason
-# Room1: 1	  l1 = 0	               1	              Model said off, but person detected
-# Room2: 0	  l2 = 0	               0	              No person, model says off
-# Room3: 1	  l3 = 1	               1	              Already ON, allowed
