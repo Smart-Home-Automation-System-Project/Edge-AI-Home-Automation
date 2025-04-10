@@ -38,7 +38,7 @@ def main():
 
                 # After running predictions, invoke mqtt_publish.py to send the latest prediction data
                 print("Sending prediction data via MQTT...")
-                result = subprocess.run(['python', 'mqtt_publish.py'], capture_output=True, text=True, encoding='utf-8')
+                result = subprocess.run(['python', 'C:\\Users\\sahan\\OneDrive\\Desktop\\Project\\mqtt\\mqtt_publish.py'], capture_output=True, text=True, encoding='utf-8')
                 if result.returncode == 0:
                     print("Data successfully sent via MQTT.")
                 else:
@@ -60,7 +60,7 @@ def main():
 
             # After running predictions, invoke mqtt_publish.py to send the latest prediction data
             print("Sending prediction data via MQTT...")
-            result = subprocess.run(['python', 'mqtt_publish.py'], capture_output=True, text=True, encoding='utf-8')
+            result = subprocess.run(['python', 'C:\\Users\\sahan\\OneDrive\\Desktop\\Project\\mqtt\\mqtt_publish.py'], capture_output=True, text=True, encoding='utf-8')
             if result.returncode == 0:
                 print("Data successfully sent via MQTT.")
             else:
