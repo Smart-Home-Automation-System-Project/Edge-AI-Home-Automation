@@ -1,9 +1,6 @@
 # Ignore virtual environment
 venv/
 
-# Ignore environment variable files
-.env
-.env.sample
 
 # Ignore AWS folder
 aws/
