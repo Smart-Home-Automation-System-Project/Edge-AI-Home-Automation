@@ -47,7 +47,7 @@ Install the required dependencies for the project. You can use the following com
    pip install paho-mqtt
    ```
 
-4. **Install the MQTT Broker (on another laptop/ vbox of running on the same PC)**:
+4. **Install the MQTT Broker (on another laptop/ vbox running on the same PC)**:
    Linux (Ubuntu/Debian)
    ```bash
    sudo apt update
@@ -85,14 +85,14 @@ Make sure to replace any hardcoded file paths in the .env file with paths specif
 
 ### Running the Project
 #### Need 3 machines
-1. **Start MQTT Broker (on another laptop/ vbox of running on the same PC)**:
+1. **Start MQTT Broker (on another laptop/ vbox running on the same PC)**:
    Start broker by using (linux)
    ```bash
    sudo systemctl start mosquitto
    ```
    Or run mosquitto.exe in Windows.
  
-2. **Run mqtt_subscriber.py (on another laptop/ vbox of running on the same PC)**
+2. **Run mqtt_subscriber.py (on another laptop/ vbox running on the same PC)**
 
 3. **Run random_test_write.py.py**
  
