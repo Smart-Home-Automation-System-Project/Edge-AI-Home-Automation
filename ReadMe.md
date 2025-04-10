@@ -1,4 +1,4 @@
-# (Ignore ReadMe.md file. It's not updated)
+# (Didn't test the documentation completely)
 
 # IoT-Based-Smart-Home-Automation-System
 
