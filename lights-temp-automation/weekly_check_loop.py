@@ -15,7 +15,7 @@ train_path = os.path.join(project_path, 'lights-temp-automation', 'train.py')
 predict_path = os.path.join(project_path, 'lights-temp-automation', 'predict.py')
 
 # MQTT publish path from the environment
-mqtt_publish_path = os.path.join(project_path, 'mqtt', 'mqtt_publish.py')
+mqtt_publish_path = os.path.join(project_path, 'mqtt', 'lights_temp_publish.py')
 
 # Function to check if it's the end of the week (Sunday)
 def is_end_of_week():
@@ -49,7 +49,7 @@ def main():
             if result.returncode == 0:
                 print("Predictions completed successfully.")
 
-                # After running predictions, invoke mqtt_publish.py to send the latest prediction data
+                # After running predictions, invoke lights_temp_publish.py to send the latest prediction data
                 print("Sending prediction data via MQTT...")
                 result = subprocess.run(['python', mqtt_publish_path], capture_output=True, text=True, encoding='utf-8')
                 if result.returncode == 0:
@@ -71,7 +71,7 @@ def main():
         if result.returncode == 0:
             print("Predictions completed successfully.")
 
-            # After running predictions, invoke mqtt_publish.py to send the latest prediction data
+            # After running predictions, invoke lights_temp_publish.py to send the latest prediction data
             print("Sending prediction data via MQTT...")
             result = subprocess.run(['python', mqtt_publish_path], capture_output=True, text=True, encoding='utf-8')
             if result.returncode == 0:

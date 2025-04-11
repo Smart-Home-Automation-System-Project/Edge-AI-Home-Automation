@@ -1,0 +1,24 @@
+=== CO2 control ====
+if (CO2 level >=  1000) => turn on exhaust fan
+      (CO2 level <= 800  ) => turn off
+     (800 < CO2 level <1000) => fan state stays as is [a buffer zone to  prevent fan from being tuned on/off imdediately]
+
+=== smoke control ==== (smoke generated from fire hazards and cooking)
+if (smoke density > threshold_smoke) and (co_level < threshold_co): # co - carbon monoxide
+   # smoke generated from cooking
+   turn on exhaust fan
+
+if (smoke density > threshold_smoke) and (co_level > threshold_co):
+   # Fire smoke
+   turn on exhaust fan
+   trigger an alarm
+   send email alerts using firebase #
+
+=== gas leak detection=====
+if gas_level >= gas_threshold:
+    # Gas leak detected, take actions
+    turn_off_gas_appliances()  # Signal to turn off gas appliances
+    close_gas_valve()          # Signal to close the gas valve
+    turn_on_exhaust_fan()      # Turn on exhaust fan to vent the gas
+    trigger_alarm()            # Sound the alarm for immediate action
+    send_email_alerts()
