@@ -10,9 +10,9 @@ load_dotenv()
 # Retrieve the project path and mqtt_publish path from environment variables
 project_path = os.getenv('PATH_TO_PROJECT')
 
-# Paths to train.py and predict.py inside 'codes' directory
-train_path = os.path.join(project_path, 'codes', 'train.py')
-predict_path = os.path.join(project_path, 'codes', 'predict.py')
+# Paths to train.py and predict.py inside 'lights-temp-automation' directory
+train_path = os.path.join(project_path, 'lights-temp-automation', 'train.py')
+predict_path = os.path.join(project_path, 'lights-temp-automation', 'predict.py')
 
 # MQTT publish path from the environment
 mqtt_publish_path = os.path.join(project_path, 'mqtt', 'mqtt_publish.py')
