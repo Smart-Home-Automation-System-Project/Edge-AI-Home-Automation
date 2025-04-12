@@ -1,5 +1,5 @@
 from flask import Flask, jsonify, render_template
-from database.database import get_all_modules
+from ..database.database import get_all_modules
 
 app = Flask(__name__, template_folder='templates')
 
