@@ -78,25 +78,30 @@ def read_and_process_csv(file_path):
         try:
             with open(file_path, 'r') as csv_file:
                 csv_reader = csv.DictReader(csv_file)
-                for row in csv_reader:
-                    print(f"\n--- Processing data for {row['date']} {row['time']} ---")
+                # Get the last row by converting to list and taking the last element
+                rows = list(csv_reader)
+                if rows:
+                    last_row = rows[-1]
+                    print(f"\n--- Processing data for {last_row['date']} {last_row['time']} ---")
                     
                     # Convert string values to appropriate types
-                    CO2_level = int(row['CO2_level'])
-                    smoke_density = int(row['smoke_density'])
-                    co_level = int(row['co_level'])
-                    gas_level = int(row['gas_level'])
+                    CO2_level = int(last_row['CO2_level'])
+                    smoke_density = int(last_row['smoke_density'])
+                    co_level = int(last_row['co_level'])
+                    gas_level = int(last_row['gas_level'])
                     
                     # Run air quality check for this data point
                     check_air_quality(
-                        CO2_level=CO2_level,
-                        smoke_density=smoke_density,
-                        co_level=co_level,
-                        gas_level=gas_level,
-                        threshold_smoke=100,
-                        threshold_co=60,
-                        gas_threshold=250
+                    CO2_level=CO2_level,
+                    smoke_density=smoke_density,
+                    co_level=co_level,
+                    gas_level=gas_level,
+                    threshold_smoke=100,
+                    threshold_co=60,
+                    gas_threshold=250
                     )
+                else:
+                    print("No data found in CSV file.")
         except Exception as e:
             print(f"Error reading or processing CSV file: {e}")
         time.sleep(10)
