@@ -1,5 +1,6 @@
 import csv
 import os
+import time
 from air_common_pub import publish_message
 
 # Initial state of devices/actions
@@ -44,7 +45,9 @@ def check_air_quality(CO2_level, smoke_density, co_level, gas_level,
             publish_message(topic='home/automation/alarm',message="Trigger alarm for fire detection",retain=alarmOn)
         # Send email alerts via Firebase for fire detection
         email_send = True
-        publish_message(topic='home/automation/email',message="Fire detected! Emergency alert.",retain=email_send)
+        '''
+            Send email alerts via Firebase for gas leak 
+        '''
 
     # Gas leak detection
     if gas_level >= gas_threshold:
@@ -66,36 +69,40 @@ def check_air_quality(CO2_level, smoke_density, co_level, gas_level,
             publish_message(topic='home/automation/alarm',message="Trigger alarm for gas leak",retain=alarmOn)
         # Send email alerts via Firebase for gas leak
         email_send = True
-        publish_message(topic='home/automation/email',message="Gas leak detected! Emergency alert.",retain=email_send)
+        '''
+            Send email alerts via Firebase for gas leak 
+        '''
 
 def read_and_process_csv(file_path):
-    try:
-        with open(file_path, 'r') as csv_file:
-            csv_reader = csv.DictReader(csv_file)
-            for row in csv_reader:
-                print(f"\n--- Processing data for {row['date']} {row['time']} ---")
-                
-                # Convert string values to appropriate types
-                CO2_level = int(row['CO2_level'])
-                smoke_density = int(row['smoke_density'])
-                co_level = int(row['co_level'])
-                gas_level = int(row['gas_level'])
-                
-                # Run air quality check for this data point
-                check_air_quality(
-                    CO2_level=CO2_level,
-                    smoke_density=smoke_density,
-                    co_level=co_level,
-                    gas_level=gas_level,
-                    threshold_smoke=100,
-                    threshold_co=60,
-                    gas_threshold=250
-                )
-    except Exception as e:
-        print(f"Error reading or processing CSV file: {e}")
+    while True:
+        try:
+            with open(file_path, 'r') as csv_file:
+                csv_reader = csv.DictReader(csv_file)
+                for row in csv_reader:
+                    print(f"\n--- Processing data for {row['date']} {row['time']} ---")
+                    
+                    # Convert string values to appropriate types
+                    CO2_level = int(row['CO2_level'])
+                    smoke_density = int(row['smoke_density'])
+                    co_level = int(row['co_level'])
+                    gas_level = int(row['gas_level'])
+                    
+                    # Run air quality check for this data point
+                    check_air_quality(
+                        CO2_level=CO2_level,
+                        smoke_density=smoke_density,
+                        co_level=co_level,
+                        gas_level=gas_level,
+                        threshold_smoke=100,
+                        threshold_co=60,
+                        gas_threshold=250
+                    )
+        except Exception as e:
+            print(f"Error reading or processing CSV file: {e}")
+        time.sleep(10)
 
 # Read data from CSV and process each row
-csv_file_path = os.path.join(os.path.dirname(__file__), 'air.csv')
+csv_file_path = os.path.join(os.path.dirname(__file__), '../air.csv')
 
 if __name__ == "__main__":
     if not os.path.isfile(csv_file_path):
