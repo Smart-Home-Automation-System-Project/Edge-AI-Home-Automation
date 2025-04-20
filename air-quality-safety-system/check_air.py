@@ -1,7 +1,7 @@
 import csv
 import os
 import time
-from air_common_pub import publish_message
+from mqtt.air_quality_publish import publish_message
 
 # Initial states
 exhaustOn = False
