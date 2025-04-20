@@ -1,5 +1,4 @@
 # To enter 15-minute interval sensor data for the past 7 days to db
-
 import sqlite3
 from datetime import datetime, timedelta
 import random
@@ -8,19 +7,19 @@ import random
 # Generate random sample data for a single timestamp
 def generate_sample_data(current_time):
     sensors = {
-        '101': ('l1', random.randint(0, 1)),
-        '102': ('l2', random.randint(0, 1)),
-        '103': ('l3', random.randint(0, 1)),
-        '104': ('t1', round(random.uniform(12.0, 40.0), 2)),
-        '105': ('t2', round(random.uniform(12.0, 40.0), 2)),
-        '106': ('t3', round(random.uniform(12.0, 40.0), 2))
+        '101': round(random.randint(0, 1), 2),  # l1 (light sensor 1)
+        '102': round(random.randint(0, 1), 2),  # l2 (light sensor 2)
+        '103': round(random.randint(0, 1), 2),  # l3 (light sensor 3)
+        '104': round(random.uniform(12.0, 40.0), 2),  # t1 (temperature sensor 1)
+        '105': round(random.uniform(12.0, 40.0), 2),  # t2 (temperature sensor 2)
+        '106': round(random.uniform(12.0, 40.0), 2)  # t3 (temperature sensor 3)
     }
 
     data_rows = []
     timestamp = current_time.strftime('%Y-%m-%d %H:%M:%S')
 
-    for sensor_id, (name, value) in sensors.items():
-        data_rows.append((sensor_id, timestamp, name, value))
+    for sensor_id, value in sensors.items():
+        data_rows.append((sensor_id, timestamp, value))
 
     return data_rows
 
@@ -42,8 +41,8 @@ def insert_data_for_entire_week():
             for data_row in data_rows:
                 try:
                     cursor.execute('''
-                    INSERT INTO sensor_data (sensor_id, timestamp, name, sensor_value)
-                    VALUES (?, ?, ?, ?)
+                    INSERT INTO sensor_data (sensor_id, timestamp, sensor_value)
+                    VALUES (?, ?, ?)
                     ''', data_row)
                 except sqlite3.IntegrityError:
                     continue

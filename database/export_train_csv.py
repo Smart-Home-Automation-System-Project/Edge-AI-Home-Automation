@@ -23,7 +23,7 @@ seven_days_ago = now - timedelta(days=7)
 
 # Query past week's data from the new database structure
 query = '''
-SELECT sensor_id, timestamp, name, sensor_value
+SELECT sensor_id, timestamp, sensor_value
 FROM sensor_data
 WHERE timestamp >= ?
 ORDER BY timestamp ASC
@@ -31,11 +31,24 @@ ORDER BY timestamp ASC
 
 df = pd.read_sql_query(query, conn, params=(seven_days_ago.strftime('%Y-%m-%d %H:%M:%S'),))
 
+# Create a mapping of sensor_id to sensor name
+sensor_map = {
+    '101': 'l1',
+    '102': 'l2',
+    '103': 'l3',
+    '104': 't1',
+    '105': 't2',
+    '106': 't3'
+}
+
+# Add sensor name column based on sensor_id
+df['sensor_name'] = df['sensor_id'].map(sensor_map)
+
 # Convert to the required format
 # First, pivot the data to get each sensor in its own column
 pivot_df = df.pivot_table(
     index='timestamp',
-    columns='name',
+    columns='sensor_name',
     values='sensor_value',
     aggfunc='first'  # In case of duplicates, take the first value
 ).reset_index()

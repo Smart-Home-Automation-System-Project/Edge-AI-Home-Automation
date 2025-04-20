@@ -9,7 +9,6 @@ cursor.execute("""
 CREATE TABLE IF NOT EXISTS sensor_data (
     sensor_id TEXT,
     timestamp TEXT,
-    name TEXT,
     sensor_value REAL,
     PRIMARY KEY (sensor_id, timestamp)
 )

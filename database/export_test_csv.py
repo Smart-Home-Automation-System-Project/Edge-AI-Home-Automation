@@ -14,7 +14,6 @@ project_path = os.getenv("PATH_TO_PROJECT")
 # Absolute paths
 csv_path = os.path.join(project_path, 'test.csv')
 
-
 # Function to get the latest data from the sensor_data table
 def get_latest_data_from_db():
     conn = sqlite3.connect('database1.db')
@@ -30,7 +29,7 @@ def get_latest_data_from_db():
 
     # Query all sensors for this timestamp
     query = '''
-    SELECT timestamp, name, sensor_value
+    SELECT sensor_id, timestamp, sensor_value
     FROM sensor_data
     WHERE timestamp = ?
     '''
@@ -41,8 +40,21 @@ def get_latest_data_from_db():
     if df.empty:
         return None
 
+    # Create a mapping of sensor_id to sensor name
+    sensor_map = {
+        '101': 'l1',
+        '102': 'l2',
+        '103': 'l3',
+        '104': 't1',
+        '105': 't2',
+        '106': 't3'
+    }
+
+    # Add sensor name column based on sensor_id
+    df['sensor_name'] = df['sensor_id'].map(sensor_map)
+
     # Process the data into the required format
-    pivot_df = df.pivot(index='timestamp', columns='name', values='sensor_value').reset_index()
+    pivot_df = df.pivot(index='timestamp', columns='sensor_name', values='sensor_value').reset_index()
 
     # Add day_of_week and hour
     timestamp_dt = pd.to_datetime(pivot_df['timestamp'].iloc[0])
@@ -59,12 +71,10 @@ def get_latest_data_from_db():
 
     return result_df
 
-
 # Function to save the data to a CSV file
 def save_to_csv(df):
     df.to_csv(csv_path, index=False, float_format='%.2f')
     print("✅ Latest data saved to test.csv")
-
 
 # Main execution
 if __name__ == "__main__":
