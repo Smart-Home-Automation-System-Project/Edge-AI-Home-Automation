@@ -1,44 +1,58 @@
 import paho.mqtt.client as mqtt
 import os
 from dotenv import load_dotenv
-import time
 import json
-from datetime import datetime
 
-# Load environment variables from .env file
+# Load environment variables
 load_dotenv()
 
-# Topics to subscribe to
 TOPICS = [
-    "home/automation/fan",       # CO2 control
-    "home/automation/exhaust",   # Smoke and Gas ventilation
-    "home/automation/alarm",     # Fire and Gas alarms
-    "home/automation/email",     # Emergency notifications
-    "home/automation/gas_appliance"  # Gas appliance control
+    "home/automation/co2_control",
+    "home/automation/smoke_detection",
+    "home/automation/gas_detection"
 ]
 
-def on_message(client, userdata, msg):
-    """
-    Callback function triggered when a message is received.
-    Prints the topic, the message payload, and the retain value.
-    """
-    try:
-        payload = msg.payload.decode('utf-8')
-        print(f"Topic: {msg.topic}, Value: {payload}, Retain: {msg.retain}")
-    except Exception as e:
-        print(f"Error decoding message: {e}")
 
-# MQTT client setup
+def on_message(client, userdata, msg):
+
+    try:
+        data = json.loads(msg.payload.decode('utf-8'))
+
+        print(f"\n📡 Topic: {msg.topic}")
+        print(f"🔍 Data: {json.dumps(data, indent=2)}")
+
+        if msg.topic == "home/automation/gas_detection":
+
+            if data.get("actions") and len(data["actions"]) > 0:
+                print(f"🚨 Gas Leak detected!")
+                print(f"Actions: {', '.join(data['actions'])}")
+
+        elif msg.topic == "home/automation/co2_control":
+            if data.get("fan") is not None:
+                if data.get("fan"):
+                    print(f"💨 Fan turned ON due to high CO2 levels!")
+                elif data.get("fan") is False:
+                    print(f"✅ CO2 levels are normal, turning OFF fan.")
+
+        elif msg.topic == "home/automation/smoke_detection":
+            if data.get("alarm", 0):
+                print(f"🚨 Alarm triggered due to Fire Hazard!")
+
+    except Exception as e:
+        print(f"⚠️ Error decoding message: {e}")
+
+# MQTT Setup
 client = mqtt.Client()
 client.on_message = on_message
 
-# Connect to the broker
 broker_ip = os.getenv("MQTT_BROKER")
 if broker_ip:
     client.connect(broker_ip, 1883)
+
     for topic in TOPICS:
         client.subscribe(topic)
-        print(f"Subscribed to topic: {topic}")
+        print(f"✅ Subscribed to: {topic}")
+
     client.loop_forever()
 else:
-    print("⚠️ Error: MQTT_BROKER environment variable not set")
+    print("❌ Error: MQTT_BROKER not set in .env")
