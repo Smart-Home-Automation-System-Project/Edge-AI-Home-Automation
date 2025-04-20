@@ -1,6 +1,7 @@
 import os
 import sqlite3
 import pandas as pd
+from datetime import datetime
 from dotenv import load_dotenv
 
 # Load environment variables from .env file
@@ -14,44 +15,64 @@ project_path = os.getenv("PATH_TO_PROJECT")
 csv_path = os.path.join(project_path, 'test.csv')
 
 
-# Function to get the latest row from the sensor_data table
-def get_latest_row_from_db():
+# Function to get the latest data from the sensor_data table
+def get_latest_data_from_db():
     conn = sqlite3.connect('database1.db')
-    cursor = conn.cursor()
 
-    # Query to get the latest row based on the timestamp (most recent entry)
+    # First get the most recent timestamp
+    cursor = conn.cursor()
+    cursor.execute('SELECT MAX(timestamp) FROM sensor_data')
+    latest_timestamp = cursor.fetchone()[0]
+
+    if not latest_timestamp:
+        conn.close()
+        return None
+
+    # Query all sensors for this timestamp
     query = '''
-    SELECT * FROM sensor_data
-    ORDER BY timestamp DESC LIMIT 1
+    SELECT timestamp, name, sensor_value
+    FROM sensor_data
+    WHERE timestamp = ?
     '''
 
-    # Execute the query and fetch the latest row
-    cursor.execute(query)
-    latest_row = cursor.fetchone()
-
-    # Close the connection
+    df = pd.read_sql_query(query, conn, params=(latest_timestamp,))
     conn.close()
 
-    return latest_row
+    if df.empty:
+        return None
+
+    # Process the data into the required format
+    pivot_df = df.pivot(index='timestamp', columns='name', values='sensor_value').reset_index()
+
+    # Add day_of_week and hour
+    timestamp_dt = pd.to_datetime(pivot_df['timestamp'].iloc[0])
+    pivot_df['day_of_week'] = timestamp_dt.dayofweek
+    pivot_df['hour'] = timestamp_dt.hour
+
+    # Ensure all required columns exist
+    for col in ['l1', 'l2', 'l3', 't1', 't2', 't3']:
+        if col not in pivot_df.columns:
+            pivot_df[col] = None
+
+    # Reorder columns
+    result_df = pivot_df[['timestamp', 'day_of_week', 'hour', 'l1', 'l2', 'l3', 't1', 't2', 't3']]
+
+    return result_df
 
 
-# Function to save the latest row into a CSV file at the specified path
-def save_to_csv(latest_row):
-    # Convert the latest row to a DataFrame
-    df = pd.DataFrame([latest_row], columns=['timestamp', 'day_of_week', 'hour', 'l1', 'l2', 'l3', 't1', 't2', 't3'])
-
-    # Write the DataFrame to a CSV file in the specified path
-    df.to_csv(csv_path, index=False)
-    print("✅ Latest row saved to test.csv")
+# Function to save the data to a CSV file
+def save_to_csv(df):
+    df.to_csv(csv_path, index=False, float_format='%.2f')
+    print("✅ Latest data saved to test.csv")
 
 
 # Main execution
 if __name__ == "__main__":
-    # Get the latest row from the database
-    latest_row = get_latest_row_from_db()
+    # Get the latest data from the database
+    latest_data = get_latest_data_from_db()
 
-    if latest_row:
-        # Save the latest row to test.csv
-        save_to_csv(latest_row)
+    if latest_data is not None and not latest_data.empty:
+        # Save the latest data to test.csv
+        save_to_csv(latest_data)
     else:
         print("❌ No data found in the database.")
