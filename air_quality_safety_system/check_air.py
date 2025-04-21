@@ -45,6 +45,8 @@ def check_air_quality(CO2_level, smoke_density, co_level, gas_level,
             smoke_action = "Turn ON exhaust fan (fire smoke)"
             alarmOn_smoke = True
             smoke_alert = "Trigger smoke alarm (fire smoke)"
+          # 📬 SEND EMAIL ALERT - FIRE SMOKE DETECTED
+          # TODO: call your send_email_alert() function here for fire smoke
     else:
         # No smoke or smoke has cleared
         alarmOn_smoke = False  # Reset alarm when no fire smoke
@@ -70,6 +72,9 @@ def check_air_quality(CO2_level, smoke_density, co_level, gas_level,
             gas_action.append("Turn ON exhaust fan")
             alarmOn_gas = True
             gas_action.append("Trigger gas alarm")
+
+            # 📬 SEND EMAIL ALERT - GAS LEAK
+            # TODO: call your send_email_alert() function here for gas leak            
 
     if gas_action:
         publish_message("home/automation/gas_detection", {
