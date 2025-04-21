@@ -1,5 +1,5 @@
 import paho.mqtt.client as mqtt
-from ..utils.utils import *
+from utils.utils import *
 from dotenv import load_dotenv
 import os
 
