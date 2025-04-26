@@ -8,7 +8,7 @@ import os
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
 
 from air_quality_safety_system.check_air import check_air_quality
-zz
+
 
 class TestCheckAir(unittest.TestCase): # class TestCheckAir inherits from 'unittest.TestCase'
 
