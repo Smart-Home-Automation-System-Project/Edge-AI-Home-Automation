@@ -52,7 +52,7 @@ def insert_data_for_entire_week():
     # Commit changes and close the connection
     conn.commit()
     conn.close()
-    print("✅ 15-minute interval sensor data for the past 7 days inserted into the database.")
+    print("15-minute interval sensor data for the past 7 days inserted into the database.")
 
 
 # Main function to control data insertion type

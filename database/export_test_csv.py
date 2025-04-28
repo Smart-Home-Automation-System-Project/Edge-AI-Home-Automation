@@ -74,7 +74,7 @@ def get_latest_data_from_db():
 # Function to save the data to a CSV file
 def save_to_csv(df):
     df.to_csv(csv_path, index=False, float_format='%.2f')
-    print("✅ Latest data saved to test.csv")
+    print("Latest data saved to test.csv")
 
 # Main execution
 if __name__ == "__main__":
@@ -85,4 +85,4 @@ if __name__ == "__main__":
         # Save the latest data to test.csv
         save_to_csv(latest_data)
     else:
-        print("❌ No data found in the database.")
+        print("No data found in the database.")

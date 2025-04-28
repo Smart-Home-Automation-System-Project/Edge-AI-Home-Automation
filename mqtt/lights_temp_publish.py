@@ -44,6 +44,6 @@ adjusted_preds['t3'] = preds['t3']
 # === Publish to MQTT ===
 payload = json.dumps(adjusted_preds)
 client.publish(topic, payload)
-print(f"📤 Prediction sent: {payload}")
+print(f"Prediction sent: {payload}")
 
 client.disconnect()

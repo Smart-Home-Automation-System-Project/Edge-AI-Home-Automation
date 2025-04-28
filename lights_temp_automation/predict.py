@@ -17,7 +17,7 @@ test_csv_path = os.path.join(project_path, 'test.csv')
 predictions_csv_path = os.path.join(project_path, 'predictions.csv')
 
 # Load the model without compiling (fixes the 'mse' issue)
-print("✅ Model loaded.")
+print("Model loaded.")
 model = keras.models.load_model(model_h5_path, compile=False)
 
 # === Load test input from CSV ===
@@ -58,7 +58,7 @@ final_predictions = np.round(final_predictions, 2)
 final_predictions[final_predictions == -0.0] = 0.0  # Replace -0.0 if needed
 
 # Print and save predictions
-print(f"✅ Final Predictions (Rounded to 2 Decimal Points): {final_predictions}")
+print(f"Final Predictions (Rounded to 2 Decimal Points): {final_predictions}")
 predictions_df = pd.DataFrame(final_predictions, columns=["l1", "l2", "l3", "t1", "t2", "t3"])
 predictions_df.to_csv(predictions_csv_path, index=False)
-print(f"✅ Predictions saved to {predictions_csv_path}")
+print(f"Predictions saved to {predictions_csv_path}")

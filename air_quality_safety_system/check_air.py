@@ -16,7 +16,7 @@ def check_air_quality(CO2_level, smoke_density, co_level, gas_level,
 
     # ==== CO2 CONTROL ====
     co2_action = None
-    if CO2_level >= 1000 :
+    if CO2_level >= 1000:
         exhaustOn = True
         co2_action = "Turn ON exhaust fan (CO2 high)"
     elif CO2_level <= 800:
@@ -29,6 +29,7 @@ def check_air_quality(CO2_level, smoke_density, co_level, gas_level,
             "exhaust_fan": int(exhaustOn),
             "action": co2_action
         })
+
     # ==== SMOKE DETECTION ====
     smoke_action = None
     smoke_alert = None
@@ -45,8 +46,8 @@ def check_air_quality(CO2_level, smoke_density, co_level, gas_level,
             smoke_action = "Turn ON exhaust fan (fire smoke)"
             alarmOn_smoke = True
             smoke_alert = "Trigger smoke alarm (fire smoke)"
-          # 📬 SEND EMAIL ALERT - FIRE SMOKE DETECTED
-          # TODO: call your send_email_alert() function here for fire smoke
+            # SEND EMAIL ALERT - FIRE SMOKE DETECTED
+            # TODO: call your send_email_alert() function here for fire smoke
     else:
         # No smoke or smoke has cleared
         alarmOn_smoke = False  # Reset alarm when no fire smoke
@@ -73,7 +74,7 @@ def check_air_quality(CO2_level, smoke_density, co_level, gas_level,
             alarmOn_gas = True
             gas_action.append("Trigger gas alarm")
 
-            # 📬 SEND EMAIL ALERT - GAS LEAK
+            # SEND EMAIL ALERT - GAS LEAK
             # TODO: call your send_email_alert() function here for gas leak            
 
     if gas_action:
@@ -106,13 +107,13 @@ def read_and_process_csv(file_path):
                 else:
                     print("No data in CSV.")
         except Exception as e:
-            print(f"❌ Error processing CSV: {e}")
+            print(f"Error processing CSV: {e}")
         time.sleep(10)
 
 csv_file_path = os.path.join(os.path.dirname(__file__), '../air.csv')
 
 if __name__ == "__main__":
     if not os.path.isfile(csv_file_path):
-        print(f"❌ air.csv not found at: {csv_file_path}")
+        print(f"air.csv not found at: {csv_file_path}")
     else:
         read_and_process_csv(csv_file_path)

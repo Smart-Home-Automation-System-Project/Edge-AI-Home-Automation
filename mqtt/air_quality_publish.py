@@ -10,7 +10,7 @@ def publish_message(topic, message, retain=False):
     try:
         broker_ip = os.getenv("MQTT_BROKER")
         if not broker_ip:
-            print("⚠️ MQTT_BROKER not set in .env")
+            print(" MQTT_BROKER not set in .env")
             return False
 
         client = mqtt.Client()
@@ -21,12 +21,12 @@ def publish_message(topic, message, retain=False):
         client.disconnect()
 
         if result.rc == mqtt.MQTT_ERR_SUCCESS:
-            print(f"📤 Published to [{topic}]: {payload}")
+            print(f"Published to [{topic}]: {payload}")
             return True
         else:
-            print(f"⚠️ Failed to publish to [{topic}], code: {result.rc}")
+            print(f"Failed to publish to [{topic}], code: {result.rc}")
             return False
 
     except Exception as e:
-        print(f"❌ Error publishing to MQTT: {str(e)}")
+        print(f"Error publishing to MQTT: {str(e)}")
         return False

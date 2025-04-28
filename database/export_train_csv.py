@@ -64,4 +64,4 @@ final_df = pivot_df[['timestamp', 'day_of_week', 'hour', 'l1', 'l2', 'l3', 't1',
 final_df.to_csv(csv_path, index=False, float_format='%.2f')
 
 conn.close()
-print("✅ Data from past 7 days exported to train.csv")
+print("Data from past 7 days exported to train.csv")
