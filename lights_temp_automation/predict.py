@@ -31,7 +31,7 @@ df['hour'] = df['hour'] / 23.0
 df['day_of_week'] = df['day_of_week'] / 6.0
 
 # Select input features for the model
-df_input = df[['l1', 'l2', 'l3', 't1', 't2', 't3', 'hour', 'day_of_week']]
+df_input = df[['l1', 'l2', 'l3','l4', 'l5', 'l6','l7', 'l8', 't1', 't2', 't3','t4','hour', 'day_of_week']]
 
 # Reshape input for LSTM: (samples, timesteps, features)
 input_data = df_input.to_numpy().reshape((df_input.shape[0], 1, df_input.shape[1]))
@@ -59,10 +59,10 @@ def map_to_brightness(value):
         return 3  # HIGH
 
 # Apply the mapping function to light predictions
-lights_predictions = np.array([[map_to_brightness(val) for val in row[:3]] for row in predictions])
+lights_predictions = np.array([[map_to_brightness(val) for val in row[:8]] for row in predictions])
 
 # Denormalize and clip temperatures (20–30°C range)
-thermostats_predictions = predictions[:, 3:] * 10.0 + 20.0
+thermostats_predictions = predictions[:, 8:12] * 10.0 + 20.0
 thermostats_predictions = np.clip(thermostats_predictions, 20.0, 30.0)
 
 # Combine and round final predictions
@@ -72,6 +72,7 @@ final_predictions[final_predictions == -0.0] = 0.0  # Replace -0.0 if needed
 
 # Print and save predictions
 print(f"Final Predictions (Rounded to 2 Decimal Points): {final_predictions}")
-predictions_df = pd.DataFrame(final_predictions, columns=["l1", "l2", "l3", "t1", "t2", "t3"])
+predictions_df = pd.DataFrame(final_predictions, columns=["l1", "l2", "l3", "l4", "l5", "l6", "l7", "l8",
+                                                         "t1", "t2", "t3", "t4"])
 predictions_df.to_csv(predictions_csv_path, index=False)
 print(f"Predictions saved to {predictions_csv_path}")

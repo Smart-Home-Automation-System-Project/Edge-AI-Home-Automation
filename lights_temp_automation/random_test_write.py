@@ -39,15 +39,21 @@ def generate_test_data():
         random.randint(0, 3),  # l1
         random.randint(0, 3),  # l2
         random.randint(0, 3),  # l3
+        random.randint(0, 3),  # l4
+        random.randint(0, 3),  # l5
+        random.randint(0, 3),  # l6
+        random.randint(0, 3),  # l7
+        random.randint(0, 3),  # l8
         round(random.uniform(12.0, 40.0), 2),  # t1
         round(random.uniform(12.0, 40.0), 2),  # t2
-        round(random.uniform(12.0, 40.0), 2)   # t3
+        round(random.uniform(12.0, 40.0), 2),  # t3
+        round(random.uniform(12.0, 40.0), 2)  # t4
     ]
 
 
 # Function to generate radar_sensors.csv data
 def generate_radar_data():
-    return [random.randint(0, 1) for _ in range(3)]  # room1, room2, room3
+    return [random.randint(0, 1) for _ in range(8)]  # room1, room2,... room8
 
 
 # Function to write both CSV files
@@ -59,7 +65,7 @@ def write_data_to_csv():
         with open(test_file_path, mode='w', newline='') as file:
             writer = csv.writer(file)
             writer.writerow([
-                'timestamp', 'day_of_week', 'hour', 'l1', 'l2', 'l3', 't1', 't2', 't3'
+                'timestamp', 'day_of_week', 'hour', 'l1', 'l2', 'l3','l4', 'l5', 'l6','l7', 'l8','t1', 't2', 't3','t4'
             ])
             writer.writerow(test_data)
             print(f"[test.csv] Data written: {test_data}")
@@ -69,7 +75,7 @@ def write_data_to_csv():
 
         with open(radar_file_path, mode='w', newline='') as file:
             writer = csv.writer(file)
-            writer.writerow(['room1', 'room2', 'room3'])
+            writer.writerow(['room1', 'room2', 'room3','room4', 'room5', 'room6','room7', 'room8'])
             writer.writerow(radar_data)
             print(f"[radar_sensors.csv] Data written: {radar_data}")
 

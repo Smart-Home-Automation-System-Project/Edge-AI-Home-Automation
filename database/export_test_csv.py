@@ -45,9 +45,15 @@ def get_latest_data_from_db():
         '101': 'l1',
         '102': 'l2',
         '103': 'l3',
-        '104': 't1',
-        '105': 't2',
-        '106': 't3'
+        '104': 'l4',
+        '105': 'l5',
+        '106': 'l6',
+        '107': 'l7',
+        '108': 'l8',
+        '201': 't1',
+        '202': 't2',
+        '203': 't3',
+        '204': 't4'
     }
 
     # Add sensor name column based on sensor_id
@@ -62,12 +68,12 @@ def get_latest_data_from_db():
     pivot_df['hour'] = timestamp_dt.hour
 
     # Ensure all required columns exist
-    for col in ['l1', 'l2', 'l3', 't1', 't2', 't3']:
+    for col in ['l1', 'l2', 'l3','l4', 'l5', 'l6','l7','l8','t1', 't2', 't3','l4']:
         if col not in pivot_df.columns:
             pivot_df[col] = None
 
     # Reorder columns
-    result_df = pivot_df[['timestamp', 'day_of_week', 'hour', 'l1', 'l2', 'l3', 't1', 't2', 't3']]
+    result_df = pivot_df[['timestamp', 'day_of_week', 'hour', 'l1', 'l2', 'l3','l4', 'l5', 'l6','l7','l8','t1', 't2', 't3','l4']]
 
     return result_df
 
