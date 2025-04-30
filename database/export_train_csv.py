@@ -36,9 +36,15 @@ sensor_map = {
     '101': 'l1',
     '102': 'l2',
     '103': 'l3',
-    '104': 't1',
-    '105': 't2',
-    '106': 't3'
+    '104': 'l4',
+    '105': 'l5',
+    '106': 'l6',
+    '107': 'l7',
+    '108': 'l8',
+    '201': 't1',
+    '202': 't2',
+    '203': 't3',
+    '204': 't4'
 }
 
 # Add sensor name column based on sensor_id
@@ -58,10 +64,10 @@ pivot_df['day_of_week'] = pd.to_datetime(pivot_df['timestamp']).dt.dayofweek
 pivot_df['hour'] = pd.to_datetime(pivot_df['timestamp']).dt.hour
 
 # Reorder columns to match the desired format
-final_df = pivot_df[['timestamp', 'day_of_week', 'hour', 'l1', 'l2', 'l3', 't1', 't2', 't3']]
+final_df = pivot_df[['timestamp', 'day_of_week', 'hour', 'l1', 'l2', 'l3','l4', 'l5', 'l6','l7', 'l8','t1', 't2', 't3','t4']]
 
 # Save as train.csv in the specified directory
 final_df.to_csv(csv_path, index=False, float_format='%.2f')
 
 conn.close()
-print("✅ Data from past 7 days exported to train.csv")
+print("Data from past 7 days exported to train.csv")
