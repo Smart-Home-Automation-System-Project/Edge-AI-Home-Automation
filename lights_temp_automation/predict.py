@@ -45,8 +45,21 @@ print(df_input)
 print("Model Predictions (Normalized):")
 print(predictions)
 
-# Round light predictions to 0 or 1
-lights_predictions = np.round(predictions[:, :3])  # l1, l2, l3
+# For light predictions, map the model outputs to the range 0-3
+# Based on the observed outputs, the model seems to output values that need proper scaling
+# Using sigmoid-like mapping with thresholds for the 4 states
+def map_to_brightness(value):
+    if value < -0.5:
+        return 0  # OFF
+    elif value < 0.25:
+        return 1  # LOW
+    elif value < 0.75:
+        return 2  # MEDIUM
+    else:
+        return 3  # HIGH
+
+# Apply the mapping function to light predictions
+lights_predictions = np.array([[map_to_brightness(val) for val in row[:3]] for row in predictions])
 
 # Denormalize and clip temperatures (20–30°C range)
 thermostats_predictions = predictions[:, 3:] * 10.0 + 20.0

@@ -10,22 +10,37 @@ load_dotenv()
 broker_ip = os.getenv("MQTT_BROKER")  # IP of Broker (from .env)
 topic = "home/automation/predictions"
 
+
 def on_connect(client, userdata, flags, rc):
     print("Connected to broker.")
     client.subscribe(topic)
-    print(f"📡 Subscribed to topic: {topic}")
+    print(f"Subscribed to topic: {topic}")
+
 
 def on_message(client, userdata, msg):
     data = json.loads(msg.payload.decode())
     print(f"\nReceived prediction: {data}")
 
-    # Simulate actuator behavior
+    # Simulate actuator behavior with brightness levels
     for i in range(1, 4):
-        light = "ON" if data[f"l{i}"] == 1 else "OFF"
-        print(f"Light {i}: {light}")
+        brightness_level = int(data[f"l{i}"])
+
+        if brightness_level == 0:
+            status = "OFF"
+        elif brightness_level == 1:
+            status = "LOW brightness"
+        elif brightness_level == 2:
+            status = "MEDIUM brightness"
+        elif brightness_level == 3:
+            status = "HIGH brightness"
+        else:
+            status = f"Unknown state: {brightness_level}"
+
+        print(f"Light {i}: {status}")
 
     for i in range(1, 4):
         print(f" Thermostat {i} set to: {data[f't{i}']}°C")
+
 
 client = mqtt.Client()
 client.on_connect = on_connect

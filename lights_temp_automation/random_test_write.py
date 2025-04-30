@@ -36,9 +36,9 @@ def generate_test_data():
         timestamp,
         day_of_week,
         hour,
-        random.randint(0, 1),  # l1
-        random.randint(0, 1),  # l2
-        random.randint(0, 1),  # l3
+        random.randint(0, 3),  # l1
+        random.randint(0, 3),  # l2
+        random.randint(0, 3),  # l3
         round(random.uniform(12.0, 40.0), 2),  # t1
         round(random.uniform(12.0, 40.0), 2),  # t2
         round(random.uniform(12.0, 40.0), 2)   # t3

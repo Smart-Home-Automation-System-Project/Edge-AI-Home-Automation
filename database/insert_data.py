@@ -7,9 +7,9 @@ import random
 # Generate random sample data for a single timestamp
 def generate_sample_data(current_time):
     sensors = {
-        '101': round(random.randint(0, 1), 2),  # l1 (light sensor 1)
-        '102': round(random.randint(0, 1), 2),  # l2 (light sensor 2)
-        '103': round(random.randint(0, 1), 2),  # l3 (light sensor 3)
+        '101': round(random.randint(0, 3), 2),  # l1 (light sensor 1)
+        '102': round(random.randint(0, 3), 2),  # l2 (light sensor 2)
+        '103': round(random.randint(0, 3), 2),  # l3 (light sensor 3)
         '104': round(random.uniform(12.0, 40.0), 2),  # t1 (temperature sensor 1)
         '105': round(random.uniform(12.0, 40.0), 2),  # t2 (temperature sensor 2)
         '106': round(random.uniform(12.0, 40.0), 2)  # t3 (temperature sensor 3)
