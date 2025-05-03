@@ -8,7 +8,7 @@ from datetime import datetime
 # Add parent directory to path to import modules
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
 
-from database.insert_data import generate_sample_data, insert_data_for_entire_week
+from database.insert_sample_sensor_data import generate_sample_data, insert_data_for_entire_week
 
 
 class TestInsertData(unittest.TestCase):
