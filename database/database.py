@@ -2,6 +2,7 @@ import sqlite3
 from threading import Lock
 import uuid
 import os
+from datetime import datetime, timedelta
 
 DB_NAME = os.path.join(os.path.dirname(__file__), "database.db")
 db_lock = Lock()
@@ -219,3 +220,151 @@ def db_get_sensor_id_by_client_id(client_id):
             conn.close()
         except:
             pass
+
+#
+# def db_get_light_sensors():
+#     """Get all light sensors from the database"""
+#     conn = sqlite3.connect(DB_NAME, timeout=10)
+#     conn.execute("PRAGMA journal_mode=WAL;")
+#     cursor = conn.cursor()
+#
+#     cursor.execute("""
+#         SELECT id, name FROM sensors
+#         WHERE catagory = 'light'
+#     """)
+#     light_sensors = {row[1]: row[0] for row in cursor.fetchall()}
+#     conn.close()
+#
+#     return light_sensors
+#
+# def db_get_temp_sensors():
+#     """Get all temperature sensors from the database"""
+#     conn = sqlite3.connect(DB_NAME, timeout=10)
+#     conn.execute("PRAGMA journal_mode=WAL;")
+#     cursor = conn.cursor()
+#
+#     cursor.execute("""
+#         SELECT id, name FROM sensors
+#         WHERE catagory = 'temp'
+#     """)
+#     temp_sensors = {row[1]: row[0] for row in cursor.fetchall()}
+#     conn.close()
+#
+#     return temp_sensors
+#
+# def db_get_sensor_data(sensor_id, timestamp):
+#     """Get sensor data for a specific sensor and timestamp"""
+#     conn = sqlite3.connect(DB_NAME, timeout=10)
+#     conn.execute("PRAGMA journal_mode=WAL;")
+#     cursor = conn.cursor()
+#
+#     cursor.execute("""
+#         SELECT sensor_value FROM sensor_data
+#         WHERE sensor_id = ? AND timestamp = ?
+#     """, (sensor_id, timestamp))
+#
+#     result = cursor.fetchone()
+#     conn.close()
+#
+#     return result[0] if result else None
+
+
+# Add these functions to database.py
+
+def db_get_sensor_types():
+    """Get all sensors with their types from database"""
+    conn = sqlite3.connect(DB_NAME, timeout=10)
+    conn.execute("PRAGMA journal_mode=WAL;")
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        SELECT id, name, catagory
+        FROM sensors
+        WHERE name IS NOT NULL
+    """)
+
+    sensors = cursor.fetchall()
+    conn.close()
+
+    # Create mappings of sensor names to ids
+    sensor_map = {row[1]: row[0] for row in sensors}
+    sensor_categories = {row[0]: row[2] for row in sensors}
+
+    return sensor_map, sensor_categories
+
+
+def db_get_sensors_by_category(category):
+    """Get all sensors of a specific category"""
+    conn = sqlite3.connect(DB_NAME, timeout=10)
+    conn.execute("PRAGMA journal_mode=WAL;")
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        SELECT id, name
+        FROM sensors
+        WHERE catagory = ? AND name IS NOT NULL
+    """, (category,))
+
+    sensors = cursor.fetchall()
+    conn.close()
+
+    return {row[1]: row[0] for row in sensors}  # Map name to id
+
+
+def db_get_sensor_data(sensor_id, days=7):
+    """Get data for a specific sensor for the last X days"""
+    conn = sqlite3.connect(DB_NAME, timeout=10)
+    conn.execute("PRAGMA journal_mode=WAL;")
+    cursor = conn.cursor()
+
+    # Calculate date X days ago
+    days_ago = (datetime.now() - timedelta(days=days)).strftime('%Y-%m-%d %H:%M:%S')
+
+    cursor.execute("""
+        SELECT timestamp, sensor_value
+        FROM sensor_data
+        WHERE sensor_id = ? AND timestamp >= ?
+        ORDER BY timestamp
+    """, (sensor_id, days_ago))
+
+    data = cursor.fetchall()
+    conn.close()
+
+    return data
+
+
+def db_get_all_sensor_data(days=7):
+    """Get data for all sensors for the last X days"""
+    conn = sqlite3.connect(DB_NAME, timeout=10)
+    conn.execute("PRAGMA journal_mode=WAL;")
+    cursor = conn.cursor()
+
+    # Get all sensor IDs
+    cursor.execute("""
+        SELECT id, name, catagory
+        FROM sensors
+        WHERE name IS NOT NULL AND (catagory = 'light' OR catagory = 'temp')
+    """)
+
+    sensors = cursor.fetchall()
+
+    # Calculate date X days ago
+    days_ago = (datetime.now() - timedelta(days=days)).strftime('%Y-%m-%d %H:%M:%S')
+
+    # Create a dictionary to store data for each sensor
+    sensor_data = {}
+
+    for sensor_id, sensor_name, sensor_category in sensors:
+        cursor.execute("""
+            SELECT timestamp, sensor_value
+            FROM sensor_data
+            WHERE sensor_id = ? AND timestamp >= ?
+            ORDER BY timestamp
+        """, (sensor_id, days_ago))
+
+        data = cursor.fetchall()
+        sensor_data[sensor_name] = {'id': sensor_id, 'category': sensor_category, 'data': data}
+
+    conn.close()
+
+    return sensor_data

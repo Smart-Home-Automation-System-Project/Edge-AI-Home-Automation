@@ -6,7 +6,7 @@ import datetime
 
 # Add the parent directory to path so we can import the module
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
-from lights_temp_automation import weekly_check_loop
+from lights_temp_automation import make_predictions
 
 
 class TestWeeklyCheckLoop(unittest.TestCase):
