@@ -15,7 +15,7 @@ project_path = os.getenv("PATH_TO_PROJECT")
 csv_path = os.path.join(project_path, 'train.csv')
 
 # Connect to DB
-conn = sqlite3.connect('database1.db')
+conn = sqlite3.connect('database.db')
 
 # Calculate 7-day window
 now = datetime.now()

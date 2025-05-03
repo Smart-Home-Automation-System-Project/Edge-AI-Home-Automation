@@ -16,7 +16,7 @@ csv_path = os.path.join(project_path, 'test.csv')
 
 # Function to get the latest data from the sensor_data table
 def get_latest_data_from_db():
-    conn = sqlite3.connect('database1.db')
+    conn = sqlite3.connect('database.db')
 
     # First get the most recent timestamp
     cursor = conn.cursor()
