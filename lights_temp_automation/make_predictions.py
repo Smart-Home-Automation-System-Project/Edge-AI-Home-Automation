@@ -1,3 +1,7 @@
+"""
+main file to  run the predictions
+"""
+
 import os
 import subprocess
 from datetime import datetime
