@@ -190,13 +190,14 @@ def main():
 
     # Process the predictions
     final_predictions, results = process_predictions(raw_predictions)
-
+    # Save predictions to CSV file
+    save_predictions(final_predictions, predictions_csv_path)
     # Print detailed results
     print("\nPrediction results:")
     print("Light levels (0-3): ", end="")
     print(" | ".join([f"{k}: {v}" for k, v in results['lights'].items()]))
 
-    print("Temperature settings (°C): ", end="")
+    print("Temperature settings (C): ", end="")
     print(" | ".join([f"{k}: {v}" for k, v in results['temperatures'].items()]))
 
 

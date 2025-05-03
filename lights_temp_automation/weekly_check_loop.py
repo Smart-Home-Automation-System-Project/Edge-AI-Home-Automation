@@ -25,12 +25,14 @@ def run_predictions_and_publish(predict_path, mqtt_publish_path):
     # Function to run predictions and publish data
     print("Running predictions...")
     result = subprocess.run(['python', predict_path], capture_output=True, text=True, encoding='utf-8')
+    #result = subprocess.run(['python', predict_path], capture_output=True, text=True)
     if result.returncode == 0:
         print("Predictions completed successfully.")
 
         # After running predictions, invoke lights_temp_publish.py to send the latest prediction data
         print("Sending prediction data via MQTT...")
         result = subprocess.run(['python', mqtt_publish_path], capture_output=True, text=True, encoding='utf-8')
+        #result = subprocess.run(['python', predict_path], capture_output=True, text=True)
         if result.returncode == 0:
             print("Data successfully sent via MQTT.")
         else:
