@@ -1,3 +1,9 @@
+"""
+FOR DEMONSTRATION
+-----------------
+To populate 'sensor_data' db table easily with sample sensor data .
+"""
+
 import sqlite3
 from datetime import datetime, timedelta
 import random

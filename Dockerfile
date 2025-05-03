@@ -26,4 +26,4 @@ COPY . .
 # Create necessary directories - DELETE this line
 # RUN mkdir -p database lights-temp-automation mqtt
 
-CMD ["python", "lights_temp_automation/weekly_check_loop.py"]
+CMD ["python", "lights_temp_automation/make_predictions.py"]

@@ -1,3 +1,8 @@
+"""
+FOR DEMONSTRATION
+-----------------
+To populate 'sensors' db table easily with sample sensors .
+"""
 from database import db_add_sensor
 
 # Sample sensors with client_id, name, and category information

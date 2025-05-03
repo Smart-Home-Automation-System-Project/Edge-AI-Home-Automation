@@ -1,3 +1,10 @@
+"""
+FOR DEMONSTRATION
+-----------------
+To simulate the environment/home conditions.
+No need to wait for 15 mins to receive new sensor data.
+Sensor data are updated every 5s randomly for demonstration purposes.
+"""
 import csv
 import random
 import time

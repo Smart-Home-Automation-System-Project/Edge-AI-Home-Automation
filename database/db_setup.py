@@ -1,3 +1,7 @@
+"""
+Database Tables
+"""
+
 import sqlite3
 
 # Connect to the new database name

@@ -1,3 +1,6 @@
+"""
+Database queries.
+"""
 import sqlite3
 from threading import Lock
 import uuid
