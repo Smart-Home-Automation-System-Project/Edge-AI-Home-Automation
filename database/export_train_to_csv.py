@@ -1,143 +1,115 @@
-# database/export_train_csv.py
+# database/export_train_to_csv.py
 import sqlite3
 import os
 import datetime
 import csv
+from datetime import timedelta
 
 
-def get_sensor_mappings():
-    """Get mapping from sensor_id to name"""
+def export_to_train_csv(days=7):
+    """Export sensor data from the past X days to train.csv"""
+    # Connect to the database
     db_path = os.path.join(os.path.dirname(__file__), "database.db")
     conn = sqlite3.connect(db_path)
     conn.row_factory = sqlite3.Row
     cursor = conn.cursor()
 
-    sensor_mappings = {}
-    cursor.execute("SELECT id, name, catagory FROM sensors")
-    for row in cursor.fetchall():
-        sensor_id = row['id']
-        name = row['name']
-        category = row['catagory']
-        if category in ('light', 'temp'):
-            sensor_mappings[sensor_id] = name
-
-    conn.close()
-    return sensor_mappings
-
-
-def get_past_week_data():
-    """Get all sensor data from the past 7 days"""
-    db_path = os.path.join(os.path.dirname(__file__), "database.db")
-    conn = sqlite3.connect(db_path)
-    conn.row_factory = sqlite3.Row
-    cursor = conn.cursor()
-
-    # Calculate date 7 days ago
-    seven_days_ago = (datetime.datetime.now() - datetime.timedelta(days=7)).strftime('%Y-%m-%d %H:%M:%S')
-
-    # Get all distinct timestamps from the past 7 days, ordered by timestamp
+    # Get all light and temperature sensors with their names
     cursor.execute("""
-        SELECT DISTINCT timestamp
-        FROM sensor_data
+        SELECT id, name, catagory 
+        FROM sensors 
+        WHERE catagory IN ('light', 'temp') AND name IS NOT NULL
+        ORDER BY catagory, name
+    """)
+
+    sensors = cursor.fetchall()
+    light_sensors = [row['name'] for row in sensors if row['catagory'] == 'light']
+    temp_sensors = [row['name'] for row in sensors if row['catagory'] == 'temp']
+
+    # Calculate date X days ago
+    days_ago = (datetime.datetime.now() - timedelta(days=days)).strftime('%Y-%m-%d %H:%M:%S')
+
+    # Get all distinct timestamps from the past X days
+    cursor.execute("""
+        SELECT DISTINCT timestamp 
+        FROM sensor_data 
         WHERE timestamp >= ?
         ORDER BY timestamp
-    """, (seven_days_ago,))
+    """, (days_ago,))
 
     timestamps = [row['timestamp'] for row in cursor.fetchall()]
 
-    # Get all sensor data for these timestamps
-    data_by_timestamp = {}
-
-    for ts in timestamps:
-        cursor.execute("""
-            SELECT sensor_id, sensor_value
-            FROM sensor_data
-            WHERE timestamp = ?
-        """, (ts,))
-
-        readings = {}
-        for row in cursor.fetchall():
-            readings[row['sensor_id']] = row['sensor_value']
-
-        data_by_timestamp[ts] = readings
-
-    conn.close()
-    return data_by_timestamp, timestamps
-
-
-def export_to_train_csv():
-    # Get sensor ID to name mappings
-    sensor_mappings = get_sensor_mappings()
-
-    # Get all data from past week
-    data_by_timestamp, timestamps = get_past_week_data()
-
     if not timestamps:
-        print("No sensor data available for the past 7 days")
+        print(f"No sensor data available for the past {days} days")
+        conn.close()
         return
 
-    # Reverse mapping from name to ID for easier lookup
-    name_to_id = {name: id for id, name in sensor_mappings.items()}
-
-    # Create the train.csv file in the project root
+    # Create the output file path
     project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     output_file = os.path.join(project_root, "train.csv")
 
     # Define CSV columns
-    fieldnames = ['timestamp', 'day_of_week', 'hour',
-                  'l1', 'l2', 'l3', 'l4', 'l5', 'l6', 'l7', 'l8',
-                  't1', 't2', 't3', 't4']
+    fieldnames = ['timestamp', 'day_of_week', 'hour']
 
-    # Prepare data for writing to CSV
+    # Add all detected light and temp sensor names
+    for sensor in light_sensors + temp_sensors:
+        fieldnames.append(sensor)
+
+    # Initialize rows for CSV
     csv_rows = []
 
+    # Get all sensor data for the timestamps we need
     for timestamp_str in timestamps:
         try:
+            # Parse timestamp for day_of_week and hour
             timestamp = datetime.datetime.strptime(timestamp_str, "%Y-%m-%d %H:%M:%S")
+
+            # Initialize row with time data
+            row_data = {
+                'timestamp': timestamp_str,
+                'day_of_week': timestamp.weekday(),
+                'hour': timestamp.hour
+            }
+
+            # Initialize all sensor values with defaults
+            for sensor in light_sensors:
+                row_data[sensor] = 0
+            for sensor in temp_sensors:
+                row_data[sensor] = 25.0
+
+            # Get all sensor readings for this timestamp in one query
+            cursor.execute("""
+                SELECT s.name, sd.sensor_value, s.catagory
+                FROM sensor_data sd
+                JOIN sensors s ON sd.sensor_id = s.id
+                WHERE sd.timestamp = ? AND s.catagory IN ('light', 'temp')
+            """, (timestamp_str,))
+
+            readings = cursor.fetchall()
+
+            # Fill in actual sensor values
+            for reading in readings:
+                sensor_name = reading['name']
+                sensor_value = reading['sensor_value']
+                category = reading['catagory']
+
+                if sensor_name in row_data:
+                    if category == 'light':
+                        try:
+                            row_data[sensor_name] = int(float(sensor_value))
+                        except (ValueError, TypeError):
+                            pass  # Keep default if conversion fails
+                    else:  # temperature
+                        try:
+                            row_data[sensor_name] = float(sensor_value)
+                        except (ValueError, TypeError):
+                            pass  # Keep default if conversion fails
+
+            csv_rows.append(row_data)
+
         except ValueError:
             print(f"Warning: Could not parse timestamp '{timestamp_str}', skipping this entry")
             continue
-
-        day_of_week = timestamp.weekday()
-        hour = timestamp.hour
-
-        # Initialize row with time data
-        row_data = {
-            'timestamp': timestamp_str,
-            'day_of_week': day_of_week,
-            'hour': hour
-        }
-
-        # Add sensor values
-        readings = data_by_timestamp[timestamp_str]
-
-        # Process light sensors (l1-l8)
-        for i in range(1, 9):
-            sensor_name = f"l{i}"
-            sensor_id = name_to_id.get(sensor_name)
-
-            if sensor_id and sensor_id in readings:
-                try:
-                    row_data[sensor_name] = int(float(readings[sensor_id]))
-                except (ValueError, TypeError):
-                    row_data[sensor_name] = 0
-            else:
-                row_data[sensor_name] = 0
-
-        # Process temperature sensors (t1-t4)
-        for i in range(1, 5):
-            sensor_name = f"t{i}"
-            sensor_id = name_to_id.get(sensor_name)
-
-            if sensor_id and sensor_id in readings:
-                try:
-                    row_data[sensor_name] = float(readings[sensor_id])
-                except (ValueError, TypeError):
-                    row_data[sensor_name] = 25.0
-            else:
-                row_data[sensor_name] = 25.0
-
-        csv_rows.append(row_data)
 
     # Write to CSV
     with open(output_file, 'w', newline='') as csvfile:
@@ -145,7 +117,8 @@ def export_to_train_csv():
         writer.writeheader()
         writer.writerows(csv_rows)
 
-    print(f"Exported {len(csv_rows)} records to {output_file}")
+    conn.close()
+    print(f"Exported {len(csv_rows)} records from the past {days} days to {output_file}")
 
 
 if __name__ == "__main__":

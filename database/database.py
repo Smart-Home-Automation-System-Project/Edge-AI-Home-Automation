@@ -3,6 +3,7 @@ from threading import Lock
 import uuid
 import os
 from datetime import datetime, timedelta
+import pandas as pd
 
 DB_NAME = os.path.join(os.path.dirname(__file__), "database.db")
 db_lock = Lock()
@@ -368,3 +369,127 @@ def db_get_all_sensor_data(days=7):
     conn.close()
 
     return sensor_data
+
+# predict.py
+def db_get_sensor_data_for_prediction(days=1):
+    """Get the last X days of sensor data for prediction in the format needed by predict.py"""
+    conn = sqlite3.connect(DB_NAME, timeout=10)
+    conn.execute("PRAGMA journal_mode=WAL;")
+    cursor = conn.cursor()
+
+    # Get light and temperature sensors
+    cursor.execute("""
+        SELECT id, name, catagory 
+        FROM sensors 
+        WHERE catagory IN ('light', 'temp') AND name IS NOT NULL
+    """)
+    sensors = cursor.fetchall()
+
+    # Calculate timestamp for X days ago
+    days_ago = (datetime.now() - timedelta(days=days)).strftime('%Y-%m-%d %H:%M:%S')
+
+    # Prepare data dictionary
+    data_dict = {'timestamp': []}
+
+    # Add column for each sensor
+    for sensor_id, name, category in sensors:
+        data_dict[name] = []
+
+    # Get unique timestamps (sorted)
+    cursor.execute("""
+        SELECT DISTINCT timestamp 
+        FROM sensor_data 
+        WHERE timestamp >= ? 
+        ORDER BY timestamp
+    """, (days_ago,))
+
+    timestamps = [row[0] for row in cursor.fetchall()]
+    data_dict['timestamp'] = timestamps
+
+    # For each timestamp, get sensor values
+    for ts in timestamps:
+        for sensor_id, name, category in sensors:
+            cursor.execute("""
+                SELECT sensor_value 
+                FROM sensor_data 
+                WHERE sensor_id = ? AND timestamp = ?
+            """, (sensor_id, ts))
+
+            result = cursor.fetchone()
+            value = result[0] if result else None
+            data_dict[name].append(value)
+
+    conn.close()
+
+    # Convert to DataFrame
+    df = pd.DataFrame(data_dict)
+
+    # Extract time features
+    df['timestamp'] = pd.to_datetime(df['timestamp'])
+    df['hour'] = df['timestamp'].dt.hour
+    df['day_of_week'] = df['timestamp'].dt.dayofweek
+
+    return df
+
+
+def db_get_light_and_temp_sensors():
+    """Get the names of all light and temperature sensors"""
+    conn = sqlite3.connect(DB_NAME, timeout=10)
+    conn.execute("PRAGMA journal_mode=WAL;")
+    cursor = conn.cursor()
+
+    # Get light sensors
+    cursor.execute("""
+        SELECT name FROM sensors 
+        WHERE catagory = 'light' AND name IS NOT NULL
+    """)
+    light_sensors = [row[0] for row in cursor.fetchall()]
+
+    # Get temperature sensors
+    cursor.execute("""
+        SELECT name FROM sensors 
+        WHERE catagory = 'temp' AND name IS NOT NULL
+    """)
+    temp_sensors = [row[0] for row in cursor.fetchall()]
+
+    conn.close()
+
+    return light_sensors, temp_sensors
+
+
+def db_save_predicted_values(predictions_dict):
+    """Save predicted values to database"""
+    conn = sqlite3.connect(DB_NAME, timeout=10)
+    conn.execute("PRAGMA journal_mode=WAL;")
+    cursor = conn.cursor()
+
+    # Get mapping of sensor names to IDs
+    cursor.execute("""
+        SELECT name, id FROM sensors 
+        WHERE catagory IN ('light', 'temp') AND name IS NOT NULL
+    """)
+    name_to_id = {row[0]: row[1] for row in cursor.fetchall()}
+
+    # Current timestamp for predictions
+    current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+
+    # Save light predictions
+    for light_name, value in predictions_dict['lights'].items():
+        if light_name in name_to_id:
+            sensor_id = name_to_id[light_name]
+            cursor.execute("""
+                INSERT OR REPLACE INTO sensor_data (sensor_id, timestamp, sensor_value)
+                VALUES (?, ?, ?)
+            """, (sensor_id, current_time, value))
+
+    # Save temperature predictions
+    for temp_name, value in predictions_dict['temperatures'].items():
+        if temp_name in name_to_id:
+            sensor_id = name_to_id[temp_name]
+            cursor.execute("""
+                INSERT OR REPLACE INTO sensor_data (sensor_id, timestamp, sensor_value)
+                VALUES (?, ?, ?)
+            """, (sensor_id, current_time, value))
+
+    conn.commit()
+    conn.close()
