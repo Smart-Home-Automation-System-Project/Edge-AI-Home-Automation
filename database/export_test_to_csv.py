@@ -1,48 +1,28 @@
 # database/export_test_to_csv.py
-import sqlite3
 import os
 import datetime
 import csv
 from datetime import timedelta
+from database import (
+    db_get_light_and_temp_sensors_with_details,
+    db_get_recent_timestamps,
+    db_get_sensor_readings_for_timestamp
+)
 
 
 def export_to_test_csv():
     """Export the most recent 24 records to test.csv"""
-    # Connect to the database
-    db_path = os.path.join(os.path.dirname(__file__), "database.db")
-    conn = sqlite3.connect(db_path)
-    conn.row_factory = sqlite3.Row
-    cursor = conn.cursor()
-
     # Get all light and temperature sensors with their names
-    cursor.execute("""
-        SELECT id, name, catagory 
-        FROM sensors 
-        WHERE catagory IN ('light', 'temp') AND name IS NOT NULL
-        ORDER BY catagory, name
-    """)
+    sensors = db_get_light_and_temp_sensors_with_details()
 
-    sensors = cursor.fetchall()
     light_sensors = [row['name'] for row in sensors if row['catagory'] == 'light']
     temp_sensors = [row['name'] for row in sensors if row['catagory'] == 'temp']
 
-    # Map sensor IDs to names
-    sensor_id_to_name = {row['id']: row['name'] for row in sensors}
-
     # Get the 24 most recent distinct timestamps
-    cursor.execute("""
-        SELECT DISTINCT timestamp 
-        FROM sensor_data 
-        ORDER BY timestamp DESC 
-        LIMIT 24
-    """)
-
-    timestamps = [row['timestamp'] for row in cursor.fetchall()]
-    timestamps.reverse()  # Chronological order (oldest first)
+    timestamps = db_get_recent_timestamps(24)
 
     if not timestamps:
         print("No sensor data available in the database")
-        conn.close()
         return
 
     # Create the output file path
@@ -79,14 +59,7 @@ def export_to_test_csv():
                 row_data[sensor] = 25.0
 
             # Get all sensor readings for this timestamp
-            cursor.execute("""
-                SELECT s.name, sd.sensor_value, s.catagory
-                FROM sensor_data sd
-                JOIN sensors s ON sd.sensor_id = s.id
-                WHERE sd.timestamp = ? AND s.catagory IN ('light', 'temp')
-            """, (timestamp_str,))
-
-            readings = cursor.fetchall()
+            readings = db_get_sensor_readings_for_timestamp(timestamp_str)
 
             # Fill in actual sensor values
             for reading in readings:
@@ -118,7 +91,6 @@ def export_to_test_csv():
         writer.writeheader()
         writer.writerows(csv_rows)
 
-    conn.close()
     print(f"Exported {len(csv_rows)} most recent records to {output_file}")
 
 

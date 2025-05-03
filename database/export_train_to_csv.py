@@ -1,47 +1,28 @@
 # database/export_train_to_csv.py
-import sqlite3
 import os
 import datetime
 import csv
 from datetime import timedelta
+from database import (
+    db_get_light_and_temp_sensors_with_details,
+    db_get_timestamps_since,
+    db_get_sensor_readings_for_timestamp
+)
 
 
 def export_to_train_csv(days=7):
     """Export sensor data from the past X days to train.csv"""
-    # Connect to the database
-    db_path = os.path.join(os.path.dirname(__file__), "database.db")
-    conn = sqlite3.connect(db_path)
-    conn.row_factory = sqlite3.Row
-    cursor = conn.cursor()
-
     # Get all light and temperature sensors with their names
-    cursor.execute("""
-        SELECT id, name, catagory 
-        FROM sensors 
-        WHERE catagory IN ('light', 'temp') AND name IS NOT NULL
-        ORDER BY catagory, name
-    """)
+    sensors = db_get_light_and_temp_sensors_with_details()
 
-    sensors = cursor.fetchall()
     light_sensors = [row['name'] for row in sensors if row['catagory'] == 'light']
     temp_sensors = [row['name'] for row in sensors if row['catagory'] == 'temp']
 
-    # Calculate date X days ago
-    days_ago = (datetime.datetime.now() - timedelta(days=days)).strftime('%Y-%m-%d %H:%M:%S')
-
     # Get all distinct timestamps from the past X days
-    cursor.execute("""
-        SELECT DISTINCT timestamp 
-        FROM sensor_data 
-        WHERE timestamp >= ?
-        ORDER BY timestamp
-    """, (days_ago,))
-
-    timestamps = [row['timestamp'] for row in cursor.fetchall()]
+    timestamps = db_get_timestamps_since(days)
 
     if not timestamps:
         print(f"No sensor data available for the past {days} days")
-        conn.close()
         return
 
     # Create the output file path
@@ -77,15 +58,8 @@ def export_to_train_csv(days=7):
             for sensor in temp_sensors:
                 row_data[sensor] = 25.0
 
-            # Get all sensor readings for this timestamp in one query
-            cursor.execute("""
-                SELECT s.name, sd.sensor_value, s.catagory
-                FROM sensor_data sd
-                JOIN sensors s ON sd.sensor_id = s.id
-                WHERE sd.timestamp = ? AND s.catagory IN ('light', 'temp')
-            """, (timestamp_str,))
-
-            readings = cursor.fetchall()
+            # Get all sensor readings for this timestamp
+            readings = db_get_sensor_readings_for_timestamp(timestamp_str)
 
             # Fill in actual sensor values
             for reading in readings:
@@ -117,7 +91,6 @@ def export_to_train_csv(days=7):
         writer.writeheader()
         writer.writerows(csv_rows)
 
-    conn.close()
     print(f"Exported {len(csv_rows)} records from the past {days} days to {output_file}")
 
 
