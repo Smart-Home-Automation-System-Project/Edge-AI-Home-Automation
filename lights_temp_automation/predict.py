@@ -135,7 +135,7 @@ def save_predictions(final_predictions, predictions_csv_path):
                                   columns=["l1", "l2", "l3", "l4", "l5", "l6", "l7", "l8",
                                            "t1", "t2", "t3", "t4"])
 
-    predictions_df.to_csv(predictions_csv_path, index=False)
+    predictions_df.to_csv(predictions_csv_path, index=False, float_format='%.2f')
     print(f"Predictions saved to {predictions_csv_path}")
 
 
@@ -162,17 +162,11 @@ def main():
 
     # Print detailed results
     print("\nPrediction results:")
-    print("Light levels (0-3):")
-    for light, value in results['lights'].items():
-        print(f"  {light}: {value}")
+    print("Light levels (0-3): ", end="")
+    print(" | ".join([f"{k}: {v}" for k, v in results['lights'].items()]))
 
-    print("Temperature settings (°C):")
-    for temp, value in results['temperatures'].items():
-        print(f"  {temp}: {value}")
-
-    # Save predictions to CSV
-    save_predictions(final_predictions, predictions_csv_path)
-    print("\nPrediction process complete!")
+    print("Temperature settings (°C): ", end="")
+    print(" | ".join([f"{k}: {v}" for k, v in results['temperatures'].items()]))
 
 
 if __name__ == "__main__":
