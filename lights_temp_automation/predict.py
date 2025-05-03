@@ -100,22 +100,54 @@ def make_predictions(model, X):
         exit(1)
 
 
+# def process_predictions(predictions):
+#     # Process the raw predictions to get usable values
+#
+#     # Extract light and temperature predictions
+#     # The model outputs 12 values: 8 for lights and 4 for temperature
+#     light_predictions = predictions[0, :8]  # First 8 values are for lights
+#     temp_predictions = predictions[0, 8:12]  # Last 4 values are for temperature
+#
+#     # Process light predictions - convert to integers 0-3
+#     # Map to the nearest valid level (0, 1, 2, 3)
+#     processed_lights = np.round(np.clip(light_predictions, 0, 3)).astype(int)
+#
+#     # Process temperature predictions - denormalize as per train.py
+#     # In train.py: df['t1'] = (df['t1'] - 20) / 10.0
+#     # So reverse: temp = (normalized_temp * 10.0) + 20
+#     processed_temps = (temp_predictions * 10.0) + 20.0
+#
+#     # Combine the processed predictions
+#     final_predictions = np.concatenate([processed_lights, processed_temps])
+#
+#     # Format the results
+#     results = {
+#         'lights': {f'l{i + 1}': int(processed_lights[i]) for i in range(8)},
+#         'temperatures': {f't{i + 1}': round(float(processed_temps[i]), 2) for i in range(4)}
+#     }
+#
+#     return final_predictions, results
+
+
 def process_predictions(predictions):
     # Process the raw predictions to get usable values
 
     # Extract light and temperature predictions
-    # The model outputs 12 values: 8 for lights and 4 for temperature
     light_predictions = predictions[0, :8]  # First 8 values are for lights
     temp_predictions = predictions[0, 8:12]  # Last 4 values are for temperature
 
     # Process light predictions - convert to integers 0-3
-    # Map to the nearest valid level (0, 1, 2, 3)
     processed_lights = np.round(np.clip(light_predictions, 0, 3)).astype(int)
 
+    # Add random variation to temperature predictions
+    # The random factor will change with each run
+    random_variation = np.random.uniform(-2.0, 2.0, size=len(temp_predictions))
+
+    # Apply the random variation before denormalizing
+    varied_temp_predictions = temp_predictions + random_variation * 0.2  # 0.2 controls magnitude of variation
+
     # Process temperature predictions - denormalize as per train.py
-    # In train.py: df['t1'] = (df['t1'] - 20) / 10.0
-    # So reverse: temp = (normalized_temp * 10.0) + 20
-    processed_temps = (temp_predictions * 10.0) + 20.0
+    processed_temps = (varied_temp_predictions * 10.0) + 20.0
 
     # Combine the processed predictions
     final_predictions = np.concatenate([processed_lights, processed_temps])
@@ -127,7 +159,6 @@ def process_predictions(predictions):
     }
 
     return final_predictions, results
-
 
 def save_predictions(final_predictions, predictions_csv_path):
     # Save predictions to CSV file

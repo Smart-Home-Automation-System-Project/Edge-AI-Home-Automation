@@ -39,7 +39,7 @@ def on_message(client, userdata, msg):
         print(f"Light {i}: {status}")
 
     for i in range(1, 4):
-        print(f" AC {i} set to: {data[f't{i}']}°C")
+        print(f" AC {i} set to: {data[f't{i}']}C")
 
 
 client = mqtt.Client()

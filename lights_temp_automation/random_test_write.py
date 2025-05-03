@@ -16,15 +16,6 @@ test_file_path = os.path.join(project_path, 'test.csv')
 radar_file_path = os.path.join(project_path, 'radar_sensors.csv')
 
 
-# Generate a random datetime within the past 30 days
-def get_random_datetime():
-    now = datetime.now()
-    random_days = random.randint(0, 30)
-    random_seconds = random.randint(0, 86400)
-    random_timestamp = now - timedelta(days=random_days, seconds=random_seconds)
-    return random_timestamp
-
-
 # Function to generate test.csv data
 def generate_test_data(start_time):
     data_rows = []
@@ -63,8 +54,12 @@ def generate_radar_data():
 # Function to write both CSV files
 def write_data_to_csv():
     while True:
+        # === Generate a random future start time ===
+        random_days_ahead = random.randint(1, 30)
+        random_seconds = random.randint(0, 86400)
+        start_time = datetime.now() + timedelta(days=random_days_ahead, seconds=random_seconds)
+
         # === Write test.csv with 24 rows ===
-        start_time = datetime.now() - timedelta(hours=6)  # 6 hours back from now
         test_data_rows = generate_test_data(start_time)
 
         with open(test_file_path, mode='w', newline='') as file:
@@ -85,8 +80,7 @@ def write_data_to_csv():
             writer.writerow(radar_data)
             print(f"[radar_sensors.csv] Data written: {radar_data}")
 
-        time.sleep(5)  # Or 30 seconds for production
-
+        time.sleep(5)  # Adjust this delay as needed
 
 
 if __name__ == "__main__":
