@@ -1,9 +1,11 @@
+# lights_temp_automation/predict.py
 import numpy as np
 import pandas as pd
 import tensorflow as tf
 from tensorflow import keras
 import os
 from dotenv import load_dotenv
+import datetime
 
 
 def load_environment():
@@ -12,6 +14,10 @@ def load_environment():
 
     # Get the project path from the .env file
     project_path = os.getenv('PATH_TO_PROJECT')
+
+    if not project_path:
+        # Default to the directory one level up from this script
+        project_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
     # Construct paths dynamically based on the project path
     model_h5_path = os.path.join(project_path, 'model.h5')
@@ -22,87 +28,151 @@ def load_environment():
 
 
 def load_model(model_h5_path):
-    # Load the model without compiling (fixes the 'mse' issue)
-    print("Model loaded.")
-    model = keras.models.load_model(model_h5_path, compile=False)
-    return model
+    # Load the trained model
+    try:
+        model = keras.models.load_model(model_h5_path, compile=False)
+        print(f"Model successfully loaded from {model_h5_path}")
+        return model
+    except Exception as e:
+        print(f"Error loading model: {e}")
+        exit(1)
 
 
 def load_and_preprocess_data(test_csv_path):
-    # === Load test input from CSV ===
-    df = pd.read_csv(test_csv_path)
+    # Load test data from CSV
+    try:
+        df = pd.read_csv(test_csv_path)
+        print(f"Loaded test data with {len(df)} records")
 
-    # Drop timestamp (not used as input for the model)
-    df = df.drop('timestamp', axis=1)
+        if len(df) < 24:
+            print("Warning: Test data contains fewer than 24 records. The model expects 24 time steps.")
+            print(f"Current record count: {len(df)}")
 
-    # Normalize hour (0–23 → 0–1) and day_of_week (0–6 → 0–1)
-    df['hour'] = df['hour'] / 23.0
-    df['day_of_week'] = df['day_of_week'] / 6.0
+        # Keep timestamp for reference but don't use it for prediction
+        timestamps = df['timestamp'].tolist()
 
-    # Select input features for the model
-    df_input = df[['l1', 'l2', 'l3', 'l4', 'l5', 'l6', 'l7', 'l8', 't1', 't2', 't3', 't4', 'hour', 'day_of_week']]
+        # Normalize time features exactly as done in train.py
+        df['hour'] = df['hour'] / 23.0  # Normalize hour (0-23 → 0-1)
+        df['day_of_week'] = df['day_of_week'] / 6.0  # Normalize day (0-6 → 0-1)
 
-    # Reshape input for LSTM: (samples, timesteps, features)
-    input_data = df_input.to_numpy().reshape((df_input.shape[0], 1, df_input.shape[1]))
+        # Normalize temperature values just like in train.py
+        df['t1'] = (df['t1'] - 20) / 10.0
+        df['t2'] = (df['t2'] - 20) / 10.0
+        df['t3'] = (df['t3'] - 20) / 10.0
+        df['t4'] = (df['t4'] - 20) / 10.0
 
-    return df_input, input_data
+        # Select the same features used in training
+        features = ['l1', 'l2', 'l3', 'l4', 'l5', 'l6', 'l7', 'l8',
+                    't1', 't2', 't3', 't4', 'hour', 'day_of_week']
+        X = df[features].values.astype(np.float32)
+
+        # Reshape input for LSTM: (1, SEQ_LEN, features)
+        # SEQ_LEN = 24 as defined in train.py
+        SEQ_LEN = 24
+
+        # Ensure we have exactly 24 timesteps
+        if len(X) >= SEQ_LEN:
+            # Take most recent 24 timesteps
+            X = X[-SEQ_LEN:]
+        else:
+            # Pad with zeros if we have fewer than 24 timesteps
+            padding = np.zeros((SEQ_LEN - len(X), len(features)), dtype=np.float32)
+            X = np.vstack([padding, X])
+
+        # Reshape for LSTM input: (samples, timesteps, features)
+        X = X.reshape(1, SEQ_LEN, len(features))
+
+        return X, timestamps[-1] if timestamps else datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+    except Exception as e:
+        print(f"Error preprocessing data: {e}")
+        exit(1)
 
 
-def map_to_brightness(value):
-    # For light predictions, map the model outputs to the range 0-3
-    # Based on the observed outputs, the model seems to output values that need proper scaling
-    # Using sigmoid-like mapping with thresholds for the 4 states
-    if value < -0.5:
-        return 0  # OFF
-    elif value < 0.25:
-        return 1  # LOW
-    elif value < 0.75:
-        return 2  # MEDIUM
-    else:
-        return 3  # HIGH
+def make_predictions(model, X):
+    # Use the model to make predictions
+    try:
+        predictions = model.predict(X)
+        print("Model predictions generated successfully")
+        return predictions
+    except Exception as e:
+        print(f"Error making predictions: {e}")
+        exit(1)
 
 
 def process_predictions(predictions):
-    # Apply the mapping function to light predictions
-    lights_predictions = np.array([[map_to_brightness(val) for val in row[:8]] for row in predictions])
+    # Process the raw predictions to get usable values
 
-    # Denormalize and clip temperatures (20–30°C range)
-    thermostats_predictions = predictions[:, 8:12] * 10.0 + 20.0
-    thermostats_predictions = np.clip(thermostats_predictions, 20.0, 30.0)
+    # Extract light and temperature predictions
+    # The model outputs 12 values: 8 for lights and 4 for temperature
+    light_predictions = predictions[0, :8]  # First 8 values are for lights
+    temp_predictions = predictions[0, 8:12]  # Last 4 values are for temperature
 
-    # Combine and round final predictions
-    final_predictions = np.hstack((lights_predictions, thermostats_predictions))
-    final_predictions = np.round(final_predictions, 2)
-    final_predictions[final_predictions == -0.0] = 0.0  # Replace -0.0 if needed
+    # Process light predictions - convert to integers 0-3
+    # Map to the nearest valid level (0, 1, 2, 3)
+    processed_lights = np.round(np.clip(light_predictions, 0, 3)).astype(int)
 
-    return final_predictions
+    # Process temperature predictions - denormalize as per train.py
+    # In train.py: df['t1'] = (df['t1'] - 20) / 10.0
+    # So reverse: temp = (normalized_temp * 10.0) + 20
+    processed_temps = (temp_predictions * 10.0) + 20.0
+
+    # Combine the processed predictions
+    final_predictions = np.concatenate([processed_lights, processed_temps])
+
+    # Format the results
+    results = {
+        'lights': {f'l{i + 1}': int(processed_lights[i]) for i in range(8)},
+        'temperatures': {f't{i + 1}': round(float(processed_temps[i]), 2) for i in range(4)}
+    }
+
+    return final_predictions, results
 
 
 def save_predictions(final_predictions, predictions_csv_path):
-    # Print and save predictions
-    print(f"Final Predictions (Rounded to 2 Decimal Points): {final_predictions}")
-    predictions_df = pd.DataFrame(final_predictions, columns=["l1", "l2", "l3", "l4", "l5", "l6", "l7", "l8",
-                                                              "t1", "t2", "t3", "t4"])
+    # Save predictions to CSV file
+    predictions_df = pd.DataFrame([final_predictions],
+                                  columns=["l1", "l2", "l3", "l4", "l5", "l6", "l7", "l8",
+                                           "t1", "t2", "t3", "t4"])
+
     predictions_df.to_csv(predictions_csv_path, index=False)
     print(f"Predictions saved to {predictions_csv_path}")
 
 
 def main():
+    print("Starting prediction process...")
+
+    # Load environment and paths
     project_path, model_h5_path, test_csv_path, predictions_csv_path = load_environment()
+    print(f"Project path: {project_path}")
+
+    # Load the trained model
     model = load_model(model_h5_path)
-    df_input, input_data = load_and_preprocess_data(test_csv_path)
 
-    # Predict
-    predictions = model.predict(input_data)
+    # Load and preprocess test data
+    X, last_timestamp = load_and_preprocess_data(test_csv_path)
+    print(f"Preprocessed data shape: {X.shape}")
+    print(f"Last timestamp: {last_timestamp}")
 
-    # Debugging: Print input data and predictions
-    print("Input Data (Normalized):")
-    print(df_input)
-    print("Model Predictions (Normalized):")
-    print(predictions)
+    # Make predictions
+    raw_predictions = make_predictions(model, X)
 
-    final_predictions = process_predictions(predictions)
+    # Process the predictions
+    final_predictions, results = process_predictions(raw_predictions)
+
+    # Print detailed results
+    print("\nPrediction results:")
+    print("Light levels (0-3):")
+    for light, value in results['lights'].items():
+        print(f"  {light}: {value}")
+
+    print("Temperature settings (°C):")
+    for temp, value in results['temperatures'].items():
+        print(f"  {temp}: {value}")
+
+    # Save predictions to CSV
     save_predictions(final_predictions, predictions_csv_path)
+    print("\nPrediction process complete!")
 
 
 if __name__ == "__main__":
