@@ -1,5 +1,6 @@
 """
 Not Used Currently
+Use Cron jobs instead
 """
 
 import os
