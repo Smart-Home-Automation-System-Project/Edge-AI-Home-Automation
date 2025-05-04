@@ -9,7 +9,7 @@ import sys
 
 # Add database directory to path to import database module
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
-from database.database import db_get_sensor_data_for_prediction, db_get_light_and_temp_sensors, db_save_predicted_values
+from database.database import db_get_sensor_data_for_prediction, db_get_light_and_temp_sensors, db_save_predicted_values,db_save_predictions
 
 
 def load_environment():
@@ -141,15 +141,15 @@ def process_predictions(predictions, light_sensors, temp_sensors):
 
 
 
-def save_predictions_to_csv(final_predictions, light_sensors, temp_sensors, project_path):
-    # Save predictions to CSV file
-    predictions_csv_path = os.path.join(project_path, 'predictions.csv')
-
-    column_names = light_sensors + temp_sensors
-    predictions_df = pd.DataFrame([final_predictions], columns=column_names)
-
-    predictions_df.to_csv(predictions_csv_path, index=False, float_format='%.2f')
-    print(f"Predictions saved to {predictions_csv_path}")
+# def save_predictions_to_csv(final_predictions, light_sensors, temp_sensors, project_path):
+#     # Save predictions to CSV file
+#     predictions_csv_path = os.path.join(project_path, 'predictions.csv')
+#
+#     column_names = light_sensors + temp_sensors
+#     predictions_df = pd.DataFrame([final_predictions], columns=column_names)
+#
+#     predictions_df.to_csv(predictions_csv_path, index=False, float_format='%.2f')
+#     print(f"Predictions saved to {predictions_csv_path}")
 
 
 def main():
@@ -173,8 +173,12 @@ def main():
     # Process the predictions
     final_predictions, results = process_predictions(raw_predictions, light_sensors, temp_sensors)
 
-    # Save predictions to CSV file
-    save_predictions_to_csv(final_predictions, light_sensors, temp_sensors, project_path)
+    # # Save predictions to CSV file
+    # save_predictions_to_csv(final_predictions, light_sensors, temp_sensors, project_path)
+
+    # Save predictions to database
+    current_timestamp = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    db_save_predictions(current_timestamp, results)
 
     # Save predictions to database
     db_save_predicted_values(results)

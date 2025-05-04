@@ -21,7 +21,15 @@ client_id_map = {
     'T1': "T-2025.04.19-21.09-0001",
     'T2': "T-2025.04.19-21.09-0002",
     'T3': "T-2025.04.19-21.09-0003",
-    'T4': "T-2025.04.19-21.09-0004"
+    'T4': "T-2025.04.19-21.09-0004",
+    'R1': "R-2025.04.19-21.09-0001",
+    'R2': "R-2025.04.19-21.09-0002",
+    'R3': "R-2025.04.19-21.09-0003",
+    'R4': "R-2025.04.19-21.09-0004",
+    'R5': "R-2025.04.19-21.09-0005",
+    'R6': "R-2025.04.19-21.09-0006",
+    'R7': "R-2025.04.19-21.09-0007",
+    'R8': "R-2025.04.19-21.09-0008",
 }
 
 
@@ -56,6 +64,10 @@ def generate_sample_data(current_time, sensor_id_map):
     # Temp sensors (12 to 40 C)
     for key in [f"T{i}" for i in range(1, 5)]:
         data_rows.append((sensor_id_map[key], timestamp, round(random.uniform(12.0, 40.0), 2)))
+
+    # Radar sensors (0 or 1)
+    for key in [f"R{i}" for i in range(1, 9)]:
+        data_rows.append((sensor_id_map[key], timestamp, random.randint(0, 1)))
 
     return data_rows
 

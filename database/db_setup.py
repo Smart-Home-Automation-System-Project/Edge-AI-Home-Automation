@@ -30,6 +30,18 @@ CREATE TABLE IF NOT EXISTS sensors (
 )
 """)
 
+# Create new table named 'predictions' to store predictions
+cursor.execute("""
+CREATE TABLE IF NOT EXISTS predictions (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    timestamp TEXT NOT NULL,
+    sensor_name TEXT NOT NULL,
+    predicted_value REAL NOT NULL,
+    category TEXT NOT NULL,
+    UNIQUE(timestamp, sensor_name)
+)
+""")
+
 conn.commit()
 conn.close()
 print("Database and table created: database.db")

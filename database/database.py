@@ -445,6 +445,77 @@ def db_save_predicted_values(predictions_dict):
     conn.commit()
     conn.close()
 
+# predictions table
+
+def db_save_predictions(timestamp, predictions_dict):
+    """Save predictions to database instead of CSV, removing all previous predictions"""
+    conn = sqlite3.connect(DB_NAME, timeout=10)
+    conn.execute("PRAGMA journal_mode=WAL;")
+    cursor = conn.cursor()
+
+    try:
+        # First, delete all existing prediction records
+        cursor.execute("DELETE FROM predictions")
+
+        # Save light predictions
+        for light_name, value in predictions_dict['lights'].items():
+            cursor.execute("""
+                INSERT INTO predictions (timestamp, sensor_name, predicted_value, category)
+                VALUES (?, ?, ?, ?)
+            """, (timestamp, light_name, value, 'light'))
+
+        # Save temperature predictions
+        for temp_name, value in predictions_dict['temperatures'].items():
+            cursor.execute("""
+                INSERT INTO predictions (timestamp, sensor_name, predicted_value, category)
+                VALUES (?, ?, ?, ?)
+            """, (timestamp, temp_name, value, 'temp'))
+
+        conn.commit()
+        print(f"Previous predictions cleared. New predictions saved to database for timestamp: {timestamp}")
+    except sqlite3.Error as e:
+        print(f"Error saving predictions to database: {e}")
+    finally:
+        conn.close()
+
+def db_get_latest_predictions():
+    """Get the most recent predictions from database"""
+    conn = sqlite3.connect(DB_NAME, timeout=10)
+    conn.execute("PRAGMA journal_mode=WAL;")
+    conn.row_factory = sqlite3.Row
+    cursor = conn.cursor()
+
+    try:
+        # Get the latest timestamp first
+        cursor.execute("SELECT MAX(timestamp) as latest_time FROM predictions")
+        latest_time = cursor.fetchone()['latest_time']
+
+        if not latest_time:
+            return None
+
+        # Get all predictions for that timestamp
+        cursor.execute("""
+            SELECT sensor_name, predicted_value, category 
+            FROM predictions 
+            WHERE timestamp = ?
+            ORDER BY category, sensor_name
+        """, (latest_time,))
+
+        results = {
+            'lights': {},
+            'temperatures': {},
+            'timestamp': latest_time
+        }
+
+        for row in cursor.fetchall():
+            if row['category'] == 'light':
+                results['lights'][row['sensor_name']] = int(row['predicted_value'])
+            elif row['category'] == 'temp':
+                results['temperatures'][row['sensor_name']] = float(row['predicted_value'])
+
+        return results
+    finally:
+        conn.close()
 
 # export files
 def db_get_light_and_temp_sensors_with_details():
