@@ -11,6 +11,7 @@ import pandas as pd
 DB_NAME = os.path.join(os.path.dirname(__file__), "database.db")
 db_lock = Lock()
 
+# UI and sensor handling
 def db_add_module(client_id, name, category):
     try:
         with db_lock:
@@ -445,8 +446,8 @@ def db_save_predicted_values(predictions_dict):
     conn.commit()
     conn.close()
 
-# predictions table
 
+# predictions database table
 def db_save_predictions(timestamp, predictions_dict):
     """Save predictions to database instead of CSV, removing all previous predictions"""
     conn = sqlite3.connect(DB_NAME, timeout=10)
@@ -477,6 +478,65 @@ def db_save_predictions(timestamp, predictions_dict):
         print(f"Error saving predictions to database: {e}")
     finally:
         conn.close()
+
+
+# mqtt publish
+def db_get_latest_prediction_rows():
+    """Get the latest 20 prediction rows from the database"""
+    conn = sqlite3.connect(DB_NAME, timeout=10)
+    conn.execute("PRAGMA journal_mode=WAL;")
+    conn.row_factory = sqlite3.Row
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        SELECT timestamp, sensor_name, predicted_value 
+        FROM predictions 
+        ORDER BY timestamp DESC
+        LIMIT 20
+    """)
+
+    prediction_rows = cursor.fetchall()
+    conn.close()
+
+    return prediction_rows
+
+def db_get_radar_sensor_data():
+    """Get latest radar sensor data from the database"""
+    conn = sqlite3.connect(DB_NAME, timeout=10)
+    conn.execute("PRAGMA journal_mode=WAL;")
+    conn.row_factory = sqlite3.Row
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        SELECT s.name, sd.sensor_value, sd.timestamp
+        FROM sensor_data sd
+        JOIN sensors s ON sd.sensor_id = s.id
+        WHERE s.catagory = 'radar'
+        ORDER BY sd.timestamp DESC
+    """)
+
+    radar_rows = cursor.fetchall()
+    conn.close()
+
+    return radar_rows
+
+def db_get_light_sensor_names():
+    """Get all light sensor names from the database"""
+    conn = sqlite3.connect(DB_NAME, timeout=10)
+    conn.execute("PRAGMA journal_mode=WAL;")
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        SELECT name
+        FROM sensors
+        WHERE catagory = 'light' AND name IS NOT NULL
+        ORDER BY name
+    """)
+
+    light_sensors = [row[0].lower() for row in cursor.fetchall()]
+    conn.close()
+
+    return light_sensors
 
 def db_get_latest_predictions():
     """Get the most recent predictions from database"""
