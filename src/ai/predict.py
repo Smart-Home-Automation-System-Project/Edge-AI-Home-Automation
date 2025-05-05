@@ -11,24 +11,6 @@ import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 from database.database import db_get_sensor_data_for_prediction, db_get_light_and_temp_sensors, db_save_predicted_values,db_save_predictions
 
-
-# def load_environment():
-#     # Load environment variables from .env file
-#     load_dotenv()
-#
-#     # Get the project path from the .env file
-#     project_path = os.getenv('PATH_TO_PROJECT')
-#
-#     if not project_path:
-#         # Default to the directory one level up from this script
-#         project_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-#
-#     # Construct model path dynamically based on the project path
-#     model_h5_path = os.path.join(project_path, 'ai', 'model.h5')
-#
-#
-#     return project_path, model_h5_path
-
 def load_environment():
     # Load environment variables from .env file
     load_dotenv()

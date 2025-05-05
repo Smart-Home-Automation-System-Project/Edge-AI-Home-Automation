@@ -1,0 +1,18 @@
+1746434567: mosquitto version 2.0.21 starting
+1746434567: Config loaded from .\config\mosquitto.conf.
+1746434567: Opening ipv6 listen socket on port 1883.
+1746434567: Opening ipv4 listen socket on port 1883.
+1746434567: mosquitto version 2.0.21 running
+1746434587: New connection from 192.168.1.11:60942 on port 1883.
+1746434587: New client connected from 192.168.1.11:60942 as ai (p2, c1, k60, u'admin').
+1746434587: No will message specified.
+1746434587: Sending CONNACK to ai (0, 0)
+1746434587: Received SUBSCRIBE from ai
+1746434587: 	home/ai/commands (QoS 0)
+1746434587: ai 0 home/ai/commands
+1746434587: Sending SUBACK to ai
+1746434612: Client ai closed its connection.
+1746434616: mosquitto version 2.0.21 terminating
+1746434616: Saving in-memory database to mosquitto_data/\mosquitto.db.
+1746434616: Error saving in-memory database, unable to open mosquitto_data/\mosquitto.db.new for writing.
+1746434616: Error: Bad file descriptor.

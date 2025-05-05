@@ -1,4 +1,4 @@
-from ai.air_ctrl import init_ai
+from ai.ai_ctrl import init_ai
 import time
 from utils.console import *
 from utils.mqtt import MQTTConnection

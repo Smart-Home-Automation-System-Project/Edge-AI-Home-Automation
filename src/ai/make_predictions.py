@@ -23,7 +23,7 @@ def load_environment():
         predict_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'predict.py')
 
         # MQTT publish path
-        mqtt_publish_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'mqtt', 'lights_temp_publish.py')
+        mqtt_publish_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'lights_temp_publish.py')
 
         return project_path, predict_path, mqtt_publish_path
     except Exception as e:
