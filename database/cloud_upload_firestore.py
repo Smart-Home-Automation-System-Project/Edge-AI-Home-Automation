@@ -9,18 +9,18 @@ from datetime import date
 today = date.today()
 yesterday = today.replace(day=today.day-1)
 
-def upload_to_firestore(lst):
+def upload_to_firestore(data):
     # Dynamically determine the absolute path of the credentials file
     current_dir = os.path.dirname(os.path.abspath(__file__))
-    cred_path = os.path.join(current_dir, "edgeaihomeauto-firebase-adminsdk-fbsvc-0da42a2288.json")
+    cred_path = os.path.join(current_dir, "edgeaihomeauto-firebase-adminsdk-fbsvc-e3ff352f44.json")  # Updated file name
 
     cred = credentials.Certificate(cred_path)
     app = firebase_admin.initialize_app(cred)
 
     db = firestore.client()
 
-    doc_ref = db.collection("sensor_data").document("datbase1")
-    doc_ref.set(lst)
+    doc_ref = db.collection("sensor_data").document(f"{yesterday}")
+    doc_ref.set(data)
 
     db.close()
     
@@ -63,7 +63,7 @@ def return_sensor_data_yesterday():
 if __name__ == '__main__':
     sensor_data = return_sensor_data_yesterday()
     
-    tag_sensor_data_for_yesterday = {f"{yesterday}":sensor_data}
+    tag_sensor_data_for_yesterday = {"sensor":sensor_data}
     
     # for data in sensor_data:
     #     print(data)
