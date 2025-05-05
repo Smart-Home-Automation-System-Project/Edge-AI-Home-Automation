@@ -16,3 +16,2175 @@
 1746434616: Saving in-memory database to mosquitto_data/\mosquitto.db.
 1746434616: Error saving in-memory database, unable to open mosquitto_data/\mosquitto.db.new for writing.
 1746434616: Error: Bad file descriptor.
+1746434960: mosquitto version 2.0.21 starting
+1746434960: Config loaded from .\config\mosquitto.conf.
+1746434960: Opening ipv6 listen socket on port 1883.
+1746434960: Opening ipv4 listen socket on port 1883.
+1746434960: mosquitto version 2.0.21 running
+1746435033: New connection from 192.168.1.11:61058 on port 1883.
+1746435033: New client connected from 192.168.1.11:61058 as central_main (p2, c1, k60, u'admin').
+1746435033: No will message specified.
+1746435033: Sending CONNACK to central_main (0, 0)
+1746435033: Received SUBSCRIBE from central_main
+1746435033: 	sensor/publish (QoS 0)
+1746435033: central_main 0 sensor/publish
+1746435033: Sending SUBACK to central_main
+1746435033: Received SUBSCRIBE from central_main
+1746435033: 	central_main/control (QoS 0)
+1746435033: central_main 0 central_main/control
+1746435033: Sending SUBACK to central_main
+1746435041: New connection from 192.168.1.11:61061 on port 1883.
+1746435041: Client central_main already connected, closing old connection.
+1746435041: New client connected from 192.168.1.11:61061 as central_main (p2, c1, k60, u'admin').
+1746435041: No will message specified.
+1746435041: Sending CONNACK to central_main (0, 0)
+1746435041: Received SUBSCRIBE from central_main
+1746435041: 	sensor/publish (QoS 0)
+1746435041: central_main 0 sensor/publish
+1746435041: Sending SUBACK to central_main
+1746435041: Received SUBSCRIBE from central_main
+1746435041: 	central_main/control (QoS 0)
+1746435041: central_main 0 central_main/control
+1746435041: Sending SUBACK to central_main
+1746435042: New connection from 192.168.1.11:61064 on port 1883.
+1746435042: Client central_main already connected, closing old connection.
+1746435042: New client connected from 192.168.1.11:61064 as central_main (p2, c1, k60, u'admin').
+1746435042: No will message specified.
+1746435042: Sending CONNACK to central_main (0, 0)
+1746435043: New connection from 192.168.1.11:61065 on port 1883.
+1746435043: Client central_main already connected, closing old connection.
+1746435043: New client connected from 192.168.1.11:61065 as central_main (p2, c1, k60, u'admin').
+1746435043: No will message specified.
+1746435043: Sending CONNACK to central_main (0, 0)
+1746435044: New connection from 192.168.1.11:61066 on port 1883.
+1746435044: Client central_main already connected, closing old connection.
+1746435044: New client connected from 192.168.1.11:61066 as central_main (p2, c1, k60, u'admin').
+1746435044: No will message specified.
+1746435044: Sending CONNACK to central_main (0, 0)
+1746435045: New connection from 192.168.1.11:61067 on port 1883.
+1746435045: Client central_main already connected, closing old connection.
+1746435045: New client connected from 192.168.1.11:61067 as central_main (p2, c1, k60, u'admin').
+1746435045: No will message specified.
+1746435045: Sending CONNACK to central_main (0, 0)
+1746435046: New connection from 192.168.1.11:61068 on port 1883.
+1746435046: Client central_main already connected, closing old connection.
+1746435046: New client connected from 192.168.1.11:61068 as central_main (p2, c1, k60, u'admin').
+1746435046: No will message specified.
+1746435046: Sending CONNACK to central_main (0, 0)
+1746435047: New connection from 192.168.1.11:61069 on port 1883.
+1746435047: Client central_main already connected, closing old connection.
+1746435047: New client connected from 192.168.1.11:61069 as central_main (p2, c1, k60, u'admin').
+1746435047: No will message specified.
+1746435047: Sending CONNACK to central_main (0, 0)
+1746435048: New connection from 192.168.1.11:61070 on port 1883.
+1746435048: Client central_main already connected, closing old connection.
+1746435048: New client connected from 192.168.1.11:61070 as central_main (p2, c1, k60, u'admin').
+1746435048: No will message specified.
+1746435048: Sending CONNACK to central_main (0, 0)
+1746435049: New connection from 192.168.1.11:61071 on port 1883.
+1746435049: Client central_main already connected, closing old connection.
+1746435049: New client connected from 192.168.1.11:61071 as central_main (p2, c1, k60, u'admin').
+1746435049: No will message specified.
+1746435049: Sending CONNACK to central_main (0, 0)
+1746435050: New connection from 192.168.1.11:61072 on port 1883.
+1746435050: Client central_main already connected, closing old connection.
+1746435050: New client connected from 192.168.1.11:61072 as central_main (p2, c1, k60, u'admin').
+1746435050: No will message specified.
+1746435050: Sending CONNACK to central_main (0, 0)
+1746435051: New connection from 192.168.1.11:61078 on port 1883.
+1746435051: Client central_main already connected, closing old connection.
+1746435051: New client connected from 192.168.1.11:61078 as central_main (p2, c1, k60, u'admin').
+1746435051: No will message specified.
+1746435051: Sending CONNACK to central_main (0, 0)
+1746435052: New connection from 192.168.1.11:61079 on port 1883.
+1746435052: Client central_main already connected, closing old connection.
+1746435052: New client connected from 192.168.1.11:61079 as central_main (p2, c1, k60, u'admin').
+1746435052: No will message specified.
+1746435052: Sending CONNACK to central_main (0, 0)
+1746435053: New connection from 192.168.1.11:61080 on port 1883.
+1746435053: Client central_main already connected, closing old connection.
+1746435053: New client connected from 192.168.1.11:61080 as central_main (p2, c1, k60, u'admin').
+1746435053: No will message specified.
+1746435053: Sending CONNACK to central_main (0, 0)
+1746435054: New connection from 192.168.1.11:61081 on port 1883.
+1746435054: Client central_main already connected, closing old connection.
+1746435054: New client connected from 192.168.1.11:61081 as central_main (p2, c1, k60, u'admin').
+1746435054: No will message specified.
+1746435054: Sending CONNACK to central_main (0, 0)
+1746435055: New connection from 192.168.1.11:61082 on port 1883.
+1746435055: Client central_main already connected, closing old connection.
+1746435055: New client connected from 192.168.1.11:61082 as central_main (p2, c1, k60, u'admin').
+1746435055: No will message specified.
+1746435055: Sending CONNACK to central_main (0, 0)
+1746435056: New connection from 192.168.1.11:61083 on port 1883.
+1746435056: Client central_main already connected, closing old connection.
+1746435056: New client connected from 192.168.1.11:61083 as central_main (p2, c1, k60, u'admin').
+1746435056: No will message specified.
+1746435056: Sending CONNACK to central_main (0, 0)
+1746435057: New connection from 192.168.1.11:61084 on port 1883.
+1746435057: Client central_main already connected, closing old connection.
+1746435057: New client connected from 192.168.1.11:61084 as central_main (p2, c1, k60, u'admin').
+1746435057: No will message specified.
+1746435057: Sending CONNACK to central_main (0, 0)
+1746435058: New connection from 192.168.1.11:61085 on port 1883.
+1746435058: Client central_main already connected, closing old connection.
+1746435058: New client connected from 192.168.1.11:61085 as central_main (p2, c1, k60, u'admin').
+1746435058: No will message specified.
+1746435058: Sending CONNACK to central_main (0, 0)
+1746435059: New connection from 192.168.1.11:61090 on port 1883.
+1746435059: Client central_main already connected, closing old connection.
+1746435059: New client connected from 192.168.1.11:61090 as central_main (p2, c1, k60, u'admin').
+1746435059: No will message specified.
+1746435059: Sending CONNACK to central_main (0, 0)
+1746435060: New connection from 192.168.1.11:61091 on port 1883.
+1746435060: Client central_main already connected, closing old connection.
+1746435060: New client connected from 192.168.1.11:61091 as central_main (p2, c1, k60, u'admin').
+1746435060: No will message specified.
+1746435060: Sending CONNACK to central_main (0, 0)
+1746435061: New connection from 192.168.1.11:61092 on port 1883.
+1746435061: Client central_main already connected, closing old connection.
+1746435061: New client connected from 192.168.1.11:61092 as central_main (p2, c1, k60, u'admin').
+1746435061: No will message specified.
+1746435061: Sending CONNACK to central_main (0, 0)
+1746435062: New connection from 192.168.1.11:61094 on port 1883.
+1746435062: Client central_main already connected, closing old connection.
+1746435062: New client connected from 192.168.1.11:61094 as central_main (p2, c1, k60, u'admin').
+1746435062: No will message specified.
+1746435062: Sending CONNACK to central_main (0, 0)
+1746435063: New connection from 192.168.1.11:61095 on port 1883.
+1746435063: Client central_main already connected, closing old connection.
+1746435063: New client connected from 192.168.1.11:61095 as central_main (p2, c1, k60, u'admin').
+1746435063: No will message specified.
+1746435063: Sending CONNACK to central_main (0, 0)
+1746435064: New connection from 192.168.1.11:61098 on port 1883.
+1746435064: Client central_main already connected, closing old connection.
+1746435064: New client connected from 192.168.1.11:61098 as central_main (p2, c1, k60, u'admin').
+1746435064: No will message specified.
+1746435064: Sending CONNACK to central_main (0, 0)
+1746435065: New connection from 192.168.1.11:61102 on port 1883.
+1746435065: Client central_main already connected, closing old connection.
+1746435065: New client connected from 192.168.1.11:61102 as central_main (p2, c1, k60, u'admin').
+1746435065: No will message specified.
+1746435065: Sending CONNACK to central_main (0, 0)
+1746435066: New connection from 192.168.1.11:61103 on port 1883.
+1746435066: Client central_main already connected, closing old connection.
+1746435066: New client connected from 192.168.1.11:61103 as central_main (p2, c1, k60, u'admin').
+1746435066: No will message specified.
+1746435066: Sending CONNACK to central_main (0, 0)
+1746435067: New connection from 192.168.1.11:61104 on port 1883.
+1746435067: Client central_main already connected, closing old connection.
+1746435067: New client connected from 192.168.1.11:61104 as central_main (p2, c1, k60, u'admin').
+1746435067: No will message specified.
+1746435067: Sending CONNACK to central_main (0, 0)
+1746435068: New connection from 192.168.1.11:61106 on port 1883.
+1746435068: Client central_main already connected, closing old connection.
+1746435068: New client connected from 192.168.1.11:61106 as central_main (p2, c1, k60, u'admin').
+1746435068: No will message specified.
+1746435068: Sending CONNACK to central_main (0, 0)
+1746435069: New connection from 192.168.1.11:61107 on port 1883.
+1746435069: Client central_main already connected, closing old connection.
+1746435069: New client connected from 192.168.1.11:61107 as central_main (p2, c1, k60, u'admin').
+1746435069: No will message specified.
+1746435069: Sending CONNACK to central_main (0, 0)
+1746435070: New connection from 192.168.1.11:61108 on port 1883.
+1746435070: Client central_main already connected, closing old connection.
+1746435070: New client connected from 192.168.1.11:61108 as central_main (p2, c1, k60, u'admin').
+1746435070: No will message specified.
+1746435070: Sending CONNACK to central_main (0, 0)
+1746435071: New connection from 192.168.1.11:61110 on port 1883.
+1746435071: Client central_main already connected, closing old connection.
+1746435071: New client connected from 192.168.1.11:61110 as central_main (p2, c1, k60, u'admin').
+1746435071: No will message specified.
+1746435071: Sending CONNACK to central_main (0, 0)
+1746435072: New connection from 192.168.1.11:61111 on port 1883.
+1746435072: Client central_main already connected, closing old connection.
+1746435072: New client connected from 192.168.1.11:61111 as central_main (p2, c1, k60, u'admin').
+1746435072: No will message specified.
+1746435072: Sending CONNACK to central_main (0, 0)
+1746435073: New connection from 192.168.1.11:61112 on port 1883.
+1746435073: Client central_main already connected, closing old connection.
+1746435073: New client connected from 192.168.1.11:61112 as central_main (p2, c1, k60, u'admin').
+1746435073: No will message specified.
+1746435073: Sending CONNACK to central_main (0, 0)
+1746435074: New connection from 192.168.1.11:61113 on port 1883.
+1746435074: Client central_main already connected, closing old connection.
+1746435074: New client connected from 192.168.1.11:61113 as central_main (p2, c1, k60, u'admin').
+1746435074: No will message specified.
+1746435074: Sending CONNACK to central_main (0, 0)
+1746435075: New connection from 192.168.1.11:61115 on port 1883.
+1746435075: Client central_main already connected, closing old connection.
+1746435075: New client connected from 192.168.1.11:61115 as central_main (p2, c1, k60, u'admin').
+1746435075: No will message specified.
+1746435075: Sending CONNACK to central_main (0, 0)
+1746435076: New connection from 192.168.1.11:61123 on port 1883.
+1746435076: Client central_main already connected, closing old connection.
+1746435076: New client connected from 192.168.1.11:61123 as central_main (p2, c1, k60, u'admin').
+1746435076: No will message specified.
+1746435076: Sending CONNACK to central_main (0, 0)
+1746435077: New connection from 192.168.1.11:61153 on port 1883.
+1746435077: Client central_main already connected, closing old connection.
+1746435077: New client connected from 192.168.1.11:61153 as central_main (p2, c1, k60, u'admin').
+1746435077: No will message specified.
+1746435077: Sending CONNACK to central_main (0, 0)
+1746435078: New connection from 192.168.1.11:61157 on port 1883.
+1746435078: Client central_main already connected, closing old connection.
+1746435078: New client connected from 192.168.1.11:61157 as central_main (p2, c1, k60, u'admin').
+1746435078: No will message specified.
+1746435078: Sending CONNACK to central_main (0, 0)
+1746435079: New connection from 192.168.1.11:61158 on port 1883.
+1746435079: Client central_main already connected, closing old connection.
+1746435079: New client connected from 192.168.1.11:61158 as central_main (p2, c1, k60, u'admin').
+1746435079: No will message specified.
+1746435079: Sending CONNACK to central_main (0, 0)
+1746435080: New connection from 192.168.1.11:61159 on port 1883.
+1746435080: Client central_main already connected, closing old connection.
+1746435080: New client connected from 192.168.1.11:61159 as central_main (p2, c1, k60, u'admin').
+1746435080: No will message specified.
+1746435080: Sending CONNACK to central_main (0, 0)
+1746435081: New connection from 192.168.1.11:61171 on port 1883.
+1746435081: Client central_main already connected, closing old connection.
+1746435081: New client connected from 192.168.1.11:61171 as central_main (p2, c1, k60, u'admin').
+1746435081: No will message specified.
+1746435081: Sending CONNACK to central_main (0, 0)
+1746435082: New connection from 192.168.1.11:61176 on port 1883.
+1746435082: Client central_main already connected, closing old connection.
+1746435082: New client connected from 192.168.1.11:61176 as central_main (p2, c1, k60, u'admin').
+1746435082: No will message specified.
+1746435082: Sending CONNACK to central_main (0, 0)
+1746435083: New connection from 192.168.1.11:61177 on port 1883.
+1746435083: Client central_main already connected, closing old connection.
+1746435083: New client connected from 192.168.1.11:61177 as central_main (p2, c1, k60, u'admin').
+1746435083: No will message specified.
+1746435083: Sending CONNACK to central_main (0, 0)
+1746435084: New connection from 192.168.1.11:61180 on port 1883.
+1746435084: Client central_main already connected, closing old connection.
+1746435084: New client connected from 192.168.1.11:61180 as central_main (p2, c1, k60, u'admin').
+1746435084: No will message specified.
+1746435084: Sending CONNACK to central_main (0, 0)
+1746435085: New connection from 192.168.1.11:61182 on port 1883.
+1746435085: Client central_main already connected, closing old connection.
+1746435085: New client connected from 192.168.1.11:61182 as central_main (p2, c1, k60, u'admin').
+1746435085: No will message specified.
+1746435085: Sending CONNACK to central_main (0, 0)
+1746435086: New connection from 192.168.1.11:61183 on port 1883.
+1746435086: Client central_main already connected, closing old connection.
+1746435086: New client connected from 192.168.1.11:61183 as central_main (p2, c1, k60, u'admin').
+1746435086: No will message specified.
+1746435086: Sending CONNACK to central_main (0, 0)
+1746435087: New connection from 192.168.1.11:61184 on port 1883.
+1746435087: Client central_main already connected, closing old connection.
+1746435087: New client connected from 192.168.1.11:61184 as central_main (p2, c1, k60, u'admin').
+1746435087: No will message specified.
+1746435087: Sending CONNACK to central_main (0, 0)
+1746435088: New connection from 192.168.1.11:61185 on port 1883.
+1746435088: Client central_main already connected, closing old connection.
+1746435088: New client connected from 192.168.1.11:61185 as central_main (p2, c1, k60, u'admin').
+1746435088: No will message specified.
+1746435088: Sending CONNACK to central_main (0, 0)
+1746435089: New connection from 192.168.1.11:61186 on port 1883.
+1746435089: Client central_main already connected, closing old connection.
+1746435089: New client connected from 192.168.1.11:61186 as central_main (p2, c1, k60, u'admin').
+1746435089: No will message specified.
+1746435089: Sending CONNACK to central_main (0, 0)
+1746435090: New connection from 192.168.1.11:61187 on port 1883.
+1746435090: Client central_main already connected, closing old connection.
+1746435090: New client connected from 192.168.1.11:61187 as central_main (p2, c1, k60, u'admin').
+1746435090: No will message specified.
+1746435090: Sending CONNACK to central_main (0, 0)
+1746435091: New connection from 192.168.1.11:61188 on port 1883.
+1746435091: Client central_main already connected, closing old connection.
+1746435091: New client connected from 192.168.1.11:61188 as central_main (p2, c1, k60, u'admin').
+1746435091: No will message specified.
+1746435091: Sending CONNACK to central_main (0, 0)
+1746435092: New connection from 192.168.1.11:61189 on port 1883.
+1746435092: Client central_main already connected, closing old connection.
+1746435092: New client connected from 192.168.1.11:61189 as central_main (p2, c1, k60, u'admin').
+1746435092: No will message specified.
+1746435092: Sending CONNACK to central_main (0, 0)
+1746435093: New connection from 192.168.1.11:61190 on port 1883.
+1746435093: Client central_main already connected, closing old connection.
+1746435093: New client connected from 192.168.1.11:61190 as central_main (p2, c1, k60, u'admin').
+1746435093: No will message specified.
+1746435093: Sending CONNACK to central_main (0, 0)
+1746435094: New connection from 192.168.1.11:61191 on port 1883.
+1746435094: Client central_main already connected, closing old connection.
+1746435094: New client connected from 192.168.1.11:61191 as central_main (p2, c1, k60, u'admin').
+1746435094: No will message specified.
+1746435094: Sending CONNACK to central_main (0, 0)
+1746435095: New connection from 192.168.1.11:61192 on port 1883.
+1746435095: New client connected from 192.168.1.11:61192 as virtual_module (p2, c1, k60, u'admin').
+1746435095: No will message specified.
+1746435095: Sending CONNACK to virtual_module (0, 0)
+1746435095: Received SUBSCRIBE from virtual_module
+1746435095: 	sensor/update/L-2025.04.19-21.09-0001 (QoS 0)
+1746435095: virtual_module 0 sensor/update/L-2025.04.19-21.09-0001
+1746435095: Sending SUBACK to virtual_module
+1746435095: Received SUBSCRIBE from virtual_module
+1746435095: 	sensor/update/L-2025.04.19-21.09-0002 (QoS 0)
+1746435095: virtual_module 0 sensor/update/L-2025.04.19-21.09-0002
+1746435095: Sending SUBACK to virtual_module
+1746435095: Received SUBSCRIBE from virtual_module
+1746435095: 	sensor/update/L-2025.04.19-21.09-0003 (QoS 0)
+1746435095: virtual_module 0 sensor/update/L-2025.04.19-21.09-0003
+1746435095: Sending SUBACK to virtual_module
+1746435095: Received SUBSCRIBE from virtual_module
+1746435095: 	sensor/update/L-2025.04.19-21.09-0004 (QoS 0)
+1746435095: virtual_module 0 sensor/update/L-2025.04.19-21.09-0004
+1746435095: Sending SUBACK to virtual_module
+1746435095: Received SUBSCRIBE from virtual_module
+1746435095: 	sensor/update/L-2025.04.19-21.09-0005 (QoS 0)
+1746435095: virtual_module 0 sensor/update/L-2025.04.19-21.09-0005
+1746435095: Sending SUBACK to virtual_module
+1746435095: Received SUBSCRIBE from virtual_module
+1746435095: 	sensor/update/L-2025.04.19-21.09-0006 (QoS 0)
+1746435095: virtual_module 0 sensor/update/L-2025.04.19-21.09-0006
+1746435095: Sending SUBACK to virtual_module
+1746435095: Received SUBSCRIBE from virtual_module
+1746435095: 	sensor/update/L-2025.04.19-21.09-0007 (QoS 0)
+1746435095: virtual_module 0 sensor/update/L-2025.04.19-21.09-0007
+1746435095: Sending SUBACK to virtual_module
+1746435095: Received SUBSCRIBE from virtual_module
+1746435095: 	sensor/update/L-2025.04.19-21.09-0008 (QoS 0)
+1746435095: virtual_module 0 sensor/update/L-2025.04.19-21.09-0008
+1746435095: Sending SUBACK to virtual_module
+1746435095: Received SUBSCRIBE from virtual_module
+1746435095: 	sensor/update/T-2025.04.19-21.09-0001 (QoS 0)
+1746435095: virtual_module 0 sensor/update/T-2025.04.19-21.09-0001
+1746435095: Sending SUBACK to virtual_module
+1746435095: Received SUBSCRIBE from virtual_module
+1746435095: 	sensor/update/T-2025.04.19-21.09-0002 (QoS 0)
+1746435095: virtual_module 0 sensor/update/T-2025.04.19-21.09-0002
+1746435095: Sending SUBACK to virtual_module
+1746435095: Received SUBSCRIBE from virtual_module
+1746435095: 	sensor/update/T-2025.04.19-21.09-0003 (QoS 0)
+1746435095: virtual_module 0 sensor/update/T-2025.04.19-21.09-0003
+1746435095: Sending SUBACK to virtual_module
+1746435095: Received SUBSCRIBE from virtual_module
+1746435095: 	sensor/update/T-2025.04.19-21.09-0004 (QoS 0)
+1746435095: virtual_module 0 sensor/update/T-2025.04.19-21.09-0004
+1746435095: Sending SUBACK to virtual_module
+1746435095: Received SUBSCRIBE from virtual_module
+1746435095: 	sensor/update/R-2025.04.19-21.09-0001 (QoS 0)
+1746435095: virtual_module 0 sensor/update/R-2025.04.19-21.09-0001
+1746435095: Sending SUBACK to virtual_module
+1746435095: Received SUBSCRIBE from virtual_module
+1746435095: 	sensor/update/R-2025.04.19-21.09-0002 (QoS 0)
+1746435095: virtual_module 0 sensor/update/R-2025.04.19-21.09-0002
+1746435095: Sending SUBACK to virtual_module
+1746435095: Received SUBSCRIBE from virtual_module
+1746435095: 	sensor/update/R-2025.04.19-21.09-0003 (QoS 0)
+1746435095: virtual_module 0 sensor/update/R-2025.04.19-21.09-0003
+1746435095: Sending SUBACK to virtual_module
+1746435095: Received SUBSCRIBE from virtual_module
+1746435095: 	sensor/update/R-2025.04.19-21.09-0004 (QoS 0)
+1746435095: virtual_module 0 sensor/update/R-2025.04.19-21.09-0004
+1746435095: Sending SUBACK to virtual_module
+1746435095: Received SUBSCRIBE from virtual_module
+1746435095: 	sensor/update/R-2025.04.19-21.09-0005 (QoS 0)
+1746435095: virtual_module 0 sensor/update/R-2025.04.19-21.09-0005
+1746435095: Sending SUBACK to virtual_module
+1746435095: Received SUBSCRIBE from virtual_module
+1746435095: 	sensor/update/R-2025.04.19-21.09-0006 (QoS 0)
+1746435095: virtual_module 0 sensor/update/R-2025.04.19-21.09-0006
+1746435095: Sending SUBACK to virtual_module
+1746435095: Received SUBSCRIBE from virtual_module
+1746435095: 	sensor/update/R-2025.04.19-21.09-0007 (QoS 0)
+1746435095: virtual_module 0 sensor/update/R-2025.04.19-21.09-0007
+1746435095: Sending SUBACK to virtual_module
+1746435095: Received SUBSCRIBE from virtual_module
+1746435095: 	sensor/update/R-2025.04.19-21.09-0008 (QoS 0)
+1746435095: virtual_module 0 sensor/update/R-2025.04.19-21.09-0008
+1746435095: Sending SUBACK to virtual_module
+1746435095: Received SUBSCRIBE from virtual_module
+1746435095: 	sensor/update/D-2025.04.19-21.09-0001 (QoS 0)
+1746435095: virtual_module 0 sensor/update/D-2025.04.19-21.09-0001
+1746435095: Sending SUBACK to virtual_module
+1746435095: Received SUBSCRIBE from virtual_module
+1746435095: 	sensor/update/SW-2025.04.19-21.09-0001 (QoS 0)
+1746435095: virtual_module 0 sensor/update/SW-2025.04.19-21.09-0001
+1746435095: Sending SUBACK to virtual_module
+1746435095: Received SUBSCRIBE from virtual_module
+1746435095: 	sensor/update/L-2025.04.19-21.09-0001 (QoS 0)
+1746435095: virtual_module 0 sensor/update/L-2025.04.19-21.09-0001
+1746435095: Sending SUBACK to virtual_module
+1746435095: Received SUBSCRIBE from virtual_module
+1746435095: 	sensor/update/L-2025.04.19-21.09-0002 (QoS 0)
+1746435095: virtual_module 0 sensor/update/L-2025.04.19-21.09-0002
+1746435095: Sending SUBACK to virtual_module
+1746435095: Received SUBSCRIBE from virtual_module
+1746435095: 	sensor/update/L-2025.04.19-21.09-0003 (QoS 0)
+1746435095: virtual_module 0 sensor/update/L-2025.04.19-21.09-0003
+1746435095: Sending SUBACK to virtual_module
+1746435095: Received SUBSCRIBE from virtual_module
+1746435095: 	sensor/update/L-2025.04.19-21.09-0004 (QoS 0)
+1746435095: virtual_module 0 sensor/update/L-2025.04.19-21.09-0004
+1746435095: Sending SUBACK to virtual_module
+1746435095: Received SUBSCRIBE from virtual_module
+1746435095: 	sensor/update/L-2025.04.19-21.09-0005 (QoS 0)
+1746435095: virtual_module 0 sensor/update/L-2025.04.19-21.09-0005
+1746435095: Sending SUBACK to virtual_module
+1746435095: Received SUBSCRIBE from virtual_module
+1746435095: 	sensor/update/L-2025.04.19-21.09-0006 (QoS 0)
+1746435095: virtual_module 0 sensor/update/L-2025.04.19-21.09-0006
+1746435095: Sending SUBACK to virtual_module
+1746435095: Received SUBSCRIBE from virtual_module
+1746435095: 	sensor/update/L-2025.04.19-21.09-0007 (QoS 0)
+1746435095: virtual_module 0 sensor/update/L-2025.04.19-21.09-0007
+1746435095: Sending SUBACK to virtual_module
+1746435095: Received SUBSCRIBE from virtual_module
+1746435095: 	sensor/update/L-2025.04.19-21.09-0008 (QoS 0)
+1746435095: virtual_module 0 sensor/update/L-2025.04.19-21.09-0008
+1746435095: Sending SUBACK to virtual_module
+1746435095: Received SUBSCRIBE from virtual_module
+1746435095: 	sensor/update/T-2025.04.19-21.09-0001 (QoS 0)
+1746435095: virtual_module 0 sensor/update/T-2025.04.19-21.09-0001
+1746435095: Sending SUBACK to virtual_module
+1746435095: Received SUBSCRIBE from virtual_module
+1746435095: 	sensor/update/T-2025.04.19-21.09-0002 (QoS 0)
+1746435095: virtual_module 0 sensor/update/T-2025.04.19-21.09-0002
+1746435095: Sending SUBACK to virtual_module
+1746435095: Received SUBSCRIBE from virtual_module
+1746435095: 	sensor/update/T-2025.04.19-21.09-0003 (QoS 0)
+1746435095: virtual_module 0 sensor/update/T-2025.04.19-21.09-0003
+1746435095: Sending SUBACK to virtual_module
+1746435095: Received SUBSCRIBE from virtual_module
+1746435095: 	sensor/update/T-2025.04.19-21.09-0004 (QoS 0)
+1746435095: virtual_module 0 sensor/update/T-2025.04.19-21.09-0004
+1746435095: Sending SUBACK to virtual_module
+1746435095: Received SUBSCRIBE from virtual_module
+1746435095: 	sensor/update/R-2025.04.19-21.09-0001 (QoS 0)
+1746435095: virtual_module 0 sensor/update/R-2025.04.19-21.09-0001
+1746435095: Sending SUBACK to virtual_module
+1746435095: Received SUBSCRIBE from virtual_module
+1746435095: 	sensor/update/R-2025.04.19-21.09-0002 (QoS 0)
+1746435095: virtual_module 0 sensor/update/R-2025.04.19-21.09-0002
+1746435095: Sending SUBACK to virtual_module
+1746435095: Received SUBSCRIBE from virtual_module
+1746435095: 	sensor/update/R-2025.04.19-21.09-0003 (QoS 0)
+1746435095: virtual_module 0 sensor/update/R-2025.04.19-21.09-0003
+1746435095: Sending SUBACK to virtual_module
+1746435095: Received SUBSCRIBE from virtual_module
+1746435095: 	sensor/update/R-2025.04.19-21.09-0004 (QoS 0)
+1746435095: virtual_module 0 sensor/update/R-2025.04.19-21.09-0004
+1746435095: Sending SUBACK to virtual_module
+1746435095: Received SUBSCRIBE from virtual_module
+1746435095: 	sensor/update/R-2025.04.19-21.09-0005 (QoS 0)
+1746435095: virtual_module 0 sensor/update/R-2025.04.19-21.09-0005
+1746435095: Sending SUBACK to virtual_module
+1746435095: Received SUBSCRIBE from virtual_module
+1746435095: 	sensor/update/R-2025.04.19-21.09-0006 (QoS 0)
+1746435095: virtual_module 0 sensor/update/R-2025.04.19-21.09-0006
+1746435095: Sending SUBACK to virtual_module
+1746435095: Received SUBSCRIBE from virtual_module
+1746435095: 	sensor/update/R-2025.04.19-21.09-0007 (QoS 0)
+1746435095: virtual_module 0 sensor/update/R-2025.04.19-21.09-0007
+1746435095: Sending SUBACK to virtual_module
+1746435095: Received SUBSCRIBE from virtual_module
+1746435095: 	sensor/update/R-2025.04.19-21.09-0008 (QoS 0)
+1746435095: virtual_module 0 sensor/update/R-2025.04.19-21.09-0008
+1746435095: Sending SUBACK to virtual_module
+1746435095: Received SUBSCRIBE from virtual_module
+1746435095: 	sensor/update/D-2025.04.19-21.09-0001 (QoS 0)
+1746435095: virtual_module 0 sensor/update/D-2025.04.19-21.09-0001
+1746435095: Sending SUBACK to virtual_module
+1746435095: Received SUBSCRIBE from virtual_module
+1746435095: 	sensor/update/SW-2025.04.19-21.09-0001 (QoS 0)
+1746435095: virtual_module 0 sensor/update/SW-2025.04.19-21.09-0001
+1746435095: Sending SUBACK to virtual_module
+1746435095: New connection from 192.168.1.11:61195 on port 1883.
+1746435095: Client central_main already connected, closing old connection.
+1746435095: New client connected from 192.168.1.11:61195 as central_main (p2, c1, k60, u'admin').
+1746435095: No will message specified.
+1746435095: Sending CONNACK to central_main (0, 0)
+1746435096: New connection from 192.168.1.11:61196 on port 1883.
+1746435096: Client central_main already connected, closing old connection.
+1746435096: New client connected from 192.168.1.11:61196 as central_main (p2, c1, k60, u'admin').
+1746435096: No will message specified.
+1746435096: Sending CONNACK to central_main (0, 0)
+1746435097: New connection from 192.168.1.11:61197 on port 1883.
+1746435097: Client central_main already connected, closing old connection.
+1746435097: New client connected from 192.168.1.11:61197 as central_main (p2, c1, k60, u'admin').
+1746435097: No will message specified.
+1746435097: Sending CONNACK to central_main (0, 0)
+1746435098: New connection from 192.168.1.11:61198 on port 1883.
+1746435098: Client central_main already connected, closing old connection.
+1746435098: New client connected from 192.168.1.11:61198 as central_main (p2, c1, k60, u'admin').
+1746435098: No will message specified.
+1746435098: Sending CONNACK to central_main (0, 0)
+1746435099: New connection from 192.168.1.11:61199 on port 1883.
+1746435099: Client central_main already connected, closing old connection.
+1746435099: New client connected from 192.168.1.11:61199 as central_main (p2, c1, k60, u'admin').
+1746435099: No will message specified.
+1746435099: Sending CONNACK to central_main (0, 0)
+1746435100: New connection from 192.168.1.11:61200 on port 1883.
+1746435100: Client central_main already connected, closing old connection.
+1746435100: New client connected from 192.168.1.11:61200 as central_main (p2, c1, k60, u'admin').
+1746435100: No will message specified.
+1746435100: Sending CONNACK to central_main (0, 0)
+1746435101: New connection from 192.168.1.11:61201 on port 1883.
+1746435101: Client central_main already connected, closing old connection.
+1746435101: New client connected from 192.168.1.11:61201 as central_main (p2, c1, k60, u'admin').
+1746435101: No will message specified.
+1746435101: Sending CONNACK to central_main (0, 0)
+1746435102: New connection from 192.168.1.11:61202 on port 1883.
+1746435102: Client central_main already connected, closing old connection.
+1746435102: New client connected from 192.168.1.11:61202 as central_main (p2, c1, k60, u'admin').
+1746435102: No will message specified.
+1746435102: Sending CONNACK to central_main (0, 0)
+1746435103: New connection from 192.168.1.11:61203 on port 1883.
+1746435103: Client central_main already connected, closing old connection.
+1746435103: New client connected from 192.168.1.11:61203 as central_main (p2, c1, k60, u'admin').
+1746435103: No will message specified.
+1746435103: Sending CONNACK to central_main (0, 0)
+1746435104: New connection from 192.168.1.11:61204 on port 1883.
+1746435104: Client central_main already connected, closing old connection.
+1746435104: New client connected from 192.168.1.11:61204 as central_main (p2, c1, k60, u'admin').
+1746435104: No will message specified.
+1746435104: Sending CONNACK to central_main (0, 0)
+1746435105: New connection from 192.168.1.11:61205 on port 1883.
+1746435105: Client central_main already connected, closing old connection.
+1746435105: New client connected from 192.168.1.11:61205 as central_main (p2, c1, k60, u'admin').
+1746435105: No will message specified.
+1746435105: Sending CONNACK to central_main (0, 0)
+1746435106: New connection from 192.168.1.11:61206 on port 1883.
+1746435107: Client central_main already connected, closing old connection.
+1746435107: New client connected from 192.168.1.11:61206 as central_main (p2, c1, k60, u'admin').
+1746435107: No will message specified.
+1746435107: Sending CONNACK to central_main (0, 0)
+1746435108: New connection from 192.168.1.11:61207 on port 1883.
+1746435108: Client central_main already connected, closing old connection.
+1746435108: New client connected from 192.168.1.11:61207 as central_main (p2, c1, k60, u'admin').
+1746435108: No will message specified.
+1746435108: Sending CONNACK to central_main (0, 0)
+1746435109: New connection from 192.168.1.11:61208 on port 1883.
+1746435109: Client central_main already connected, closing old connection.
+1746435109: New client connected from 192.168.1.11:61208 as central_main (p2, c1, k60, u'admin').
+1746435109: No will message specified.
+1746435109: Sending CONNACK to central_main (0, 0)
+1746435110: New connection from 192.168.1.11:61209 on port 1883.
+1746435110: Client central_main already connected, closing old connection.
+1746435110: New client connected from 192.168.1.11:61209 as central_main (p2, c1, k60, u'admin').
+1746435110: No will message specified.
+1746435110: Sending CONNACK to central_main (0, 0)
+1746435111: New connection from 192.168.1.11:61210 on port 1883.
+1746435111: Client central_main already connected, closing old connection.
+1746435111: New client connected from 192.168.1.11:61210 as central_main (p2, c1, k60, u'admin').
+1746435111: No will message specified.
+1746435111: Sending CONNACK to central_main (0, 0)
+1746435112: New connection from 192.168.1.11:61211 on port 1883.
+1746435112: Client central_main already connected, closing old connection.
+1746435112: New client connected from 192.168.1.11:61211 as central_main (p2, c1, k60, u'admin').
+1746435112: No will message specified.
+1746435112: Sending CONNACK to central_main (0, 0)
+1746435113: New connection from 192.168.1.11:61216 on port 1883.
+1746435113: Client central_main already connected, closing old connection.
+1746435113: New client connected from 192.168.1.11:61216 as central_main (p2, c1, k60, u'admin').
+1746435113: No will message specified.
+1746435113: Sending CONNACK to central_main (0, 0)
+1746435114: New connection from 192.168.1.11:61218 on port 1883.
+1746435114: Client central_main already connected, closing old connection.
+1746435114: New client connected from 192.168.1.11:61218 as central_main (p2, c1, k60, u'admin').
+1746435114: No will message specified.
+1746435114: Sending CONNACK to central_main (0, 0)
+1746435115: New connection from 192.168.1.11:61219 on port 1883.
+1746435115: Client central_main already connected, closing old connection.
+1746435115: New client connected from 192.168.1.11:61219 as central_main (p2, c1, k60, u'admin').
+1746435115: No will message specified.
+1746435115: Sending CONNACK to central_main (0, 0)
+1746435116: New connection from 192.168.1.11:61220 on port 1883.
+1746435116: Client central_main already connected, closing old connection.
+1746435116: New client connected from 192.168.1.11:61220 as central_main (p2, c1, k60, u'admin').
+1746435116: No will message specified.
+1746435116: Sending CONNACK to central_main (0, 0)
+1746435117: New connection from 192.168.1.11:61221 on port 1883.
+1746435117: Client central_main already connected, closing old connection.
+1746435117: New client connected from 192.168.1.11:61221 as central_main (p2, c1, k60, u'admin').
+1746435117: No will message specified.
+1746435117: Sending CONNACK to central_main (0, 0)
+1746435118: New connection from 192.168.1.11:61222 on port 1883.
+1746435118: Client central_main already connected, closing old connection.
+1746435118: New client connected from 192.168.1.11:61222 as central_main (p2, c1, k60, u'admin').
+1746435118: No will message specified.
+1746435118: Sending CONNACK to central_main (0, 0)
+1746435119: Received SUBSCRIBE from virtual_module
+1746435119: 	sensor/update/L-2025.04.19-21.09-0001 (QoS 0)
+1746435119: virtual_module 0 sensor/update/L-2025.04.19-21.09-0001
+1746435119: Sending SUBACK to virtual_module
+1746435119: Received SUBSCRIBE from virtual_module
+1746435119: 	sensor/update/L-2025.04.19-21.09-0002 (QoS 0)
+1746435119: virtual_module 0 sensor/update/L-2025.04.19-21.09-0002
+1746435119: Sending SUBACK to virtual_module
+1746435119: Received SUBSCRIBE from virtual_module
+1746435119: 	sensor/update/L-2025.04.19-21.09-0003 (QoS 0)
+1746435119: virtual_module 0 sensor/update/L-2025.04.19-21.09-0003
+1746435119: Sending SUBACK to virtual_module
+1746435119: Received SUBSCRIBE from virtual_module
+1746435119: 	sensor/update/L-2025.04.19-21.09-0004 (QoS 0)
+1746435119: virtual_module 0 sensor/update/L-2025.04.19-21.09-0004
+1746435119: Sending SUBACK to virtual_module
+1746435119: Received SUBSCRIBE from virtual_module
+1746435119: 	sensor/update/L-2025.04.19-21.09-0005 (QoS 0)
+1746435119: virtual_module 0 sensor/update/L-2025.04.19-21.09-0005
+1746435119: Sending SUBACK to virtual_module
+1746435119: Received SUBSCRIBE from virtual_module
+1746435119: 	sensor/update/L-2025.04.19-21.09-0006 (QoS 0)
+1746435119: virtual_module 0 sensor/update/L-2025.04.19-21.09-0006
+1746435119: Sending SUBACK to virtual_module
+1746435119: Received SUBSCRIBE from virtual_module
+1746435119: 	sensor/update/L-2025.04.19-21.09-0007 (QoS 0)
+1746435119: virtual_module 0 sensor/update/L-2025.04.19-21.09-0007
+1746435119: Sending SUBACK to virtual_module
+1746435119: Received SUBSCRIBE from virtual_module
+1746435119: 	sensor/update/L-2025.04.19-21.09-0008 (QoS 0)
+1746435119: virtual_module 0 sensor/update/L-2025.04.19-21.09-0008
+1746435119: Sending SUBACK to virtual_module
+1746435119: Received SUBSCRIBE from virtual_module
+1746435119: 	sensor/update/T-2025.04.19-21.09-0001 (QoS 0)
+1746435119: virtual_module 0 sensor/update/T-2025.04.19-21.09-0001
+1746435119: Sending SUBACK to virtual_module
+1746435119: Received SUBSCRIBE from virtual_module
+1746435119: 	sensor/update/T-2025.04.19-21.09-0002 (QoS 0)
+1746435119: virtual_module 0 sensor/update/T-2025.04.19-21.09-0002
+1746435119: Sending SUBACK to virtual_module
+1746435119: Received SUBSCRIBE from virtual_module
+1746435119: 	sensor/update/T-2025.04.19-21.09-0003 (QoS 0)
+1746435119: virtual_module 0 sensor/update/T-2025.04.19-21.09-0003
+1746435119: Sending SUBACK to virtual_module
+1746435119: Received SUBSCRIBE from virtual_module
+1746435119: 	sensor/update/T-2025.04.19-21.09-0004 (QoS 0)
+1746435119: virtual_module 0 sensor/update/T-2025.04.19-21.09-0004
+1746435119: Sending SUBACK to virtual_module
+1746435119: Received SUBSCRIBE from virtual_module
+1746435119: 	sensor/update/R-2025.04.19-21.09-0001 (QoS 0)
+1746435119: virtual_module 0 sensor/update/R-2025.04.19-21.09-0001
+1746435119: Sending SUBACK to virtual_module
+1746435119: Received SUBSCRIBE from virtual_module
+1746435119: 	sensor/update/R-2025.04.19-21.09-0002 (QoS 0)
+1746435119: virtual_module 0 sensor/update/R-2025.04.19-21.09-0002
+1746435119: Sending SUBACK to virtual_module
+1746435119: Received SUBSCRIBE from virtual_module
+1746435119: 	sensor/update/R-2025.04.19-21.09-0003 (QoS 0)
+1746435119: virtual_module 0 sensor/update/R-2025.04.19-21.09-0003
+1746435119: Sending SUBACK to virtual_module
+1746435119: Received SUBSCRIBE from virtual_module
+1746435119: 	sensor/update/R-2025.04.19-21.09-0004 (QoS 0)
+1746435119: virtual_module 0 sensor/update/R-2025.04.19-21.09-0004
+1746435119: Sending SUBACK to virtual_module
+1746435119: Received SUBSCRIBE from virtual_module
+1746435119: 	sensor/update/R-2025.04.19-21.09-0005 (QoS 0)
+1746435119: virtual_module 0 sensor/update/R-2025.04.19-21.09-0005
+1746435119: Sending SUBACK to virtual_module
+1746435119: Received SUBSCRIBE from virtual_module
+1746435119: 	sensor/update/R-2025.04.19-21.09-0006 (QoS 0)
+1746435119: virtual_module 0 sensor/update/R-2025.04.19-21.09-0006
+1746435119: Sending SUBACK to virtual_module
+1746435119: Received SUBSCRIBE from virtual_module
+1746435119: 	sensor/update/R-2025.04.19-21.09-0007 (QoS 0)
+1746435119: virtual_module 0 sensor/update/R-2025.04.19-21.09-0007
+1746435119: Sending SUBACK to virtual_module
+1746435119: Received SUBSCRIBE from virtual_module
+1746435119: 	sensor/update/R-2025.04.19-21.09-0008 (QoS 0)
+1746435119: virtual_module 0 sensor/update/R-2025.04.19-21.09-0008
+1746435119: Sending SUBACK to virtual_module
+1746435119: Received SUBSCRIBE from virtual_module
+1746435119: 	sensor/update/D-2025.04.19-21.09-0001 (QoS 0)
+1746435119: virtual_module 0 sensor/update/D-2025.04.19-21.09-0001
+1746435119: Sending SUBACK to virtual_module
+1746435119: Received SUBSCRIBE from virtual_module
+1746435119: 	sensor/update/SW-2025.04.19-21.09-0001 (QoS 0)
+1746435119: virtual_module 0 sensor/update/SW-2025.04.19-21.09-0001
+1746435119: Sending SUBACK to virtual_module
+1746435119: New connection from 192.168.1.11:61223 on port 1883.
+1746435119: Client central_main already connected, closing old connection.
+1746435119: New client connected from 192.168.1.11:61223 as central_main (p2, c1, k60, u'admin').
+1746435119: No will message specified.
+1746435119: Sending CONNACK to central_main (0, 0)
+1746435120: New connection from 192.168.1.11:61224 on port 1883.
+1746435120: Client central_main already connected, closing old connection.
+1746435120: New client connected from 192.168.1.11:61224 as central_main (p2, c1, k60, u'admin').
+1746435120: No will message specified.
+1746435120: Sending CONNACK to central_main (0, 0)
+1746435121: New connection from 192.168.1.11:61225 on port 1883.
+1746435121: Client central_main already connected, closing old connection.
+1746435121: New client connected from 192.168.1.11:61225 as central_main (p2, c1, k60, u'admin').
+1746435121: No will message specified.
+1746435121: Sending CONNACK to central_main (0, 0)
+1746435122: New connection from 192.168.1.11:61226 on port 1883.
+1746435122: Client central_main already connected, closing old connection.
+1746435122: New client connected from 192.168.1.11:61226 as central_main (p2, c1, k60, u'admin').
+1746435122: No will message specified.
+1746435122: Sending CONNACK to central_main (0, 0)
+1746435123: New connection from 192.168.1.11:61227 on port 1883.
+1746435123: Client central_main already connected, closing old connection.
+1746435123: New client connected from 192.168.1.11:61227 as central_main (p2, c1, k60, u'admin').
+1746435123: No will message specified.
+1746435123: Sending CONNACK to central_main (0, 0)
+1746435124: New connection from 192.168.1.11:61228 on port 1883.
+1746435124: Client central_main already connected, closing old connection.
+1746435124: New client connected from 192.168.1.11:61228 as central_main (p2, c1, k60, u'admin').
+1746435124: No will message specified.
+1746435124: Sending CONNACK to central_main (0, 0)
+1746435125: New connection from 192.168.1.11:61230 on port 1883.
+1746435125: Client central_main already connected, closing old connection.
+1746435125: New client connected from 192.168.1.11:61230 as central_main (p2, c1, k60, u'admin').
+1746435125: No will message specified.
+1746435125: Sending CONNACK to central_main (0, 0)
+1746435126: New connection from 192.168.1.11:61231 on port 1883.
+1746435126: Client central_main already connected, closing old connection.
+1746435126: New client connected from 192.168.1.11:61231 as central_main (p2, c1, k60, u'admin').
+1746435126: No will message specified.
+1746435126: Sending CONNACK to central_main (0, 0)
+1746435127: New connection from 192.168.1.11:61232 on port 1883.
+1746435127: Client central_main already connected, closing old connection.
+1746435127: New client connected from 192.168.1.11:61232 as central_main (p2, c1, k60, u'admin').
+1746435127: No will message specified.
+1746435127: Sending CONNACK to central_main (0, 0)
+1746435128: New connection from 192.168.1.11:61233 on port 1883.
+1746435128: Client central_main already connected, closing old connection.
+1746435128: New client connected from 192.168.1.11:61233 as central_main (p2, c1, k60, u'admin').
+1746435128: No will message specified.
+1746435128: Sending CONNACK to central_main (0, 0)
+1746435129: New connection from 192.168.1.11:61234 on port 1883.
+1746435129: Client central_main already connected, closing old connection.
+1746435129: New client connected from 192.168.1.11:61234 as central_main (p2, c1, k60, u'admin').
+1746435129: No will message specified.
+1746435129: Sending CONNACK to central_main (0, 0)
+1746435130: New connection from 192.168.1.11:61235 on port 1883.
+1746435130: Client central_main already connected, closing old connection.
+1746435130: New client connected from 192.168.1.11:61235 as central_main (p2, c1, k60, u'admin').
+1746435130: No will message specified.
+1746435130: Sending CONNACK to central_main (0, 0)
+1746435131: New connection from 192.168.1.11:61236 on port 1883.
+1746435131: Client central_main already connected, closing old connection.
+1746435131: New client connected from 192.168.1.11:61236 as central_main (p2, c1, k60, u'admin').
+1746435131: No will message specified.
+1746435131: Sending CONNACK to central_main (0, 0)
+1746435132: New connection from 192.168.1.11:61237 on port 1883.
+1746435132: Client central_main already connected, closing old connection.
+1746435132: New client connected from 192.168.1.11:61237 as central_main (p2, c1, k60, u'admin').
+1746435132: No will message specified.
+1746435132: Sending CONNACK to central_main (0, 0)
+1746435133: New connection from 192.168.1.11:61238 on port 1883.
+1746435133: Client central_main already connected, closing old connection.
+1746435133: New client connected from 192.168.1.11:61238 as central_main (p2, c1, k60, u'admin').
+1746435133: No will message specified.
+1746435133: Sending CONNACK to central_main (0, 0)
+1746435134: New connection from 192.168.1.11:61239 on port 1883.
+1746435134: Client central_main already connected, closing old connection.
+1746435134: New client connected from 192.168.1.11:61239 as central_main (p2, c1, k60, u'admin').
+1746435134: No will message specified.
+1746435134: Sending CONNACK to central_main (0, 0)
+1746435135: New connection from 192.168.1.11:61240 on port 1883.
+1746435135: Client central_main already connected, closing old connection.
+1746435135: New client connected from 192.168.1.11:61240 as central_main (p2, c1, k60, u'admin').
+1746435135: No will message specified.
+1746435135: Sending CONNACK to central_main (0, 0)
+1746435136: New connection from 192.168.1.11:61241 on port 1883.
+1746435136: Client central_main already connected, closing old connection.
+1746435136: New client connected from 192.168.1.11:61241 as central_main (p2, c1, k60, u'admin').
+1746435136: No will message specified.
+1746435136: Sending CONNACK to central_main (0, 0)
+1746435137: New connection from 192.168.1.11:61242 on port 1883.
+1746435137: Client central_main already connected, closing old connection.
+1746435137: New client connected from 192.168.1.11:61242 as central_main (p2, c1, k60, u'admin').
+1746435137: No will message specified.
+1746435137: Sending CONNACK to central_main (0, 0)
+1746435138: New connection from 192.168.1.11:61243 on port 1883.
+1746435138: Client central_main already connected, closing old connection.
+1746435138: New client connected from 192.168.1.11:61243 as central_main (p2, c1, k60, u'admin').
+1746435138: No will message specified.
+1746435138: Sending CONNACK to central_main (0, 0)
+1746435139: New connection from 192.168.1.11:61244 on port 1883.
+1746435139: Client central_main already connected, closing old connection.
+1746435139: New client connected from 192.168.1.11:61244 as central_main (p2, c1, k60, u'admin').
+1746435139: No will message specified.
+1746435139: Sending CONNACK to central_main (0, 0)
+1746435140: New connection from 192.168.1.11:61245 on port 1883.
+1746435140: Client central_main already connected, closing old connection.
+1746435140: New client connected from 192.168.1.11:61245 as central_main (p2, c1, k60, u'admin').
+1746435140: No will message specified.
+1746435140: Sending CONNACK to central_main (0, 0)
+1746435141: New connection from 192.168.1.11:61250 on port 1883.
+1746435141: Client central_main already connected, closing old connection.
+1746435141: New client connected from 192.168.1.11:61250 as central_main (p2, c1, k60, u'admin').
+1746435141: No will message specified.
+1746435141: Sending CONNACK to central_main (0, 0)
+1746435142: New connection from 192.168.1.11:61251 on port 1883.
+1746435142: Client central_main already connected, closing old connection.
+1746435142: New client connected from 192.168.1.11:61251 as central_main (p2, c1, k60, u'admin').
+1746435142: No will message specified.
+1746435142: Sending CONNACK to central_main (0, 0)
+1746435143: New connection from 192.168.1.11:61252 on port 1883.
+1746435143: Client central_main already connected, closing old connection.
+1746435143: New client connected from 192.168.1.11:61252 as central_main (p2, c1, k60, u'admin').
+1746435143: No will message specified.
+1746435143: Sending CONNACK to central_main (0, 0)
+1746435144: New connection from 192.168.1.11:61254 on port 1883.
+1746435144: Client central_main already connected, closing old connection.
+1746435144: New client connected from 192.168.1.11:61254 as central_main (p2, c1, k60, u'admin').
+1746435144: No will message specified.
+1746435144: Sending CONNACK to central_main (0, 0)
+1746435145: New connection from 192.168.1.11:61256 on port 1883.
+1746435145: Client central_main already connected, closing old connection.
+1746435145: New client connected from 192.168.1.11:61256 as central_main (p2, c1, k60, u'admin').
+1746435145: No will message specified.
+1746435145: Sending CONNACK to central_main (0, 0)
+1746435146: New connection from 192.168.1.11:61258 on port 1883.
+1746435146: Client central_main already connected, closing old connection.
+1746435146: New client connected from 192.168.1.11:61258 as central_main (p2, c1, k60, u'admin').
+1746435146: No will message specified.
+1746435146: Sending CONNACK to central_main (0, 0)
+1746435147: New connection from 192.168.1.11:61261 on port 1883.
+1746435147: Client central_main already connected, closing old connection.
+1746435147: New client connected from 192.168.1.11:61261 as central_main (p2, c1, k60, u'admin').
+1746435147: No will message specified.
+1746435147: Sending CONNACK to central_main (0, 0)
+1746435148: New connection from 192.168.1.11:61262 on port 1883.
+1746435148: Client central_main already connected, closing old connection.
+1746435148: New client connected from 192.168.1.11:61262 as central_main (p2, c1, k60, u'admin').
+1746435148: No will message specified.
+1746435148: Sending CONNACK to central_main (0, 0)
+1746435149: New connection from 192.168.1.11:61263 on port 1883.
+1746435149: Client central_main already connected, closing old connection.
+1746435149: New client connected from 192.168.1.11:61263 as central_main (p2, c1, k60, u'admin').
+1746435149: No will message specified.
+1746435149: Sending CONNACK to central_main (0, 0)
+1746435150: New connection from 192.168.1.11:61264 on port 1883.
+1746435150: Client central_main already connected, closing old connection.
+1746435150: New client connected from 192.168.1.11:61264 as central_main (p2, c1, k60, u'admin').
+1746435150: No will message specified.
+1746435150: Sending CONNACK to central_main (0, 0)
+1746435151: New connection from 192.168.1.11:61265 on port 1883.
+1746435151: Client central_main already connected, closing old connection.
+1746435151: New client connected from 192.168.1.11:61265 as central_main (p2, c1, k60, u'admin').
+1746435151: No will message specified.
+1746435151: Sending CONNACK to central_main (0, 0)
+1746435152: New connection from 192.168.1.11:61267 on port 1883.
+1746435152: Client central_main already connected, closing old connection.
+1746435152: New client connected from 192.168.1.11:61267 as central_main (p2, c1, k60, u'admin').
+1746435152: No will message specified.
+1746435152: Sending CONNACK to central_main (0, 0)
+1746435153: New connection from 192.168.1.11:61270 on port 1883.
+1746435153: Client central_main already connected, closing old connection.
+1746435153: New client connected from 192.168.1.11:61270 as central_main (p2, c1, k60, u'admin').
+1746435153: No will message specified.
+1746435153: Sending CONNACK to central_main (0, 0)
+1746435154: New connection from 192.168.1.11:61271 on port 1883.
+1746435154: Client central_main already connected, closing old connection.
+1746435154: New client connected from 192.168.1.11:61271 as central_main (p2, c1, k60, u'admin').
+1746435154: No will message specified.
+1746435154: Sending CONNACK to central_main (0, 0)
+1746435155: Received PINGREQ from virtual_module
+1746435155: Sending PINGRESP to virtual_module
+1746435155: New connection from 192.168.1.11:61273 on port 1883.
+1746435155: Client central_main already connected, closing old connection.
+1746435155: New client connected from 192.168.1.11:61273 as central_main (p2, c1, k60, u'admin').
+1746435155: No will message specified.
+1746435155: Sending CONNACK to central_main (0, 0)
+1746435156: New connection from 192.168.1.11:61275 on port 1883.
+1746435156: Client central_main already connected, closing old connection.
+1746435156: New client connected from 192.168.1.11:61275 as central_main (p2, c1, k60, u'admin').
+1746435156: No will message specified.
+1746435156: Sending CONNACK to central_main (0, 0)
+1746435157: New connection from 192.168.1.11:61276 on port 1883.
+1746435157: Client central_main already connected, closing old connection.
+1746435157: New client connected from 192.168.1.11:61276 as central_main (p2, c1, k60, u'admin').
+1746435157: No will message specified.
+1746435157: Sending CONNACK to central_main (0, 0)
+1746435158: New connection from 192.168.1.11:61277 on port 1883.
+1746435158: Client central_main already connected, closing old connection.
+1746435158: New client connected from 192.168.1.11:61277 as central_main (p2, c1, k60, u'admin').
+1746435158: No will message specified.
+1746435158: Sending CONNACK to central_main (0, 0)
+1746435159: New connection from 192.168.1.11:61278 on port 1883.
+1746435159: Client central_main already connected, closing old connection.
+1746435159: New client connected from 192.168.1.11:61278 as central_main (p2, c1, k60, u'admin').
+1746435159: No will message specified.
+1746435159: Sending CONNACK to central_main (0, 0)
+1746435160: New connection from 192.168.1.11:61279 on port 1883.
+1746435160: Client central_main already connected, closing old connection.
+1746435160: New client connected from 192.168.1.11:61279 as central_main (p2, c1, k60, u'admin').
+1746435160: No will message specified.
+1746435160: Sending CONNACK to central_main (0, 0)
+1746435161: New connection from 192.168.1.11:61280 on port 1883.
+1746435161: Client central_main already connected, closing old connection.
+1746435161: New client connected from 192.168.1.11:61280 as central_main (p2, c1, k60, u'admin').
+1746435161: No will message specified.
+1746435161: Sending CONNACK to central_main (0, 0)
+1746435162: New connection from 192.168.1.11:61281 on port 1883.
+1746435162: Client central_main already connected, closing old connection.
+1746435162: New client connected from 192.168.1.11:61281 as central_main (p2, c1, k60, u'admin').
+1746435162: No will message specified.
+1746435162: Sending CONNACK to central_main (0, 0)
+1746435163: New connection from 192.168.1.11:61282 on port 1883.
+1746435163: Client central_main already connected, closing old connection.
+1746435163: New client connected from 192.168.1.11:61282 as central_main (p2, c1, k60, u'admin').
+1746435163: No will message specified.
+1746435163: Sending CONNACK to central_main (0, 0)
+1746435164: New connection from 192.168.1.11:61283 on port 1883.
+1746435164: Client central_main already connected, closing old connection.
+1746435164: New client connected from 192.168.1.11:61283 as central_main (p2, c1, k60, u'admin').
+1746435164: No will message specified.
+1746435164: Sending CONNACK to central_main (0, 0)
+1746435165: New connection from 192.168.1.11:61284 on port 1883.
+1746435165: Client central_main already connected, closing old connection.
+1746435165: New client connected from 192.168.1.11:61284 as central_main (p2, c1, k60, u'admin').
+1746435165: No will message specified.
+1746435165: Sending CONNACK to central_main (0, 0)
+1746435166: New connection from 192.168.1.11:61285 on port 1883.
+1746435166: Client central_main already connected, closing old connection.
+1746435166: New client connected from 192.168.1.11:61285 as central_main (p2, c1, k60, u'admin').
+1746435166: No will message specified.
+1746435166: Sending CONNACK to central_main (0, 0)
+1746435167: New connection from 192.168.1.11:61286 on port 1883.
+1746435167: Client central_main already connected, closing old connection.
+1746435167: New client connected from 192.168.1.11:61286 as central_main (p2, c1, k60, u'admin').
+1746435167: No will message specified.
+1746435167: Sending CONNACK to central_main (0, 0)
+1746435168: New connection from 192.168.1.11:61287 on port 1883.
+1746435168: Client central_main already connected, closing old connection.
+1746435168: New client connected from 192.168.1.11:61287 as central_main (p2, c1, k60, u'admin').
+1746435168: No will message specified.
+1746435168: Sending CONNACK to central_main (0, 0)
+1746435169: New connection from 192.168.1.11:61290 on port 1883.
+1746435169: Client central_main already connected, closing old connection.
+1746435169: New client connected from 192.168.1.11:61290 as central_main (p2, c1, k60, u'admin').
+1746435169: No will message specified.
+1746435169: Sending CONNACK to central_main (0, 0)
+1746435170: New connection from 192.168.1.11:61291 on port 1883.
+1746435170: Client central_main already connected, closing old connection.
+1746435170: New client connected from 192.168.1.11:61291 as central_main (p2, c1, k60, u'admin').
+1746435170: No will message specified.
+1746435170: Sending CONNACK to central_main (0, 0)
+1746435171: New connection from 192.168.1.11:61292 on port 1883.
+1746435171: Client central_main already connected, closing old connection.
+1746435171: New client connected from 192.168.1.11:61292 as central_main (p2, c1, k60, u'admin').
+1746435171: No will message specified.
+1746435171: Sending CONNACK to central_main (0, 0)
+1746435172: New connection from 192.168.1.11:61293 on port 1883.
+1746435172: Client central_main already connected, closing old connection.
+1746435172: New client connected from 192.168.1.11:61293 as central_main (p2, c1, k60, u'admin').
+1746435172: No will message specified.
+1746435172: Sending CONNACK to central_main (0, 0)
+1746435204: New connection from 192.168.1.11:61299 on port 1883.
+1746435204: New client connected from 192.168.1.11:61299 as central_main_ui (p2, c1, k60, u'admin').
+1746435204: No will message specified.
+1746435204: Sending CONNACK to central_main_ui (0, 0)
+1746435215: Received PINGREQ from virtual_module
+1746435215: Sending PINGRESP to virtual_module
+1746435233: Received PINGREQ from central_main
+1746435233: Sending PINGRESP to central_main
+1746435264: Received PINGREQ from central_main_ui
+1746435264: Sending PINGRESP to central_main_ui
+1746435276: Received PINGREQ from virtual_module
+1746435276: Sending PINGRESP to virtual_module
+1746435293: Received PINGREQ from central_main
+1746435293: Sending PINGRESP to central_main
+1746435298: Client central_main closed its connection.
+1746436195: mosquitto version 2.0.21 starting
+1746436195: Config loaded from .\config\mosquitto.conf.
+1746436195: Opening ipv6 listen socket on port 1883.
+1746436195: Opening ipv4 listen socket on port 1883.
+1746436195: mosquitto version 2.0.21 running
+1746436201: New connection from 192.168.1.11:61857 on port 1883.
+1746436201: New client connected from 192.168.1.11:61857 as central_main_ui (p2, c1, k60, u'admin').
+1746436201: No will message specified.
+1746436201: Sending CONNACK to central_main_ui (0, 0)
+1746436262: Received PINGREQ from central_main_ui
+1746436262: Sending PINGRESP to central_main_ui
+1746436298: New connection from 192.168.1.11:62008 on port 1883.
+1746436298: New client connected from 192.168.1.11:62008 as virtual_module (p2, c1, k60, u'admin').
+1746436298: No will message specified.
+1746436298: Sending CONNACK to virtual_module (0, 0)
+1746436322: Received PINGREQ from central_main_ui
+1746436322: Sending PINGRESP to central_main_ui
+1746436359: Received PINGREQ from virtual_module
+1746436359: Sending PINGRESP to virtual_module
+1746436383: Received PINGREQ from central_main_ui
+1746436383: Sending PINGRESP to central_main_ui
+1746436390: Client central_main_ui closed its connection.
+1746436419: Received PINGREQ from virtual_module
+1746436419: Sending PINGRESP to virtual_module
+1746436424: New connection from 192.168.1.11:62131 on port 1883.
+1746436424: New client connected from 192.168.1.11:62131 as central_main_ui (p2, c1, k60, u'admin').
+1746436424: No will message specified.
+1746436424: Sending CONNACK to central_main_ui (0, 0)
+1746436438: Received PUBLISH from central_main_ui (d0, q0, r0, m0, 'central_main/control', ... (61 bytes))
+1746436456: New connection from 192.168.1.11:62221 on port 1883.
+1746436456: New client connected from 192.168.1.11:62221 as central_main (p2, c1, k60, u'admin').
+1746436456: No will message specified.
+1746436456: Sending CONNACK to central_main (0, 0)
+1746436456: Received SUBSCRIBE from central_main
+1746436456: 	sensor/publish (QoS 0)
+1746436456: central_main 0 sensor/publish
+1746436456: Sending SUBACK to central_main
+1746436456: Received SUBSCRIBE from central_main
+1746436456: 	central_main/control (QoS 0)
+1746436456: central_main 0 central_main/control
+1746436456: Sending SUBACK to central_main
+1746436471: Client virtual_module closed its connection.
+1746436484: Received PINGREQ from central_main_ui
+1746436484: Sending PINGRESP to central_main_ui
+1746436497: New connection from 192.168.1.11:62277 on port 1883.
+1746436497: New client connected from 192.168.1.11:62277 as virtual_module (p2, c1, k60, u'admin').
+1746436497: No will message specified.
+1746436497: Sending CONNACK to virtual_module (0, 0)
+1746436497: Received SUBSCRIBE from virtual_module
+1746436497: 	sensor/update/L-2025.04.19-21.09-0001 (QoS 0)
+1746436497: virtual_module 0 sensor/update/L-2025.04.19-21.09-0001
+1746436497: Sending SUBACK to virtual_module
+1746436497: Received SUBSCRIBE from virtual_module
+1746436497: 	sensor/update/L-2025.04.19-21.09-0002 (QoS 0)
+1746436497: virtual_module 0 sensor/update/L-2025.04.19-21.09-0002
+1746436497: Sending SUBACK to virtual_module
+1746436497: Received SUBSCRIBE from virtual_module
+1746436497: 	sensor/update/L-2025.04.19-21.09-0003 (QoS 0)
+1746436497: virtual_module 0 sensor/update/L-2025.04.19-21.09-0003
+1746436497: Sending SUBACK to virtual_module
+1746436497: Received SUBSCRIBE from virtual_module
+1746436497: 	sensor/update/L-2025.04.19-21.09-0004 (QoS 0)
+1746436497: virtual_module 0 sensor/update/L-2025.04.19-21.09-0004
+1746436497: Sending SUBACK to virtual_module
+1746436497: Received SUBSCRIBE from virtual_module
+1746436497: 	sensor/update/L-2025.04.19-21.09-0005 (QoS 0)
+1746436497: virtual_module 0 sensor/update/L-2025.04.19-21.09-0005
+1746436497: Sending SUBACK to virtual_module
+1746436497: Received SUBSCRIBE from virtual_module
+1746436497: 	sensor/update/L-2025.04.19-21.09-0006 (QoS 0)
+1746436497: virtual_module 0 sensor/update/L-2025.04.19-21.09-0006
+1746436497: Sending SUBACK to virtual_module
+1746436497: Received SUBSCRIBE from virtual_module
+1746436497: 	sensor/update/L-2025.04.19-21.09-0007 (QoS 0)
+1746436497: virtual_module 0 sensor/update/L-2025.04.19-21.09-0007
+1746436497: Sending SUBACK to virtual_module
+1746436497: Received SUBSCRIBE from virtual_module
+1746436497: 	sensor/update/L-2025.04.19-21.09-0008 (QoS 0)
+1746436497: virtual_module 0 sensor/update/L-2025.04.19-21.09-0008
+1746436497: Sending SUBACK to virtual_module
+1746436497: Received SUBSCRIBE from virtual_module
+1746436497: 	sensor/update/T-2025.04.19-21.09-0001 (QoS 0)
+1746436497: virtual_module 0 sensor/update/T-2025.04.19-21.09-0001
+1746436497: Sending SUBACK to virtual_module
+1746436497: Received SUBSCRIBE from virtual_module
+1746436497: 	sensor/update/T-2025.04.19-21.09-0002 (QoS 0)
+1746436497: virtual_module 0 sensor/update/T-2025.04.19-21.09-0002
+1746436497: Sending SUBACK to virtual_module
+1746436497: Received SUBSCRIBE from virtual_module
+1746436497: 	sensor/update/T-2025.04.19-21.09-0003 (QoS 0)
+1746436497: virtual_module 0 sensor/update/T-2025.04.19-21.09-0003
+1746436497: Sending SUBACK to virtual_module
+1746436497: Received SUBSCRIBE from virtual_module
+1746436497: 	sensor/update/T-2025.04.19-21.09-0004 (QoS 0)
+1746436497: virtual_module 0 sensor/update/T-2025.04.19-21.09-0004
+1746436497: Sending SUBACK to virtual_module
+1746436497: Received SUBSCRIBE from virtual_module
+1746436497: 	sensor/update/R-2025.04.19-21.09-0001 (QoS 0)
+1746436497: virtual_module 0 sensor/update/R-2025.04.19-21.09-0001
+1746436497: Sending SUBACK to virtual_module
+1746436497: Received SUBSCRIBE from virtual_module
+1746436497: 	sensor/update/R-2025.04.19-21.09-0002 (QoS 0)
+1746436497: virtual_module 0 sensor/update/R-2025.04.19-21.09-0002
+1746436497: Sending SUBACK to virtual_module
+1746436497: Received SUBSCRIBE from virtual_module
+1746436497: 	sensor/update/R-2025.04.19-21.09-0003 (QoS 0)
+1746436497: virtual_module 0 sensor/update/R-2025.04.19-21.09-0003
+1746436497: Sending SUBACK to virtual_module
+1746436497: Received SUBSCRIBE from virtual_module
+1746436497: 	sensor/update/R-2025.04.19-21.09-0004 (QoS 0)
+1746436497: virtual_module 0 sensor/update/R-2025.04.19-21.09-0004
+1746436497: Sending SUBACK to virtual_module
+1746436497: Received SUBSCRIBE from virtual_module
+1746436497: 	sensor/update/R-2025.04.19-21.09-0005 (QoS 0)
+1746436497: virtual_module 0 sensor/update/R-2025.04.19-21.09-0005
+1746436497: Sending SUBACK to virtual_module
+1746436497: Received SUBSCRIBE from virtual_module
+1746436497: 	sensor/update/R-2025.04.19-21.09-0006 (QoS 0)
+1746436497: virtual_module 0 sensor/update/R-2025.04.19-21.09-0006
+1746436497: Sending SUBACK to virtual_module
+1746436497: Received SUBSCRIBE from virtual_module
+1746436497: 	sensor/update/R-2025.04.19-21.09-0007 (QoS 0)
+1746436497: virtual_module 0 sensor/update/R-2025.04.19-21.09-0007
+1746436497: Sending SUBACK to virtual_module
+1746436497: Received SUBSCRIBE from virtual_module
+1746436497: 	sensor/update/R-2025.04.19-21.09-0008 (QoS 0)
+1746436497: virtual_module 0 sensor/update/R-2025.04.19-21.09-0008
+1746436497: Sending SUBACK to virtual_module
+1746436497: Received SUBSCRIBE from virtual_module
+1746436497: 	sensor/update/D-2025.04.19-21.09-0001 (QoS 0)
+1746436497: virtual_module 0 sensor/update/D-2025.04.19-21.09-0001
+1746436497: Sending SUBACK to virtual_module
+1746436497: Received SUBSCRIBE from virtual_module
+1746436497: 	sensor/update/SW-2025.04.19-21.09-0001 (QoS 0)
+1746436497: virtual_module 0 sensor/update/SW-2025.04.19-21.09-0001
+1746436497: Sending SUBACK to virtual_module
+1746436497: Received SUBSCRIBE from virtual_module
+1746436497: 	sensor/update/L-2025.04.19-21.09-0001 (QoS 0)
+1746436497: virtual_module 0 sensor/update/L-2025.04.19-21.09-0001
+1746436497: Sending SUBACK to virtual_module
+1746436497: Received SUBSCRIBE from virtual_module
+1746436497: 	sensor/update/L-2025.04.19-21.09-0002 (QoS 0)
+1746436497: virtual_module 0 sensor/update/L-2025.04.19-21.09-0002
+1746436497: Sending SUBACK to virtual_module
+1746436497: Received SUBSCRIBE from virtual_module
+1746436497: 	sensor/update/L-2025.04.19-21.09-0003 (QoS 0)
+1746436497: virtual_module 0 sensor/update/L-2025.04.19-21.09-0003
+1746436497: Sending SUBACK to virtual_module
+1746436497: Received SUBSCRIBE from virtual_module
+1746436497: 	sensor/update/L-2025.04.19-21.09-0004 (QoS 0)
+1746436497: virtual_module 0 sensor/update/L-2025.04.19-21.09-0004
+1746436497: Sending SUBACK to virtual_module
+1746436497: Received SUBSCRIBE from virtual_module
+1746436497: 	sensor/update/L-2025.04.19-21.09-0005 (QoS 0)
+1746436497: virtual_module 0 sensor/update/L-2025.04.19-21.09-0005
+1746436497: Sending SUBACK to virtual_module
+1746436497: Received SUBSCRIBE from virtual_module
+1746436497: 	sensor/update/L-2025.04.19-21.09-0006 (QoS 0)
+1746436497: virtual_module 0 sensor/update/L-2025.04.19-21.09-0006
+1746436497: Sending SUBACK to virtual_module
+1746436497: Received SUBSCRIBE from virtual_module
+1746436497: 	sensor/update/L-2025.04.19-21.09-0007 (QoS 0)
+1746436497: virtual_module 0 sensor/update/L-2025.04.19-21.09-0007
+1746436497: Sending SUBACK to virtual_module
+1746436497: Received SUBSCRIBE from virtual_module
+1746436497: 	sensor/update/L-2025.04.19-21.09-0008 (QoS 0)
+1746436497: virtual_module 0 sensor/update/L-2025.04.19-21.09-0008
+1746436497: Sending SUBACK to virtual_module
+1746436497: Received SUBSCRIBE from virtual_module
+1746436497: 	sensor/update/T-2025.04.19-21.09-0001 (QoS 0)
+1746436497: virtual_module 0 sensor/update/T-2025.04.19-21.09-0001
+1746436497: Sending SUBACK to virtual_module
+1746436497: Received SUBSCRIBE from virtual_module
+1746436497: 	sensor/update/T-2025.04.19-21.09-0002 (QoS 0)
+1746436497: virtual_module 0 sensor/update/T-2025.04.19-21.09-0002
+1746436497: Sending SUBACK to virtual_module
+1746436497: Received SUBSCRIBE from virtual_module
+1746436497: 	sensor/update/T-2025.04.19-21.09-0003 (QoS 0)
+1746436497: virtual_module 0 sensor/update/T-2025.04.19-21.09-0003
+1746436497: Sending SUBACK to virtual_module
+1746436497: Received SUBSCRIBE from virtual_module
+1746436497: 	sensor/update/T-2025.04.19-21.09-0004 (QoS 0)
+1746436497: virtual_module 0 sensor/update/T-2025.04.19-21.09-0004
+1746436497: Sending SUBACK to virtual_module
+1746436497: Received SUBSCRIBE from virtual_module
+1746436497: 	sensor/update/R-2025.04.19-21.09-0001 (QoS 0)
+1746436497: virtual_module 0 sensor/update/R-2025.04.19-21.09-0001
+1746436497: Sending SUBACK to virtual_module
+1746436497: Received SUBSCRIBE from virtual_module
+1746436497: 	sensor/update/R-2025.04.19-21.09-0002 (QoS 0)
+1746436497: virtual_module 0 sensor/update/R-2025.04.19-21.09-0002
+1746436497: Sending SUBACK to virtual_module
+1746436497: Received SUBSCRIBE from virtual_module
+1746436497: 	sensor/update/R-2025.04.19-21.09-0003 (QoS 0)
+1746436497: virtual_module 0 sensor/update/R-2025.04.19-21.09-0003
+1746436497: Sending SUBACK to virtual_module
+1746436497: Received SUBSCRIBE from virtual_module
+1746436497: 	sensor/update/R-2025.04.19-21.09-0004 (QoS 0)
+1746436497: virtual_module 0 sensor/update/R-2025.04.19-21.09-0004
+1746436497: Sending SUBACK to virtual_module
+1746436497: Received SUBSCRIBE from virtual_module
+1746436497: 	sensor/update/R-2025.04.19-21.09-0005 (QoS 0)
+1746436497: virtual_module 0 sensor/update/R-2025.04.19-21.09-0005
+1746436497: Sending SUBACK to virtual_module
+1746436497: Received SUBSCRIBE from virtual_module
+1746436497: 	sensor/update/R-2025.04.19-21.09-0006 (QoS 0)
+1746436497: virtual_module 0 sensor/update/R-2025.04.19-21.09-0006
+1746436497: Sending SUBACK to virtual_module
+1746436497: Received SUBSCRIBE from virtual_module
+1746436497: 	sensor/update/R-2025.04.19-21.09-0007 (QoS 0)
+1746436497: virtual_module 0 sensor/update/R-2025.04.19-21.09-0007
+1746436497: Sending SUBACK to virtual_module
+1746436497: Received SUBSCRIBE from virtual_module
+1746436497: 	sensor/update/R-2025.04.19-21.09-0008 (QoS 0)
+1746436497: virtual_module 0 sensor/update/R-2025.04.19-21.09-0008
+1746436497: Sending SUBACK to virtual_module
+1746436497: Received SUBSCRIBE from virtual_module
+1746436497: 	sensor/update/D-2025.04.19-21.09-0001 (QoS 0)
+1746436497: virtual_module 0 sensor/update/D-2025.04.19-21.09-0001
+1746436497: Sending SUBACK to virtual_module
+1746436497: Received SUBSCRIBE from virtual_module
+1746436497: 	sensor/update/SW-2025.04.19-21.09-0001 (QoS 0)
+1746436497: virtual_module 0 sensor/update/SW-2025.04.19-21.09-0001
+1746436497: Sending SUBACK to virtual_module
+1746436506: Received PUBLISH from virtual_module (d0, q0, r0, m0, 'sensor/publish', ... (99 bytes))
+1746436506: Sending PUBLISH to central_main (d0, q0, r0, m0, 'sensor/publish', ... (99 bytes))
+1746436508: Received SUBSCRIBE from virtual_module
+1746436508: 	sensor/update/L-2025.04.19-21.09-0001 (QoS 0)
+1746436508: virtual_module 0 sensor/update/L-2025.04.19-21.09-0001
+1746436508: Sending SUBACK to virtual_module
+1746436508: Received SUBSCRIBE from virtual_module
+1746436508: 	sensor/update/L-2025.04.19-21.09-0002 (QoS 0)
+1746436508: virtual_module 0 sensor/update/L-2025.04.19-21.09-0002
+1746436508: Sending SUBACK to virtual_module
+1746436508: Received SUBSCRIBE from virtual_module
+1746436508: 	sensor/update/L-2025.04.19-21.09-0003 (QoS 0)
+1746436508: virtual_module 0 sensor/update/L-2025.04.19-21.09-0003
+1746436508: Sending SUBACK to virtual_module
+1746436508: Received SUBSCRIBE from virtual_module
+1746436508: 	sensor/update/L-2025.04.19-21.09-0004 (QoS 0)
+1746436508: virtual_module 0 sensor/update/L-2025.04.19-21.09-0004
+1746436508: Sending SUBACK to virtual_module
+1746436508: Received SUBSCRIBE from virtual_module
+1746436508: 	sensor/update/L-2025.04.19-21.09-0005 (QoS 0)
+1746436508: virtual_module 0 sensor/update/L-2025.04.19-21.09-0005
+1746436508: Sending SUBACK to virtual_module
+1746436508: Received SUBSCRIBE from virtual_module
+1746436508: 	sensor/update/L-2025.04.19-21.09-0006 (QoS 0)
+1746436508: virtual_module 0 sensor/update/L-2025.04.19-21.09-0006
+1746436508: Sending SUBACK to virtual_module
+1746436508: Received SUBSCRIBE from virtual_module
+1746436508: 	sensor/update/L-2025.04.19-21.09-0007 (QoS 0)
+1746436508: virtual_module 0 sensor/update/L-2025.04.19-21.09-0007
+1746436508: Sending SUBACK to virtual_module
+1746436508: Received SUBSCRIBE from virtual_module
+1746436508: 	sensor/update/L-2025.04.19-21.09-0008 (QoS 0)
+1746436508: virtual_module 0 sensor/update/L-2025.04.19-21.09-0008
+1746436508: Sending SUBACK to virtual_module
+1746436508: Received SUBSCRIBE from virtual_module
+1746436508: 	sensor/update/T-2025.04.19-21.09-0001 (QoS 0)
+1746436508: virtual_module 0 sensor/update/T-2025.04.19-21.09-0001
+1746436508: Sending SUBACK to virtual_module
+1746436508: Received SUBSCRIBE from virtual_module
+1746436508: 	sensor/update/T-2025.04.19-21.09-0002 (QoS 0)
+1746436508: virtual_module 0 sensor/update/T-2025.04.19-21.09-0002
+1746436508: Sending SUBACK to virtual_module
+1746436508: Received SUBSCRIBE from virtual_module
+1746436508: 	sensor/update/T-2025.04.19-21.09-0003 (QoS 0)
+1746436508: virtual_module 0 sensor/update/T-2025.04.19-21.09-0003
+1746436508: Sending SUBACK to virtual_module
+1746436508: Received SUBSCRIBE from virtual_module
+1746436508: 	sensor/update/T-2025.04.19-21.09-0004 (QoS 0)
+1746436508: virtual_module 0 sensor/update/T-2025.04.19-21.09-0004
+1746436508: Sending SUBACK to virtual_module
+1746436508: Received SUBSCRIBE from virtual_module
+1746436508: 	sensor/update/R-2025.04.19-21.09-0001 (QoS 0)
+1746436508: virtual_module 0 sensor/update/R-2025.04.19-21.09-0001
+1746436508: Sending SUBACK to virtual_module
+1746436508: Received SUBSCRIBE from virtual_module
+1746436508: 	sensor/update/R-2025.04.19-21.09-0002 (QoS 0)
+1746436508: virtual_module 0 sensor/update/R-2025.04.19-21.09-0002
+1746436508: Sending SUBACK to virtual_module
+1746436508: Received SUBSCRIBE from virtual_module
+1746436508: 	sensor/update/R-2025.04.19-21.09-0003 (QoS 0)
+1746436508: virtual_module 0 sensor/update/R-2025.04.19-21.09-0003
+1746436508: Sending SUBACK to virtual_module
+1746436508: Received SUBSCRIBE from virtual_module
+1746436508: 	sensor/update/R-2025.04.19-21.09-0004 (QoS 0)
+1746436508: virtual_module 0 sensor/update/R-2025.04.19-21.09-0004
+1746436508: Sending SUBACK to virtual_module
+1746436508: Received SUBSCRIBE from virtual_module
+1746436508: 	sensor/update/R-2025.04.19-21.09-0005 (QoS 0)
+1746436508: virtual_module 0 sensor/update/R-2025.04.19-21.09-0005
+1746436508: Sending SUBACK to virtual_module
+1746436508: Received SUBSCRIBE from virtual_module
+1746436508: 	sensor/update/R-2025.04.19-21.09-0006 (QoS 0)
+1746436508: virtual_module 0 sensor/update/R-2025.04.19-21.09-0006
+1746436508: Sending SUBACK to virtual_module
+1746436508: Received SUBSCRIBE from virtual_module
+1746436508: 	sensor/update/R-2025.04.19-21.09-0007 (QoS 0)
+1746436508: virtual_module 0 sensor/update/R-2025.04.19-21.09-0007
+1746436508: Sending SUBACK to virtual_module
+1746436508: Received SUBSCRIBE from virtual_module
+1746436508: 	sensor/update/R-2025.04.19-21.09-0008 (QoS 0)
+1746436508: virtual_module 0 sensor/update/R-2025.04.19-21.09-0008
+1746436508: Sending SUBACK to virtual_module
+1746436508: Received SUBSCRIBE from virtual_module
+1746436508: 	sensor/update/D-2025.04.19-21.09-0001 (QoS 0)
+1746436508: virtual_module 0 sensor/update/D-2025.04.19-21.09-0001
+1746436508: Sending SUBACK to virtual_module
+1746436508: Received SUBSCRIBE from virtual_module
+1746436508: 	sensor/update/SW-2025.04.19-21.09-0001 (QoS 0)
+1746436508: virtual_module 0 sensor/update/SW-2025.04.19-21.09-0001
+1746436508: Sending SUBACK to virtual_module
+1746436516: Received PINGREQ from central_main
+1746436516: Sending PINGRESP to central_main
+1746436544: Received PINGREQ from central_main_ui
+1746436544: Sending PINGRESP to central_main_ui
+1746436557: Received PINGREQ from virtual_module
+1746436557: Sending PINGRESP to virtual_module
+1746436571: Received SUBSCRIBE from virtual_module
+1746436571: 	sensor/update/L-2025.04.19-21.09-0001 (QoS 0)
+1746436571: virtual_module 0 sensor/update/L-2025.04.19-21.09-0001
+1746436571: Sending SUBACK to virtual_module
+1746436571: Received SUBSCRIBE from virtual_module
+1746436571: 	sensor/update/L-2025.04.19-21.09-0002 (QoS 0)
+1746436571: virtual_module 0 sensor/update/L-2025.04.19-21.09-0002
+1746436571: Sending SUBACK to virtual_module
+1746436571: Received SUBSCRIBE from virtual_module
+1746436571: 	sensor/update/L-2025.04.19-21.09-0003 (QoS 0)
+1746436571: virtual_module 0 sensor/update/L-2025.04.19-21.09-0003
+1746436571: Sending SUBACK to virtual_module
+1746436571: Received SUBSCRIBE from virtual_module
+1746436571: 	sensor/update/L-2025.04.19-21.09-0004 (QoS 0)
+1746436571: virtual_module 0 sensor/update/L-2025.04.19-21.09-0004
+1746436571: Sending SUBACK to virtual_module
+1746436571: Received SUBSCRIBE from virtual_module
+1746436571: 	sensor/update/L-2025.04.19-21.09-0005 (QoS 0)
+1746436571: virtual_module 0 sensor/update/L-2025.04.19-21.09-0005
+1746436571: Sending SUBACK to virtual_module
+1746436571: Received SUBSCRIBE from virtual_module
+1746436571: 	sensor/update/L-2025.04.19-21.09-0006 (QoS 0)
+1746436571: virtual_module 0 sensor/update/L-2025.04.19-21.09-0006
+1746436571: Sending SUBACK to virtual_module
+1746436571: Received SUBSCRIBE from virtual_module
+1746436571: 	sensor/update/L-2025.04.19-21.09-0007 (QoS 0)
+1746436571: virtual_module 0 sensor/update/L-2025.04.19-21.09-0007
+1746436571: Sending SUBACK to virtual_module
+1746436571: Received SUBSCRIBE from virtual_module
+1746436571: 	sensor/update/L-2025.04.19-21.09-0008 (QoS 0)
+1746436571: virtual_module 0 sensor/update/L-2025.04.19-21.09-0008
+1746436571: Sending SUBACK to virtual_module
+1746436571: Received SUBSCRIBE from virtual_module
+1746436571: 	sensor/update/T-2025.04.19-21.09-0001 (QoS 0)
+1746436571: virtual_module 0 sensor/update/T-2025.04.19-21.09-0001
+1746436571: Sending SUBACK to virtual_module
+1746436571: Received SUBSCRIBE from virtual_module
+1746436571: 	sensor/update/T-2025.04.19-21.09-0002 (QoS 0)
+1746436571: virtual_module 0 sensor/update/T-2025.04.19-21.09-0002
+1746436571: Sending SUBACK to virtual_module
+1746436571: Received SUBSCRIBE from virtual_module
+1746436571: 	sensor/update/T-2025.04.19-21.09-0003 (QoS 0)
+1746436571: virtual_module 0 sensor/update/T-2025.04.19-21.09-0003
+1746436571: Sending SUBACK to virtual_module
+1746436571: Received SUBSCRIBE from virtual_module
+1746436571: 	sensor/update/T-2025.04.19-21.09-0004 (QoS 0)
+1746436571: virtual_module 0 sensor/update/T-2025.04.19-21.09-0004
+1746436571: Sending SUBACK to virtual_module
+1746436571: Received SUBSCRIBE from virtual_module
+1746436571: 	sensor/update/R-2025.04.19-21.09-0001 (QoS 0)
+1746436571: virtual_module 0 sensor/update/R-2025.04.19-21.09-0001
+1746436571: Sending SUBACK to virtual_module
+1746436571: Received SUBSCRIBE from virtual_module
+1746436571: 	sensor/update/R-2025.04.19-21.09-0002 (QoS 0)
+1746436571: virtual_module 0 sensor/update/R-2025.04.19-21.09-0002
+1746436571: Sending SUBACK to virtual_module
+1746436571: Received SUBSCRIBE from virtual_module
+1746436571: 	sensor/update/R-2025.04.19-21.09-0003 (QoS 0)
+1746436571: virtual_module 0 sensor/update/R-2025.04.19-21.09-0003
+1746436571: Sending SUBACK to virtual_module
+1746436571: Received SUBSCRIBE from virtual_module
+1746436571: 	sensor/update/R-2025.04.19-21.09-0004 (QoS 0)
+1746436571: virtual_module 0 sensor/update/R-2025.04.19-21.09-0004
+1746436571: Sending SUBACK to virtual_module
+1746436571: Received SUBSCRIBE from virtual_module
+1746436571: 	sensor/update/R-2025.04.19-21.09-0005 (QoS 0)
+1746436571: virtual_module 0 sensor/update/R-2025.04.19-21.09-0005
+1746436571: Sending SUBACK to virtual_module
+1746436571: Received SUBSCRIBE from virtual_module
+1746436571: 	sensor/update/R-2025.04.19-21.09-0006 (QoS 0)
+1746436571: virtual_module 0 sensor/update/R-2025.04.19-21.09-0006
+1746436571: Sending SUBACK to virtual_module
+1746436571: Received SUBSCRIBE from virtual_module
+1746436571: 	sensor/update/R-2025.04.19-21.09-0007 (QoS 0)
+1746436571: virtual_module 0 sensor/update/R-2025.04.19-21.09-0007
+1746436571: Sending SUBACK to virtual_module
+1746436571: Received SUBSCRIBE from virtual_module
+1746436571: 	sensor/update/R-2025.04.19-21.09-0008 (QoS 0)
+1746436571: virtual_module 0 sensor/update/R-2025.04.19-21.09-0008
+1746436571: Sending SUBACK to virtual_module
+1746436571: Received SUBSCRIBE from virtual_module
+1746436571: 	sensor/update/D-2025.04.19-21.09-0001 (QoS 0)
+1746436571: virtual_module 0 sensor/update/D-2025.04.19-21.09-0001
+1746436571: Sending SUBACK to virtual_module
+1746436571: Received SUBSCRIBE from virtual_module
+1746436571: 	sensor/update/SW-2025.04.19-21.09-0001 (QoS 0)
+1746436571: virtual_module 0 sensor/update/SW-2025.04.19-21.09-0001
+1746436571: Sending SUBACK to virtual_module
+1746436571: Received SUBSCRIBE from virtual_module
+1746436571: 	sensor/update/L-2025.04.19-21.09-0001 (QoS 0)
+1746436571: virtual_module 0 sensor/update/L-2025.04.19-21.09-0001
+1746436571: Sending SUBACK to virtual_module
+1746436571: Received SUBSCRIBE from virtual_module
+1746436571: 	sensor/update/L-2025.04.19-21.09-0002 (QoS 0)
+1746436571: virtual_module 0 sensor/update/L-2025.04.19-21.09-0002
+1746436571: Sending SUBACK to virtual_module
+1746436571: Received SUBSCRIBE from virtual_module
+1746436571: 	sensor/update/L-2025.04.19-21.09-0003 (QoS 0)
+1746436571: virtual_module 0 sensor/update/L-2025.04.19-21.09-0003
+1746436571: Sending SUBACK to virtual_module
+1746436571: Received SUBSCRIBE from virtual_module
+1746436571: 	sensor/update/L-2025.04.19-21.09-0004 (QoS 0)
+1746436571: virtual_module 0 sensor/update/L-2025.04.19-21.09-0004
+1746436571: Sending SUBACK to virtual_module
+1746436571: Received SUBSCRIBE from virtual_module
+1746436571: 	sensor/update/L-2025.04.19-21.09-0005 (QoS 0)
+1746436571: virtual_module 0 sensor/update/L-2025.04.19-21.09-0005
+1746436571: Sending SUBACK to virtual_module
+1746436571: Received SUBSCRIBE from virtual_module
+1746436571: 	sensor/update/L-2025.04.19-21.09-0006 (QoS 0)
+1746436571: virtual_module 0 sensor/update/L-2025.04.19-21.09-0006
+1746436571: Sending SUBACK to virtual_module
+1746436571: Received SUBSCRIBE from virtual_module
+1746436571: 	sensor/update/L-2025.04.19-21.09-0007 (QoS 0)
+1746436571: virtual_module 0 sensor/update/L-2025.04.19-21.09-0007
+1746436571: Sending SUBACK to virtual_module
+1746436571: Received SUBSCRIBE from virtual_module
+1746436571: 	sensor/update/L-2025.04.19-21.09-0008 (QoS 0)
+1746436571: virtual_module 0 sensor/update/L-2025.04.19-21.09-0008
+1746436571: Sending SUBACK to virtual_module
+1746436571: Received SUBSCRIBE from virtual_module
+1746436571: 	sensor/update/T-2025.04.19-21.09-0001 (QoS 0)
+1746436571: virtual_module 0 sensor/update/T-2025.04.19-21.09-0001
+1746436571: Sending SUBACK to virtual_module
+1746436571: Received SUBSCRIBE from virtual_module
+1746436571: 	sensor/update/T-2025.04.19-21.09-0002 (QoS 0)
+1746436571: virtual_module 0 sensor/update/T-2025.04.19-21.09-0002
+1746436571: Sending SUBACK to virtual_module
+1746436571: Received SUBSCRIBE from virtual_module
+1746436571: 	sensor/update/T-2025.04.19-21.09-0003 (QoS 0)
+1746436571: virtual_module 0 sensor/update/T-2025.04.19-21.09-0003
+1746436571: Sending SUBACK to virtual_module
+1746436571: Received SUBSCRIBE from virtual_module
+1746436571: 	sensor/update/T-2025.04.19-21.09-0004 (QoS 0)
+1746436571: virtual_module 0 sensor/update/T-2025.04.19-21.09-0004
+1746436571: Sending SUBACK to virtual_module
+1746436571: Received SUBSCRIBE from virtual_module
+1746436571: 	sensor/update/R-2025.04.19-21.09-0001 (QoS 0)
+1746436571: virtual_module 0 sensor/update/R-2025.04.19-21.09-0001
+1746436571: Sending SUBACK to virtual_module
+1746436571: Received SUBSCRIBE from virtual_module
+1746436571: 	sensor/update/R-2025.04.19-21.09-0002 (QoS 0)
+1746436571: virtual_module 0 sensor/update/R-2025.04.19-21.09-0002
+1746436571: Sending SUBACK to virtual_module
+1746436571: Received SUBSCRIBE from virtual_module
+1746436571: 	sensor/update/R-2025.04.19-21.09-0003 (QoS 0)
+1746436571: virtual_module 0 sensor/update/R-2025.04.19-21.09-0003
+1746436571: Sending SUBACK to virtual_module
+1746436571: Received SUBSCRIBE from virtual_module
+1746436571: 	sensor/update/R-2025.04.19-21.09-0004 (QoS 0)
+1746436571: virtual_module 0 sensor/update/R-2025.04.19-21.09-0004
+1746436571: Sending SUBACK to virtual_module
+1746436571: Received SUBSCRIBE from virtual_module
+1746436571: 	sensor/update/R-2025.04.19-21.09-0005 (QoS 0)
+1746436571: virtual_module 0 sensor/update/R-2025.04.19-21.09-0005
+1746436571: Sending SUBACK to virtual_module
+1746436571: Received SUBSCRIBE from virtual_module
+1746436571: 	sensor/update/R-2025.04.19-21.09-0006 (QoS 0)
+1746436571: virtual_module 0 sensor/update/R-2025.04.19-21.09-0006
+1746436571: Sending SUBACK to virtual_module
+1746436571: Received SUBSCRIBE from virtual_module
+1746436571: 	sensor/update/R-2025.04.19-21.09-0007 (QoS 0)
+1746436571: virtual_module 0 sensor/update/R-2025.04.19-21.09-0007
+1746436571: Sending SUBACK to virtual_module
+1746436571: Received SUBSCRIBE from virtual_module
+1746436571: 	sensor/update/R-2025.04.19-21.09-0008 (QoS 0)
+1746436571: virtual_module 0 sensor/update/R-2025.04.19-21.09-0008
+1746436571: Sending SUBACK to virtual_module
+1746436571: Received SUBSCRIBE from virtual_module
+1746436571: 	sensor/update/D-2025.04.19-21.09-0001 (QoS 0)
+1746436571: virtual_module 0 sensor/update/D-2025.04.19-21.09-0001
+1746436571: Sending SUBACK to virtual_module
+1746436571: Received SUBSCRIBE from virtual_module
+1746436571: 	sensor/update/SW-2025.04.19-21.09-0001 (QoS 0)
+1746436571: virtual_module 0 sensor/update/SW-2025.04.19-21.09-0001
+1746436571: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/L-2025.04.19-21.09-0001 (QoS 0)
+1746436572: virtual_module 0 sensor/update/L-2025.04.19-21.09-0001
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/L-2025.04.19-21.09-0002 (QoS 0)
+1746436572: virtual_module 0 sensor/update/L-2025.04.19-21.09-0002
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/L-2025.04.19-21.09-0003 (QoS 0)
+1746436572: virtual_module 0 sensor/update/L-2025.04.19-21.09-0003
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/L-2025.04.19-21.09-0004 (QoS 0)
+1746436572: virtual_module 0 sensor/update/L-2025.04.19-21.09-0004
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/L-2025.04.19-21.09-0005 (QoS 0)
+1746436572: virtual_module 0 sensor/update/L-2025.04.19-21.09-0005
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/L-2025.04.19-21.09-0006 (QoS 0)
+1746436572: virtual_module 0 sensor/update/L-2025.04.19-21.09-0006
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/L-2025.04.19-21.09-0007 (QoS 0)
+1746436572: virtual_module 0 sensor/update/L-2025.04.19-21.09-0007
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/L-2025.04.19-21.09-0008 (QoS 0)
+1746436572: virtual_module 0 sensor/update/L-2025.04.19-21.09-0008
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/T-2025.04.19-21.09-0001 (QoS 0)
+1746436572: virtual_module 0 sensor/update/T-2025.04.19-21.09-0001
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/T-2025.04.19-21.09-0002 (QoS 0)
+1746436572: virtual_module 0 sensor/update/T-2025.04.19-21.09-0002
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/T-2025.04.19-21.09-0003 (QoS 0)
+1746436572: virtual_module 0 sensor/update/T-2025.04.19-21.09-0003
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/T-2025.04.19-21.09-0004 (QoS 0)
+1746436572: virtual_module 0 sensor/update/T-2025.04.19-21.09-0004
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/R-2025.04.19-21.09-0001 (QoS 0)
+1746436572: virtual_module 0 sensor/update/R-2025.04.19-21.09-0001
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/R-2025.04.19-21.09-0002 (QoS 0)
+1746436572: virtual_module 0 sensor/update/R-2025.04.19-21.09-0002
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/R-2025.04.19-21.09-0003 (QoS 0)
+1746436572: virtual_module 0 sensor/update/R-2025.04.19-21.09-0003
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/R-2025.04.19-21.09-0004 (QoS 0)
+1746436572: virtual_module 0 sensor/update/R-2025.04.19-21.09-0004
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/R-2025.04.19-21.09-0005 (QoS 0)
+1746436572: virtual_module 0 sensor/update/R-2025.04.19-21.09-0005
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/R-2025.04.19-21.09-0006 (QoS 0)
+1746436572: virtual_module 0 sensor/update/R-2025.04.19-21.09-0006
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/R-2025.04.19-21.09-0007 (QoS 0)
+1746436572: virtual_module 0 sensor/update/R-2025.04.19-21.09-0007
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/R-2025.04.19-21.09-0008 (QoS 0)
+1746436572: virtual_module 0 sensor/update/R-2025.04.19-21.09-0008
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/D-2025.04.19-21.09-0001 (QoS 0)
+1746436572: virtual_module 0 sensor/update/D-2025.04.19-21.09-0001
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/SW-2025.04.19-21.09-0001 (QoS 0)
+1746436572: virtual_module 0 sensor/update/SW-2025.04.19-21.09-0001
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/L-2025.04.19-21.09-0001 (QoS 0)
+1746436572: virtual_module 0 sensor/update/L-2025.04.19-21.09-0001
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/L-2025.04.19-21.09-0002 (QoS 0)
+1746436572: virtual_module 0 sensor/update/L-2025.04.19-21.09-0002
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/L-2025.04.19-21.09-0003 (QoS 0)
+1746436572: virtual_module 0 sensor/update/L-2025.04.19-21.09-0003
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/L-2025.04.19-21.09-0004 (QoS 0)
+1746436572: virtual_module 0 sensor/update/L-2025.04.19-21.09-0004
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/L-2025.04.19-21.09-0005 (QoS 0)
+1746436572: virtual_module 0 sensor/update/L-2025.04.19-21.09-0005
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/L-2025.04.19-21.09-0006 (QoS 0)
+1746436572: virtual_module 0 sensor/update/L-2025.04.19-21.09-0006
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/L-2025.04.19-21.09-0007 (QoS 0)
+1746436572: virtual_module 0 sensor/update/L-2025.04.19-21.09-0007
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/L-2025.04.19-21.09-0008 (QoS 0)
+1746436572: virtual_module 0 sensor/update/L-2025.04.19-21.09-0008
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/T-2025.04.19-21.09-0001 (QoS 0)
+1746436572: virtual_module 0 sensor/update/T-2025.04.19-21.09-0001
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/T-2025.04.19-21.09-0002 (QoS 0)
+1746436572: virtual_module 0 sensor/update/T-2025.04.19-21.09-0002
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/T-2025.04.19-21.09-0003 (QoS 0)
+1746436572: virtual_module 0 sensor/update/T-2025.04.19-21.09-0003
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/T-2025.04.19-21.09-0004 (QoS 0)
+1746436572: virtual_module 0 sensor/update/T-2025.04.19-21.09-0004
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/R-2025.04.19-21.09-0001 (QoS 0)
+1746436572: virtual_module 0 sensor/update/R-2025.04.19-21.09-0001
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/R-2025.04.19-21.09-0002 (QoS 0)
+1746436572: virtual_module 0 sensor/update/R-2025.04.19-21.09-0002
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/R-2025.04.19-21.09-0003 (QoS 0)
+1746436572: virtual_module 0 sensor/update/R-2025.04.19-21.09-0003
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/R-2025.04.19-21.09-0004 (QoS 0)
+1746436572: virtual_module 0 sensor/update/R-2025.04.19-21.09-0004
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/R-2025.04.19-21.09-0005 (QoS 0)
+1746436572: virtual_module 0 sensor/update/R-2025.04.19-21.09-0005
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/R-2025.04.19-21.09-0006 (QoS 0)
+1746436572: virtual_module 0 sensor/update/R-2025.04.19-21.09-0006
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/R-2025.04.19-21.09-0007 (QoS 0)
+1746436572: virtual_module 0 sensor/update/R-2025.04.19-21.09-0007
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/R-2025.04.19-21.09-0008 (QoS 0)
+1746436572: virtual_module 0 sensor/update/R-2025.04.19-21.09-0008
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/D-2025.04.19-21.09-0001 (QoS 0)
+1746436572: virtual_module 0 sensor/update/D-2025.04.19-21.09-0001
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/SW-2025.04.19-21.09-0001 (QoS 0)
+1746436572: virtual_module 0 sensor/update/SW-2025.04.19-21.09-0001
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/L-2025.04.19-21.09-0001 (QoS 0)
+1746436572: virtual_module 0 sensor/update/L-2025.04.19-21.09-0001
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/L-2025.04.19-21.09-0002 (QoS 0)
+1746436572: virtual_module 0 sensor/update/L-2025.04.19-21.09-0002
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/L-2025.04.19-21.09-0003 (QoS 0)
+1746436572: virtual_module 0 sensor/update/L-2025.04.19-21.09-0003
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/L-2025.04.19-21.09-0004 (QoS 0)
+1746436572: virtual_module 0 sensor/update/L-2025.04.19-21.09-0004
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/L-2025.04.19-21.09-0005 (QoS 0)
+1746436572: virtual_module 0 sensor/update/L-2025.04.19-21.09-0005
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/L-2025.04.19-21.09-0006 (QoS 0)
+1746436572: virtual_module 0 sensor/update/L-2025.04.19-21.09-0006
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/L-2025.04.19-21.09-0007 (QoS 0)
+1746436572: virtual_module 0 sensor/update/L-2025.04.19-21.09-0007
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/L-2025.04.19-21.09-0008 (QoS 0)
+1746436572: virtual_module 0 sensor/update/L-2025.04.19-21.09-0008
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/T-2025.04.19-21.09-0001 (QoS 0)
+1746436572: virtual_module 0 sensor/update/T-2025.04.19-21.09-0001
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/T-2025.04.19-21.09-0002 (QoS 0)
+1746436572: virtual_module 0 sensor/update/T-2025.04.19-21.09-0002
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/T-2025.04.19-21.09-0003 (QoS 0)
+1746436572: virtual_module 0 sensor/update/T-2025.04.19-21.09-0003
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/T-2025.04.19-21.09-0004 (QoS 0)
+1746436572: virtual_module 0 sensor/update/T-2025.04.19-21.09-0004
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/R-2025.04.19-21.09-0001 (QoS 0)
+1746436572: virtual_module 0 sensor/update/R-2025.04.19-21.09-0001
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/R-2025.04.19-21.09-0002 (QoS 0)
+1746436572: virtual_module 0 sensor/update/R-2025.04.19-21.09-0002
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/R-2025.04.19-21.09-0003 (QoS 0)
+1746436572: virtual_module 0 sensor/update/R-2025.04.19-21.09-0003
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/R-2025.04.19-21.09-0004 (QoS 0)
+1746436572: virtual_module 0 sensor/update/R-2025.04.19-21.09-0004
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/R-2025.04.19-21.09-0005 (QoS 0)
+1746436572: virtual_module 0 sensor/update/R-2025.04.19-21.09-0005
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/R-2025.04.19-21.09-0006 (QoS 0)
+1746436572: virtual_module 0 sensor/update/R-2025.04.19-21.09-0006
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/R-2025.04.19-21.09-0007 (QoS 0)
+1746436572: virtual_module 0 sensor/update/R-2025.04.19-21.09-0007
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/R-2025.04.19-21.09-0008 (QoS 0)
+1746436572: virtual_module 0 sensor/update/R-2025.04.19-21.09-0008
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/D-2025.04.19-21.09-0001 (QoS 0)
+1746436572: virtual_module 0 sensor/update/D-2025.04.19-21.09-0001
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/SW-2025.04.19-21.09-0001 (QoS 0)
+1746436572: virtual_module 0 sensor/update/SW-2025.04.19-21.09-0001
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/L-2025.04.19-21.09-0001 (QoS 0)
+1746436572: virtual_module 0 sensor/update/L-2025.04.19-21.09-0001
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/L-2025.04.19-21.09-0002 (QoS 0)
+1746436572: virtual_module 0 sensor/update/L-2025.04.19-21.09-0002
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/L-2025.04.19-21.09-0003 (QoS 0)
+1746436572: virtual_module 0 sensor/update/L-2025.04.19-21.09-0003
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/L-2025.04.19-21.09-0004 (QoS 0)
+1746436572: virtual_module 0 sensor/update/L-2025.04.19-21.09-0004
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/L-2025.04.19-21.09-0005 (QoS 0)
+1746436572: virtual_module 0 sensor/update/L-2025.04.19-21.09-0005
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/L-2025.04.19-21.09-0006 (QoS 0)
+1746436572: virtual_module 0 sensor/update/L-2025.04.19-21.09-0006
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/L-2025.04.19-21.09-0007 (QoS 0)
+1746436572: virtual_module 0 sensor/update/L-2025.04.19-21.09-0007
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/L-2025.04.19-21.09-0008 (QoS 0)
+1746436572: virtual_module 0 sensor/update/L-2025.04.19-21.09-0008
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/T-2025.04.19-21.09-0001 (QoS 0)
+1746436572: virtual_module 0 sensor/update/T-2025.04.19-21.09-0001
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/T-2025.04.19-21.09-0002 (QoS 0)
+1746436572: virtual_module 0 sensor/update/T-2025.04.19-21.09-0002
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/T-2025.04.19-21.09-0003 (QoS 0)
+1746436572: virtual_module 0 sensor/update/T-2025.04.19-21.09-0003
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/T-2025.04.19-21.09-0004 (QoS 0)
+1746436572: virtual_module 0 sensor/update/T-2025.04.19-21.09-0004
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/R-2025.04.19-21.09-0001 (QoS 0)
+1746436572: virtual_module 0 sensor/update/R-2025.04.19-21.09-0001
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/R-2025.04.19-21.09-0002 (QoS 0)
+1746436572: virtual_module 0 sensor/update/R-2025.04.19-21.09-0002
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/R-2025.04.19-21.09-0003 (QoS 0)
+1746436572: virtual_module 0 sensor/update/R-2025.04.19-21.09-0003
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/R-2025.04.19-21.09-0004 (QoS 0)
+1746436572: virtual_module 0 sensor/update/R-2025.04.19-21.09-0004
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/R-2025.04.19-21.09-0005 (QoS 0)
+1746436572: virtual_module 0 sensor/update/R-2025.04.19-21.09-0005
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/R-2025.04.19-21.09-0006 (QoS 0)
+1746436572: virtual_module 0 sensor/update/R-2025.04.19-21.09-0006
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/R-2025.04.19-21.09-0007 (QoS 0)
+1746436572: virtual_module 0 sensor/update/R-2025.04.19-21.09-0007
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/R-2025.04.19-21.09-0008 (QoS 0)
+1746436572: virtual_module 0 sensor/update/R-2025.04.19-21.09-0008
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/D-2025.04.19-21.09-0001 (QoS 0)
+1746436572: virtual_module 0 sensor/update/D-2025.04.19-21.09-0001
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/SW-2025.04.19-21.09-0001 (QoS 0)
+1746436572: virtual_module 0 sensor/update/SW-2025.04.19-21.09-0001
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/L-2025.04.19-21.09-0001 (QoS 0)
+1746436572: virtual_module 0 sensor/update/L-2025.04.19-21.09-0001
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/L-2025.04.19-21.09-0002 (QoS 0)
+1746436572: virtual_module 0 sensor/update/L-2025.04.19-21.09-0002
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/L-2025.04.19-21.09-0003 (QoS 0)
+1746436572: virtual_module 0 sensor/update/L-2025.04.19-21.09-0003
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/L-2025.04.19-21.09-0004 (QoS 0)
+1746436572: virtual_module 0 sensor/update/L-2025.04.19-21.09-0004
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/L-2025.04.19-21.09-0005 (QoS 0)
+1746436572: virtual_module 0 sensor/update/L-2025.04.19-21.09-0005
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/L-2025.04.19-21.09-0006 (QoS 0)
+1746436572: virtual_module 0 sensor/update/L-2025.04.19-21.09-0006
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/L-2025.04.19-21.09-0007 (QoS 0)
+1746436572: virtual_module 0 sensor/update/L-2025.04.19-21.09-0007
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/L-2025.04.19-21.09-0008 (QoS 0)
+1746436572: virtual_module 0 sensor/update/L-2025.04.19-21.09-0008
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/T-2025.04.19-21.09-0001 (QoS 0)
+1746436572: virtual_module 0 sensor/update/T-2025.04.19-21.09-0001
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/T-2025.04.19-21.09-0002 (QoS 0)
+1746436572: virtual_module 0 sensor/update/T-2025.04.19-21.09-0002
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/T-2025.04.19-21.09-0003 (QoS 0)
+1746436572: virtual_module 0 sensor/update/T-2025.04.19-21.09-0003
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/T-2025.04.19-21.09-0004 (QoS 0)
+1746436572: virtual_module 0 sensor/update/T-2025.04.19-21.09-0004
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/R-2025.04.19-21.09-0001 (QoS 0)
+1746436572: virtual_module 0 sensor/update/R-2025.04.19-21.09-0001
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/R-2025.04.19-21.09-0002 (QoS 0)
+1746436572: virtual_module 0 sensor/update/R-2025.04.19-21.09-0002
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/R-2025.04.19-21.09-0003 (QoS 0)
+1746436572: virtual_module 0 sensor/update/R-2025.04.19-21.09-0003
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/R-2025.04.19-21.09-0004 (QoS 0)
+1746436572: virtual_module 0 sensor/update/R-2025.04.19-21.09-0004
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/R-2025.04.19-21.09-0005 (QoS 0)
+1746436572: virtual_module 0 sensor/update/R-2025.04.19-21.09-0005
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/R-2025.04.19-21.09-0006 (QoS 0)
+1746436572: virtual_module 0 sensor/update/R-2025.04.19-21.09-0006
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/R-2025.04.19-21.09-0007 (QoS 0)
+1746436572: virtual_module 0 sensor/update/R-2025.04.19-21.09-0007
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/R-2025.04.19-21.09-0008 (QoS 0)
+1746436572: virtual_module 0 sensor/update/R-2025.04.19-21.09-0008
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/D-2025.04.19-21.09-0001 (QoS 0)
+1746436572: virtual_module 0 sensor/update/D-2025.04.19-21.09-0001
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/SW-2025.04.19-21.09-0001 (QoS 0)
+1746436572: virtual_module 0 sensor/update/SW-2025.04.19-21.09-0001
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/L-2025.04.19-21.09-0001 (QoS 0)
+1746436572: virtual_module 0 sensor/update/L-2025.04.19-21.09-0001
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/L-2025.04.19-21.09-0002 (QoS 0)
+1746436572: virtual_module 0 sensor/update/L-2025.04.19-21.09-0002
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/L-2025.04.19-21.09-0003 (QoS 0)
+1746436572: virtual_module 0 sensor/update/L-2025.04.19-21.09-0003
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/L-2025.04.19-21.09-0004 (QoS 0)
+1746436572: virtual_module 0 sensor/update/L-2025.04.19-21.09-0004
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/L-2025.04.19-21.09-0005 (QoS 0)
+1746436572: virtual_module 0 sensor/update/L-2025.04.19-21.09-0005
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/L-2025.04.19-21.09-0006 (QoS 0)
+1746436572: virtual_module 0 sensor/update/L-2025.04.19-21.09-0006
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/L-2025.04.19-21.09-0007 (QoS 0)
+1746436572: virtual_module 0 sensor/update/L-2025.04.19-21.09-0007
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/L-2025.04.19-21.09-0008 (QoS 0)
+1746436572: virtual_module 0 sensor/update/L-2025.04.19-21.09-0008
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/T-2025.04.19-21.09-0001 (QoS 0)
+1746436572: virtual_module 0 sensor/update/T-2025.04.19-21.09-0001
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/T-2025.04.19-21.09-0002 (QoS 0)
+1746436572: virtual_module 0 sensor/update/T-2025.04.19-21.09-0002
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/T-2025.04.19-21.09-0003 (QoS 0)
+1746436572: virtual_module 0 sensor/update/T-2025.04.19-21.09-0003
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/T-2025.04.19-21.09-0004 (QoS 0)
+1746436572: virtual_module 0 sensor/update/T-2025.04.19-21.09-0004
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/R-2025.04.19-21.09-0001 (QoS 0)
+1746436572: virtual_module 0 sensor/update/R-2025.04.19-21.09-0001
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/R-2025.04.19-21.09-0002 (QoS 0)
+1746436572: virtual_module 0 sensor/update/R-2025.04.19-21.09-0002
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/R-2025.04.19-21.09-0003 (QoS 0)
+1746436572: virtual_module 0 sensor/update/R-2025.04.19-21.09-0003
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/R-2025.04.19-21.09-0004 (QoS 0)
+1746436572: virtual_module 0 sensor/update/R-2025.04.19-21.09-0004
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/R-2025.04.19-21.09-0005 (QoS 0)
+1746436572: virtual_module 0 sensor/update/R-2025.04.19-21.09-0005
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/R-2025.04.19-21.09-0006 (QoS 0)
+1746436572: virtual_module 0 sensor/update/R-2025.04.19-21.09-0006
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/R-2025.04.19-21.09-0007 (QoS 0)
+1746436572: virtual_module 0 sensor/update/R-2025.04.19-21.09-0007
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/R-2025.04.19-21.09-0008 (QoS 0)
+1746436572: virtual_module 0 sensor/update/R-2025.04.19-21.09-0008
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/D-2025.04.19-21.09-0001 (QoS 0)
+1746436572: virtual_module 0 sensor/update/D-2025.04.19-21.09-0001
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/SW-2025.04.19-21.09-0001 (QoS 0)
+1746436572: virtual_module 0 sensor/update/SW-2025.04.19-21.09-0001
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/L-2025.04.19-21.09-0001 (QoS 0)
+1746436572: virtual_module 0 sensor/update/L-2025.04.19-21.09-0001
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/L-2025.04.19-21.09-0002 (QoS 0)
+1746436572: virtual_module 0 sensor/update/L-2025.04.19-21.09-0002
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/L-2025.04.19-21.09-0003 (QoS 0)
+1746436572: virtual_module 0 sensor/update/L-2025.04.19-21.09-0003
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/L-2025.04.19-21.09-0004 (QoS 0)
+1746436572: virtual_module 0 sensor/update/L-2025.04.19-21.09-0004
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/L-2025.04.19-21.09-0005 (QoS 0)
+1746436572: virtual_module 0 sensor/update/L-2025.04.19-21.09-0005
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/L-2025.04.19-21.09-0006 (QoS 0)
+1746436572: virtual_module 0 sensor/update/L-2025.04.19-21.09-0006
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/L-2025.04.19-21.09-0007 (QoS 0)
+1746436572: virtual_module 0 sensor/update/L-2025.04.19-21.09-0007
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/L-2025.04.19-21.09-0008 (QoS 0)
+1746436572: virtual_module 0 sensor/update/L-2025.04.19-21.09-0008
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/T-2025.04.19-21.09-0001 (QoS 0)
+1746436572: virtual_module 0 sensor/update/T-2025.04.19-21.09-0001
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/T-2025.04.19-21.09-0002 (QoS 0)
+1746436572: virtual_module 0 sensor/update/T-2025.04.19-21.09-0002
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/T-2025.04.19-21.09-0003 (QoS 0)
+1746436572: virtual_module 0 sensor/update/T-2025.04.19-21.09-0003
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/T-2025.04.19-21.09-0004 (QoS 0)
+1746436572: virtual_module 0 sensor/update/T-2025.04.19-21.09-0004
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/R-2025.04.19-21.09-0001 (QoS 0)
+1746436572: virtual_module 0 sensor/update/R-2025.04.19-21.09-0001
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/R-2025.04.19-21.09-0002 (QoS 0)
+1746436572: virtual_module 0 sensor/update/R-2025.04.19-21.09-0002
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/R-2025.04.19-21.09-0003 (QoS 0)
+1746436572: virtual_module 0 sensor/update/R-2025.04.19-21.09-0003
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/R-2025.04.19-21.09-0004 (QoS 0)
+1746436572: virtual_module 0 sensor/update/R-2025.04.19-21.09-0004
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/R-2025.04.19-21.09-0005 (QoS 0)
+1746436572: virtual_module 0 sensor/update/R-2025.04.19-21.09-0005
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/R-2025.04.19-21.09-0006 (QoS 0)
+1746436572: virtual_module 0 sensor/update/R-2025.04.19-21.09-0006
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/R-2025.04.19-21.09-0007 (QoS 0)
+1746436572: virtual_module 0 sensor/update/R-2025.04.19-21.09-0007
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/R-2025.04.19-21.09-0008 (QoS 0)
+1746436572: virtual_module 0 sensor/update/R-2025.04.19-21.09-0008
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/D-2025.04.19-21.09-0001 (QoS 0)
+1746436572: virtual_module 0 sensor/update/D-2025.04.19-21.09-0001
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/SW-2025.04.19-21.09-0001 (QoS 0)
+1746436572: virtual_module 0 sensor/update/SW-2025.04.19-21.09-0001
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/L-2025.04.19-21.09-0001 (QoS 0)
+1746436572: virtual_module 0 sensor/update/L-2025.04.19-21.09-0001
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/L-2025.04.19-21.09-0002 (QoS 0)
+1746436572: virtual_module 0 sensor/update/L-2025.04.19-21.09-0002
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/L-2025.04.19-21.09-0003 (QoS 0)
+1746436572: virtual_module 0 sensor/update/L-2025.04.19-21.09-0003
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/L-2025.04.19-21.09-0004 (QoS 0)
+1746436572: virtual_module 0 sensor/update/L-2025.04.19-21.09-0004
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/L-2025.04.19-21.09-0005 (QoS 0)
+1746436572: virtual_module 0 sensor/update/L-2025.04.19-21.09-0005
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/L-2025.04.19-21.09-0006 (QoS 0)
+1746436572: virtual_module 0 sensor/update/L-2025.04.19-21.09-0006
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/L-2025.04.19-21.09-0007 (QoS 0)
+1746436572: virtual_module 0 sensor/update/L-2025.04.19-21.09-0007
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/L-2025.04.19-21.09-0008 (QoS 0)
+1746436572: virtual_module 0 sensor/update/L-2025.04.19-21.09-0008
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/T-2025.04.19-21.09-0001 (QoS 0)
+1746436572: virtual_module 0 sensor/update/T-2025.04.19-21.09-0001
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/T-2025.04.19-21.09-0002 (QoS 0)
+1746436572: virtual_module 0 sensor/update/T-2025.04.19-21.09-0002
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/T-2025.04.19-21.09-0003 (QoS 0)
+1746436572: virtual_module 0 sensor/update/T-2025.04.19-21.09-0003
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/T-2025.04.19-21.09-0004 (QoS 0)
+1746436572: virtual_module 0 sensor/update/T-2025.04.19-21.09-0004
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/R-2025.04.19-21.09-0001 (QoS 0)
+1746436572: virtual_module 0 sensor/update/R-2025.04.19-21.09-0001
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/R-2025.04.19-21.09-0002 (QoS 0)
+1746436572: virtual_module 0 sensor/update/R-2025.04.19-21.09-0002
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/R-2025.04.19-21.09-0003 (QoS 0)
+1746436572: virtual_module 0 sensor/update/R-2025.04.19-21.09-0003
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/R-2025.04.19-21.09-0004 (QoS 0)
+1746436572: virtual_module 0 sensor/update/R-2025.04.19-21.09-0004
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/R-2025.04.19-21.09-0005 (QoS 0)
+1746436572: virtual_module 0 sensor/update/R-2025.04.19-21.09-0005
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/R-2025.04.19-21.09-0006 (QoS 0)
+1746436572: virtual_module 0 sensor/update/R-2025.04.19-21.09-0006
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/R-2025.04.19-21.09-0007 (QoS 0)
+1746436572: virtual_module 0 sensor/update/R-2025.04.19-21.09-0007
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/R-2025.04.19-21.09-0008 (QoS 0)
+1746436572: virtual_module 0 sensor/update/R-2025.04.19-21.09-0008
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/D-2025.04.19-21.09-0001 (QoS 0)
+1746436572: virtual_module 0 sensor/update/D-2025.04.19-21.09-0001
+1746436572: Sending SUBACK to virtual_module
+1746436572: Received SUBSCRIBE from virtual_module
+1746436572: 	sensor/update/SW-2025.04.19-21.09-0001 (QoS 0)
+1746436572: virtual_module 0 sensor/update/SW-2025.04.19-21.09-0001
+1746436572: Sending SUBACK to virtual_module
+1746436577: Received PINGREQ from central_main
+1746436577: Sending PINGRESP to central_main
+1746436591: Client virtual_module closed its connection.
+1746436594: mosquitto version 2.0.21 terminating
+1746436594: Saving in-memory database to mosquitto_data/\mosquitto.db.
+1746436594: Error saving in-memory database, unable to open mosquitto_data/\mosquitto.db.new for writing.
+1746436594: Error: Bad file descriptor.

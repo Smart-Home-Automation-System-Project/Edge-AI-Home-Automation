@@ -1,9 +1,9 @@
 import json
-from ..utils.mqtt import MQTTConnection
-from ..utils.utils import get_localtime
-from ..database.database import *
-from ..sensor.topics import *
-from ..utils.console import *
+from utils.mqtt import MQTTConnection
+from utils.utils import get_localtime
+from database.database import *
+from sensor.topics import *
+from utils.console import *
 
 client = MQTTConnection.get_client()
 

@@ -45,3 +45,12 @@ CREATE TABLE IF NOT EXISTS predictions (
 conn.commit()
 conn.close()
 print("Database and table created: database.db")
+
+"""
+Sets up the last_val in 'sensors' table by running a trigger.
+Triggers is run everytime new data is inserted
+"""
+from database import db_create_last_val_trigger
+
+if __name__ == "__main__":
+    db_create_last_val_trigger()

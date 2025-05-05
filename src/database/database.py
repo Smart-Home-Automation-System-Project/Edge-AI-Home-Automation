@@ -657,3 +657,72 @@ def db_get_sensor_readings_for_timestamp(timestamp):
     conn.close()
 
     return readings
+
+
+# Triggers to  get the last_val for sensors table
+
+def db_create_last_val_trigger():
+    """Create a trigger to automatically update last_val in sensors table when new data is inserted."""
+    try:
+        with db_lock:
+            conn = sqlite3.connect(DB_NAME, timeout=10)
+            conn.execute("PRAGMA journal_mode=WAL;")
+            cursor = conn.cursor()
+
+            # Drop the trigger if it already exists
+            cursor.execute("DROP TRIGGER IF EXISTS update_last_val")
+
+            # Create the trigger
+            cursor.execute("""
+            CREATE TRIGGER update_last_val
+            AFTER INSERT ON sensor_data
+            FOR EACH ROW
+            BEGIN
+                UPDATE sensors
+                SET last_val = NEW.sensor_value
+                WHERE id = NEW.sensor_id;
+            END
+            """)
+
+            conn.commit()
+            print("Trigger created successfully")
+
+    except sqlite3.Error as e:
+        print(f"Error creating trigger: {e}")
+    finally:
+        try:
+            conn.close()
+        except:
+            pass
+
+def db_update_last_vals():
+    """Update the last_val column in sensors table with the latest value from sensor_data table."""
+    try:
+        with db_lock:
+            conn = sqlite3.connect(DB_NAME, timeout=10)
+            conn.execute("PRAGMA journal_mode=WAL;")
+            cursor = conn.cursor()
+
+            # Update all sensors in one SQL statement
+            cursor.execute("""
+                UPDATE sensors
+                SET last_val = (
+                    SELECT sd.sensor_value
+                    FROM sensor_data sd
+                    WHERE sd.sensor_id = sensors.id
+                    ORDER BY sd.timestamp DESC
+                    LIMIT 1
+                )
+            """)
+
+            updated_count = cursor.rowcount
+            conn.commit()
+            print(f"Updated last_val for {updated_count} sensors")
+
+    except sqlite3.Error as e:
+        print(f"Database error: {e}")
+    finally:
+        try:
+            conn.close()
+        except:
+            pass

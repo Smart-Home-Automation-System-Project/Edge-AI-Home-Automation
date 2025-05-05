@@ -1,6 +1,6 @@
 from flask import Flask, jsonify, render_template, request
-from ..database.database import *
-from ..sensor.topics import *
+from database.database import *
+from sensor.topics import *
 import json
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
 from dotenv import load_dotenv
