@@ -52,8 +52,11 @@ def return_sensor_data_yesterday():
         result = [dict(row) for row in cursor.fetchall()]
         if not result:
             result = None
-        
-        
+            
+    except sqlite3.Error as e:
+        print(f"Database error: {e}")
+        return None    
+    
     finally:
         if conn:
             conn.close()
