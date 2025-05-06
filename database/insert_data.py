@@ -7,12 +7,18 @@ import random
 # Generate random sample data for a single timestamp
 def generate_sample_data(current_time):
     sensors = {
-        '101': round(random.randint(0, 1), 2),  # l1 (light sensor 1)
-        '102': round(random.randint(0, 1), 2),  # l2 (light sensor 2)
-        '103': round(random.randint(0, 1), 2),  # l3 (light sensor 3)
-        '104': round(random.uniform(12.0, 40.0), 2),  # t1 (temperature sensor 1)
-        '105': round(random.uniform(12.0, 40.0), 2),  # t2 (temperature sensor 2)
-        '106': round(random.uniform(12.0, 40.0), 2)  # t3 (temperature sensor 3)
+        '101': round(random.randint(0, 3), 2),  # l1 (light sensor 1)
+        '102': round(random.randint(0, 3), 2),  # l2 (light sensor 2)
+        '103': round(random.randint(0, 3), 2),  # l3 (light sensor 3)
+        '104': round(random.randint(0, 3), 2),  # l4 (light sensor 4)
+        '105': round(random.randint(0, 3), 2),  # l5 (light sensor 5)
+        '106': round(random.randint(0, 3), 2),  # l6 (light sensor 6)
+        '107': round(random.randint(0, 3), 2),  # l7 (light sensor 7)
+        '108': round(random.randint(0, 3), 2),  # l8 (light sensor 8)
+        '201': round(random.uniform(12.0, 40.0), 2),  # t1 (temperature sensor 1)
+        '202': round(random.uniform(12.0, 40.0), 2),  # t2 (temperature sensor 2)
+        '203': round(random.uniform(12.0, 40.0), 2),  # t3 (temperature sensor 3)
+        '204': round(random.uniform(12.0, 40.0), 2)  # t4 (temperature sensor 4)
     }
 
     data_rows = []
@@ -52,7 +58,7 @@ def insert_data_for_entire_week():
     # Commit changes and close the connection
     conn.commit()
     conn.close()
-    print("✅ 15-minute interval sensor data for the past 7 days inserted into the database.")
+    print("15-minute interval sensor data for the past 7 days inserted into the database.")
 
 
 # Main function to control data insertion type

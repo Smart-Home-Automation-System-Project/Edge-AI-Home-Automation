@@ -16,4 +16,4 @@ CREATE TABLE IF NOT EXISTS sensor_data (
 
 conn.commit()
 conn.close()
-print("✅ Database and table created: database1.db / sensor_data")
+print("Database and table created: database1.db / sensor_data")

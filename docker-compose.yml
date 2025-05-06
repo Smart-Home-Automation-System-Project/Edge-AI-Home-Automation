@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  home-automation:
+    build: .
+    volumes:
+      - ./:/app
+    restart: unless-stopped
+    environment:
+      - MQTT_BROKER=192.168.1.23
+      - PATH_TO_PROJECT=/app

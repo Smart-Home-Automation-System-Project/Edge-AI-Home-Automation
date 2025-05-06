@@ -1,0 +1,21 @@
+# Python virtual environment
+venv/
+
+# Jupyter notebook checkpoints
+.ipynb_checkpoints/
+
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Git related
+.git/
+.gitignore
+
+# Log files
+*.log
+
+# Local development settings
+.vscode/
+.idea/
