@@ -761,3 +761,66 @@ def db_update_last_vals():
             conn.close()
         except:
             pass
+
+# sensor_data_generator.py
+def db_get_sensor_ids_by_category():
+    """Get all sensor IDs grouped by category"""
+    conn = sqlite3.connect(DB_NAME)
+    conn.execute("PRAGMA journal_mode=WAL;")
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        SELECT id, catagory 
+        FROM sensors 
+        WHERE catagory IN ('light', 'temp', 'radar')
+    """)
+
+    results = cursor.fetchall()
+    conn.close()
+
+    # Group by category
+    sensors = {'light': [], 'temp': [], 'radar': []}
+    for sensor_id, category in results:
+        if category in sensors:  # Check if category exists in dictionary
+            sensors[category].append(sensor_id)
+
+    return sensors
+
+def db_insert_sensor_data_for_timestamp(timestamp, sensors_dict):
+    """Insert data for all sensors for a specific timestamp"""
+    try:
+        with db_lock:
+            conn = sqlite3.connect(DB_NAME, timeout=10)
+            conn.execute("PRAGMA journal_mode=WAL;")
+            cursor = conn.cursor()
+
+            # Insert data for each sensor category
+            for category, sensor_ids in sensors_dict.items():
+                for sensor_id in sensor_ids:
+                    value = generate_random_sensor_value(category)
+                    cursor.execute("""
+                        INSERT OR REPLACE INTO sensor_data (sensor_id, timestamp, sensor_value)
+                        VALUES (?, ?, ?)
+                    """, (sensor_id, timestamp, value))
+
+            conn.commit()
+            print(f"Inserted data for timestamp: {timestamp}")
+    except sqlite3.Error as e:
+        print(f"Database error: {e}")
+    finally:
+        try:
+            conn.close()
+        except:
+            pass
+
+def generate_random_sensor_value(sensor_type):
+    """Generate random sensor values based on sensor type"""
+    import random
+    if sensor_type == 'light':
+        return random.randint(0, 3)
+    elif sensor_type == 'temp':
+        return round(random.uniform(18.0, 26.0), 2)
+    elif sensor_type == 'radar':
+        return random.randint(0, 1)  # 0 for no motion, 1 for motion detected
+    else:
+        return 0

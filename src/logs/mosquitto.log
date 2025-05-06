@@ -15148,3 +15148,12 @@
 1746523229: Received PINGREQ from central_main_ui
 1746523229: Sending PINGRESP to central_main_ui
 1746523234: Client central_main_ai closed its connection.
+1746523250: Received PINGREQ from central_main
+1746523250: Sending PINGRESP to central_main
+1746523252: Received PINGREQ from virtual_module
+1746523252: Sending PINGRESP to virtual_module
+1746523276: Client central_main_ui closed its connection.
+1746523310: Received PINGREQ from central_main
+1746523310: Sending PINGRESP to central_main
+1746523312: Received PINGREQ from virtual_module
+1746523312: Sending PINGRESP to virtual_module
