@@ -127,7 +127,7 @@ def db_delete_module(id):
     cursor = conn.cursor()
     cursor.execute("""
         DELETE FROM sensors
-        WHERE id = ? AND catagory != 'sensor' AND catagory != 'door'
+        WHERE id = ? AND catagory != 'temp' AND catagory != 'radar' AND catagory != 'door'
     """, (id,))
 
     
@@ -139,7 +139,6 @@ def db_delete_module(id):
 
     # Return the number of rows affected
     return rows_affected
-
 
 
 def db_add_sensor_data(timestamp, client_id, data):
@@ -163,14 +162,50 @@ def db_add_sensor_data(timestamp, client_id, data):
         except:
             pass
 
-def db_get_client_id(id):
+def db_get_client_id(name):
     conn = sqlite3.connect(DB_NAME, timeout=10)
     conn.execute("PRAGMA journal_mode=WAL;")
     cursor = conn.cursor()
 
     cursor.execute("""
         SELECT client_id FROM sensors
-        WHERE id = ? AND catagory != 'sensor'
+        WHERE name = ?
+    """, (name,))
+    result = cursor.fetchone()
+
+    conn.close()
+
+    if result:
+        return result[0]  # Return client_id
+    else:
+        return None  # Not found or is a 'sensor'
+    
+def db_get_module_type(client_id):
+    conn = sqlite3.connect(DB_NAME, timeout=10)
+    conn.execute("PRAGMA journal_mode=WAL;")
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        SELECT catagory FROM sensors
+        WHERE client_id = ?
+    """, (client_id,))
+    result = cursor.fetchone()
+
+    conn.close()
+
+    if result:
+        return result[0]  # Return client_id
+    else:
+        return None  # Not found or is a 'sensor'
+
+def db_get_client_name(id):
+    conn = sqlite3.connect(DB_NAME, timeout=10)
+    conn.execute("PRAGMA journal_mode=WAL;")
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        SELECT name FROM sensors
+        WHERE id = ?
     """, (id,))
     result = cursor.fetchone()
 

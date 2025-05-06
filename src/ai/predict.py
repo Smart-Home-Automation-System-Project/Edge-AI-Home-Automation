@@ -2,31 +2,8 @@ import numpy as np
 import pandas as pd
 import tensorflow as tf
 from tensorflow import keras
-import os
-from dotenv import load_dotenv
 import datetime
-import sys
-
-# Add database directory to path to import database module
-sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
-from database.database import db_get_sensor_data_for_prediction, db_get_light_and_temp_sensors, db_save_predicted_values,db_save_predictions
-
-def load_environment():
-    # Load environment variables from .env file
-    load_dotenv()
-
-    # Get the project path from the .env file
-    project_path = os.getenv('PATH_TO_PROJECT')
-
-    if not project_path:
-        # Default to the directory one level up from this script
-        project_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-    # Construct model path directly to the src/ai folder where this script is
-    model_h5_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'model.h5')
-
-    return project_path, model_h5_path
-
+from database.database import db_get_sensor_data_for_prediction, db_get_light_and_temp_sensors
 
 def load_model(model_h5_path):
     # Load the trained model
@@ -139,44 +116,27 @@ def process_predictions(predictions, light_sensors, temp_sensors):
     return final_predictions, results
 
 
-def main():
-    print("Starting prediction process...")
+def ai_predict(model):
+    try:
+        print("Starting prediction process...")
+        # Load and preprocess sensor data from database
+        X, last_timestamp, light_sensors, temp_sensors = load_and_preprocess_data()
+        print(f"Preprocessed data shape: {X.shape}")
+        print(f"Last timestamp: {last_timestamp}")
 
-    # Load environment and paths
-    project_path, model_h5_path = load_environment()
-    print(f"Project path: {project_path}")
+        # Make predictions
+        raw_predictions = make_predictions(model, X)
 
-    # Load the trained model
-    model = load_model(model_h5_path)
+        # Process the predictions
+        final_predictions, results = process_predictions(raw_predictions, light_sensors, temp_sensors)
 
-    # Load and preprocess sensor data from database
-    X, last_timestamp, light_sensors, temp_sensors = load_and_preprocess_data()
-    print(f"Preprocessed data shape: {X.shape}")
-    print(f"Last timestamp: {last_timestamp}")
+        # Print detailed results
+        print("\nPrediction results:")
+        print("Light levels (0-3): ", end="")
+        print(" | ".join([f"{k}: {v}" for k, v in results['lights'].items()]))
 
-    # Make predictions
-    raw_predictions = make_predictions(model, X)
-
-    # Process the predictions
-    final_predictions, results = process_predictions(raw_predictions, light_sensors, temp_sensors)
-
-    # Save predictions to database
-    print("Saving predictions to  database...")
-    current_timestamp = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-    db_save_predictions(current_timestamp, results)
-    print("Predictions saved")
-
-    # Save predictions to database
-    db_save_predicted_values(results)
-
-    # Print detailed results
-    print("\nPrediction results:")
-    print("Light levels (0-3): ", end="")
-    print(" | ".join([f"{k}: {v}" for k, v in results['lights'].items()]))
-
-    print("Temperature settings (C): ", end="")
-    print(" | ".join([f"{k}: {v}" for k, v in results['temperatures'].items()]))
-
-
-if __name__ == "__main__":
-    main()
+        print("Temperature settings (C): ", end="")
+        print(" | ".join([f"{k}: {v}" for k, v in results['temperatures'].items()]))
+        return results
+    except Exception as e:
+        print(f"Exception in ai_predict: {e}")

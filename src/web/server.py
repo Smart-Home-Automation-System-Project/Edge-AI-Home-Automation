@@ -131,12 +131,13 @@ def toggle_module():
     if not data or 'id' not in data or 'state' not in data:
         return jsonify({'error': 'Missing required fields'}), 400
 
-    # Extract the data from the JSON
     id = str(data['id'])
+    # Extract the data from the JSON
+    name = db_get_client_name(id)
     state = str(data['state'])
 
     result = 1
-    client.publish(T_SENSOR_MAIN_CTRL, json.dumps({'id': id, 'state': state}))
+    client.publish(T_SENSOR_MAIN_CTRL, json.dumps({'name': name, 'state': state}))
 
     # Respond with the result
     if result > 0:
@@ -156,10 +157,11 @@ def set_color():
 
     # Extract the data from the JSON
     id = str(data['id'])
+    name = db_get_client_name(id)
     irgb = str(data['irgb'])
 
     result = 1
-    client.publish(T_SENSOR_MAIN_CTRL, json.dumps({'id': id, 'irgb': irgb}))
+    client.publish(T_SENSOR_MAIN_CTRL, json.dumps({'name': name, 'irgb': irgb}))
 
     # Respond with the result
     if result > 0:

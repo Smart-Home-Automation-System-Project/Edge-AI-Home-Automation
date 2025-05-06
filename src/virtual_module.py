@@ -7,6 +7,7 @@ from datetime import datetime
 import ast, json
 from utils.console import *
 import time
+import random
 
 
 # Client ID to exclude from this virtual module
@@ -27,19 +28,20 @@ def on_message(client, userdata, msg):
     data_val = None
 
     if S_TYPE == 'switch':
-        if _data['state'] == "on":
-            data_val = 45
+        if _data['state'] == "1":
+            data_val = random.randint(2, 40)
         else:
             data_val = 0
     elif S_TYPE == 'light':
         if 'state' in _data:
-            if _data['state'] == "on":
-                data_val = 45
+            if (3 >= int(_data['state']) > 0):
+                data_val = random.randint(2, 40)
             else:
                 data_val = 0
         elif 'irgb' in _data:
-            print(f" --> Color changed to {_data['irgb']}")
-            return
+            values = _data['irgb'].strip("()").split(",")
+            data_val = int(values[0])
+            print(f" --> Color changed to {_data['irgb']}, I {data_val}")
     
     elif S_TYPE == 'door':
         if _data['state'] == "lock":

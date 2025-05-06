@@ -307,7 +307,7 @@
       "Content-Type": "application/json",
       "Authorization": "Bearer " + token
     },
-    body: JSON.stringify({ id: module.id, state: desiredState }) // include desired state
+    body: JSON.stringify({ id: module.id, state: desiredState })
   })
     .then(res => {
       if (!res.ok) throw new Error("Send failed");
@@ -486,7 +486,7 @@
         const container = document.getElementById('modules-container');
         container.innerHTML = ''; // Clear old content before re-adding
 
-        const categories = { sensor: [], switch: [], light: [], door: [] };
+        const categories = { temp: [], switch: [], light: [], door: [] };
 
         data.forEach(mod => {
           const cat = mod.category.toLowerCase();
@@ -494,7 +494,12 @@
         });
 
         for (let catName in categories) {
-          const section = createCategorySection(catName.charAt(0).toUpperCase() + catName.slice(1));
+          let section;
+          if (catName == "temp") {
+            section = createCategorySection("Temperature");
+          } else {
+            section = createCategorySection(catName.charAt(0).toUpperCase() + catName.slice(1));
+          }
           const list = section.querySelector('.module-list');
 
           categories[catName].forEach(mod => {

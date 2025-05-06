@@ -1,7 +1,7 @@
-from ai.ai_ctrl import init_ai
-import time
+from ai.ai import init_ai
 from utils.console import *
 from utils.mqtt import MQTTConnection
+import os
 
 if __name__ == "__main__":
     print(f"""
@@ -12,13 +12,11 @@ Status: {GREEN}Running...{RESET}
 ===================================================
 """)
     
-    client = MQTTConnection.get_client("ai")
-
-    init_ai(client)
+    client = MQTTConnection.get_client("central_main_ai")
 
     try:
         print("Press CTRL+C to quit")
-        while True:
-            time.sleep(1)
+        init_ai(client)
+
     except KeyboardInterrupt:
         print("Stopped")
