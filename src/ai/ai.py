@@ -30,7 +30,6 @@ def run_predictions_and_publish(model, client):
     except Exception as e:
         print(f"Exception in run_predictions_and_publish: {e}")
 
-
 def init_ai(client):
     global model
     model_h5_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "model.h5")

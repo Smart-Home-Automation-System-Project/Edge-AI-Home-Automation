@@ -7,26 +7,13 @@ import os
 import pandas as pd
 import numpy as np
 import tensorflow as tf
-from dotenv import load_dotenv
-from datetime import datetime, timedelta
 import sys
 
 # Add database directory to path to import database module
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 from database.database import db_get_sensor_types, db_get_sensors_by_category, db_get_all_sensor_data
 
-
-def load_environment():
-    # Load environment variables from the .env file
-    env_path = os.path.join(os.path.dirname(__file__), '..', 'config', '.env')
-    load_dotenv(dotenv_path=os.path.abspath(env_path))
-
-    # Retrieve the project path from environment variable
-    project_path = os.getenv('PATH_TO_PROJECT')
-    return project_path
-
-
-def load_and_preprocess_data(project_path):
+def load_and_preprocess_data():
     # Get all sensor data from the database
     all_sensor_data = db_get_all_sensor_data(days=14)  # Get 2 weeks of data
 
@@ -123,18 +110,16 @@ def train_model(model, X, y):
     return model
 
 
-
 def save_model(model):
     # Save .h5 model
     ai_folder = os.path.dirname(__file__)
-    model_save_path = os.path.join(ai_folder, 'model.h5')
+    model_save_path = os.path.join(ai_folder, 'model_new.h5')
     model.save(model_save_path)
     print(f"Model saved at: {model_save_path}")
 
 
 def main():
-    project_path = load_environment()
-    data, features, target_features = load_and_preprocess_data(project_path)
+    data, features, target_features = load_and_preprocess_data()
     X, y, SEQ_LEN = prepare_sequences(data, features, target_features)
     model = create_lstm_model(SEQ_LEN, features, target_features)
     model = train_model(model, X, y)

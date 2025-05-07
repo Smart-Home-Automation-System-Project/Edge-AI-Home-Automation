@@ -207,7 +207,7 @@
         <input type="color" id="color-picker" value="#ffffff" />
       </label>
       <label>Intensity:
-        <input type="range" id="intensity-slider" min="0" max="255" value="255" />
+        <input type="range" id="intensity-slider" min="0" max="3" value="3" />
       </label>
       <div style="margin-top: 1rem;">
         <button onclick="submitColor()">Apply</button>
@@ -509,8 +509,21 @@
 
             let val; // declare once
 
-            if (mod.category === 'switch' || mod.category === 'light') {
+            if (mod.category === 'switch') {
                 val = (mod.last_val !== undefined && mod.last_val !== null) ? `${mod.last_val} W` : "N/A";
+            } else if (mod.category === 'light') {
+              const lightLevel = Number(mod.last_val);
+              if (lightLevel === 0) {
+                  val = "OFF";
+              } else if (lightLevel === 1) {
+                  val = "LOW";
+              } else if (lightLevel === 2) {
+                  val = "MEDIUM";
+              } else if (lightLevel === 3) {
+                  val = "HIGH";
+              } else {
+                  val = "N/A"; // fallback
+              }
             } else if (mod.category === 'door') {
                 val = (mod.last_val == 1) ? "LOCKED" : "UNLOCKED";
             } else {
