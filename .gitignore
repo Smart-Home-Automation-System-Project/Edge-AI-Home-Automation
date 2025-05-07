@@ -24,3 +24,6 @@ model.tar.gz
 
 
 database/edgeaihomeauto-firebase-adminsdk-fbsvc-e3ff352f44.json
+src/logs/mosquitto.log
+src/test.py
+src/test.py

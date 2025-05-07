@@ -24,33 +24,25 @@ CREATE TABLE IF NOT EXISTS sensors (
     id TEXT,
     client_id TEXT,
     name TEXT,
-    catagory TEXT,
+    category TEXT,
     last_val TEXT,
     PRIMARY KEY (id, client_id)
 )
 """)
 
-# Create new table named 'predictions' to store predictions
+# Create the trigger
 cursor.execute("""
-CREATE TABLE IF NOT EXISTS predictions (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    timestamp TEXT NOT NULL,
-    sensor_name TEXT NOT NULL,
-    predicted_value REAL NOT NULL,
-    category TEXT NOT NULL,
-    UNIQUE(timestamp, sensor_name)
-)
+CREATE TRIGGER update_last_val
+AFTER INSERT ON sensor_data
+FOR EACH ROW
+BEGIN
+    UPDATE sensors
+    SET last_val = NEW.sensor_value
+    WHERE id = NEW.sensor_id;
+END
 """)
 
+
+print("Database and table created: database.db")
 conn.commit()
 conn.close()
-print("Database and table created: database.db")
-
-"""
-Sets up the last_val in 'sensors' table by running a trigger.
-Triggers is run everytime new data is inserted
-"""
-from database import db_create_last_val_trigger
-
-if __name__ == "__main__":
-    db_create_last_val_trigger()

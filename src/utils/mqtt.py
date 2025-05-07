@@ -17,5 +17,5 @@ class MQTTConnection:
             MQTTConnection._client = mqtt.Client(client_id=client_id)  # Set your own ID
             MQTTConnection._client.username_pw_set(str(MQTT_USERNAME), str(MQTT_PASSWORD))
             MQTTConnection._client.connect(get_local_ip(), int(MQTT_PORT))
-            MQTTConnection._client.loop_start()  # Run network loop in background
+            MQTTConnection._client.loop_start()                        # Run network loop in background
         return MQTTConnection._client

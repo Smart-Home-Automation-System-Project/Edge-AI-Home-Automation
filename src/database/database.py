@@ -30,7 +30,7 @@ def db_add_module(client_id, name, category):
             
             sensor_id = str(uuid.uuid4())
             cursor.execute("""
-                INSERT INTO sensors (id, client_id, name, catagory, last_val)
+                INSERT INTO sensors (id, client_id, name, category, last_val)
                 VALUES (?, ?, ?, ?, ?)
             """, (sensor_id, client_id, name, category, None))
             conn.commit()
@@ -48,7 +48,7 @@ def db_get_available_all_modules():
     conn.execute("PRAGMA journal_mode=WAL;")
     cursor = conn.cursor()
     cursor.execute("""
-        SELECT id, client_id, name, catagory, last_val
+        SELECT id, client_id, name, category, last_val
         FROM sensors
         WHERE name IS NOT NULL
     """)
@@ -59,12 +59,45 @@ def db_get_available_all_modules():
     ]
     return modules
 
+def db_get_available_all_modules_ctrl():
+    conn = sqlite3.connect(DB_NAME, timeout=10)
+    conn.execute("PRAGMA journal_mode=WAL;")
+    cursor = conn.cursor()
+    cursor.execute("""
+        SELECT client_id, name, category
+        FROM sensors
+        WHERE name IS NOT NULL AND (category = 'light' OR category = 'switch' OR category = 'door')
+    """)
+    rows = cursor.fetchall()
+    conn.close()
+    modules = [
+        {"client_id": r[0], "name": r[1], "category": r[2]} for r in rows
+    ]
+    return modules
+
+
+def db_get_module_current_power_data():
+    conn = sqlite3.connect(DB_NAME, timeout=10)
+    conn.execute("PRAGMA journal_mode=WAL;")
+    cursor = conn.cursor()
+    cursor.execute("""
+        SELECT client_id, name, category, last_val
+        FROM sensors
+        WHERE name IS NOT NULL AND (category = 'light' OR category = 'switch')
+    """)
+    rows = cursor.fetchall()
+    conn.close()
+    modules = [
+        {"client_id": r[0], "name": r[1], "category": r[2], "power": r[3]} for r in rows
+    ]
+    return modules
+
 def db_get_new_modules():
     conn = sqlite3.connect(DB_NAME, timeout=10)
     conn.execute("PRAGMA journal_mode=WAL;")
     cursor = conn.cursor()
     cursor.execute("""
-        SELECT id, client_id, name, catagory, last_val
+        SELECT id, client_id, name, category, last_val
         FROM sensors
         WHERE name IS NULL
     """)
@@ -127,7 +160,7 @@ def db_delete_module(id):
     cursor = conn.cursor()
     cursor.execute("""
         DELETE FROM sensors
-        WHERE id = ? AND catagory != 'temp' AND catagory != 'radar' AND catagory != 'door'
+        WHERE id = ? AND category != 'temp' AND category != 'radar' AND category != 'door'
     """, (id,))
 
     
@@ -141,17 +174,16 @@ def db_delete_module(id):
     return rows_affected
 
 
-def db_add_sensor_data(timestamp, client_id, data):
+def db_add_sensor_data(timestamp, id, data):
     try:
         with db_lock:
             conn = sqlite3.connect(DB_NAME, timeout=10)
             conn.execute("PRAGMA journal_mode=WAL;")
             cursor = conn.cursor()
             cursor.execute("""
-                UPDATE sensors
-                SET last_val = ?
-                WHERE client_id = ?
-            """, (data, client_id))
+                INSERT INTO sensor_data (sensor_id, timestamp, sensor_value)
+                VALUES (?, ?, ?)
+            """, (id, timestamp, data))
             conn.commit()
             print(f"Data added for timestamp: {timestamp}")
     except sqlite3.IntegrityError:
@@ -180,13 +212,31 @@ def db_get_client_id(name):
     else:
         return None  # Not found or is a 'sensor'
     
+def db_get_id(client_id):
+    conn = sqlite3.connect(DB_NAME, timeout=10)
+    conn.execute("PRAGMA journal_mode=WAL;")
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        SELECT id FROM sensors
+        WHERE client_id = ?
+    """, (client_id,))
+    result = cursor.fetchone()
+
+    conn.close()
+
+    if result:
+        return result[0]  # Return client_id
+    else:
+        return None  # Not found or is a 'sensor'
+
 def db_get_module_type(client_id):
     conn = sqlite3.connect(DB_NAME, timeout=10)
     conn.execute("PRAGMA journal_mode=WAL;")
     cursor = conn.cursor()
 
     cursor.execute("""
-        SELECT catagory FROM sensors
+        SELECT category FROM sensors
         WHERE client_id = ?
     """, (client_id,))
     result = cursor.fetchone()
@@ -225,7 +275,7 @@ def db_add_sensor(client_id, name, category):
             cursor = conn.cursor()
             sensor_id = str(uuid.uuid4())
             cursor.execute("""
-                INSERT INTO sensors (id, client_id, name, catagory, last_val)
+                INSERT INTO sensors (id, client_id, name, category, last_val)
                 VALUES (?, ?, ?, ?, ?)
             """, (sensor_id, client_id, name, category, None))
             conn.commit()
@@ -270,7 +320,7 @@ def db_get_sensor_types():
     cursor = conn.cursor()
 
     cursor.execute("""
-        SELECT id, name, catagory
+        SELECT id, name, category
         FROM sensors
         WHERE name IS NOT NULL
     """)
@@ -293,7 +343,7 @@ def db_get_sensors_by_category(category):
     cursor.execute("""
         SELECT id, name
         FROM sensors
-        WHERE catagory = ? AND name IS NOT NULL
+        WHERE category = ? AND name IS NOT NULL
     """, (category,))
 
     sensors = cursor.fetchall()
@@ -330,9 +380,9 @@ def db_get_all_sensor_data(days=7):
 
     # Get all sensor IDs
     cursor.execute("""
-        SELECT id, name, catagory
+        SELECT id, name, category
         FROM sensors
-        WHERE name IS NOT NULL AND (catagory = 'light' OR catagory = 'temp')
+        WHERE name IS NOT NULL AND (category = 'light' OR category = 'temp')
     """)
 
     sensors = cursor.fetchall()
@@ -368,9 +418,9 @@ def db_get_sensor_data_for_prediction(days=1):
 
     # Get light and temperature sensors
     cursor.execute("""
-        SELECT id, name, catagory 
+        SELECT id, name, category 
         FROM sensors 
-        WHERE catagory IN ('light', 'temp') AND name IS NOT NULL
+        WHERE category IN ('light', 'temp') AND name IS NOT NULL
     """)
     sensors = cursor.fetchall()
 
@@ -429,14 +479,14 @@ def db_get_light_and_temp_sensors():
     # Get light sensors
     cursor.execute("""
         SELECT name FROM sensors 
-        WHERE catagory = 'light' AND name IS NOT NULL
+        WHERE category = 'light' AND name IS NOT NULL
     """)
     light_sensors = [row[0] for row in cursor.fetchall()]
 
     # Get temperature sensors
     cursor.execute("""
         SELECT name FROM sensors 
-        WHERE catagory = 'temp' AND name IS NOT NULL
+        WHERE category = 'temp' AND name IS NOT NULL
     """)
     temp_sensors = [row[0] for row in cursor.fetchall()]
 
@@ -453,7 +503,7 @@ def db_save_predicted_values(predictions_dict):
     # Get mapping of sensor names to IDs
     cursor.execute("""
         SELECT name, id FROM sensors 
-        WHERE catagory IN ('light', 'temp') AND name IS NOT NULL
+        WHERE category IN ('light', 'temp') AND name IS NOT NULL
     """)
     name_to_id = {row[0]: row[1] for row in cursor.fetchall()}
 
@@ -546,7 +596,7 @@ def db_get_radar_sensor_data():
         SELECT s.name, sd.sensor_value, sd.timestamp
         FROM sensor_data sd
         JOIN sensors s ON sd.sensor_id = s.id
-        WHERE s.catagory = 'radar'
+        WHERE s.category = 'radar'
         ORDER BY sd.timestamp DESC
     """)
 
@@ -564,7 +614,7 @@ def db_get_light_sensor_names():
     cursor.execute("""
         SELECT name
         FROM sensors
-        WHERE catagory = 'light' AND name IS NOT NULL
+        WHERE category = 'light' AND name IS NOT NULL
         ORDER BY name
     """)
 
@@ -621,10 +671,10 @@ def db_get_light_and_temp_sensors_with_details():
     cursor = conn.cursor()
 
     cursor.execute("""
-        SELECT id, name, catagory 
+        SELECT id, name, category 
         FROM sensors 
-        WHERE catagory IN ('light', 'temp') AND name IS NOT NULL
-        ORDER BY catagory, name
+        WHERE category IN ('light', 'temp') AND name IS NOT NULL
+        ORDER BY category, name
     """)
 
     sensors = cursor.fetchall()
@@ -682,10 +732,10 @@ def db_get_sensor_readings_for_timestamp(timestamp):
     cursor = conn.cursor()
 
     cursor.execute("""
-        SELECT s.name, sd.sensor_value, s.catagory
+        SELECT s.name, sd.sensor_value, s.category
         FROM sensor_data sd
         JOIN sensors s ON sd.sensor_id = s.id
-        WHERE sd.timestamp = ? AND s.catagory IN ('light', 'temp')
+        WHERE sd.timestamp = ? AND s.category IN ('light', 'temp')
     """, (timestamp,))
 
     readings = cursor.fetchall()
@@ -762,6 +812,7 @@ def db_update_last_vals():
         except:
             pass
 
+
 # sensor_data_generator.py
 def db_get_sensor_ids_by_category():
     """Get all sensor IDs grouped by category"""
@@ -770,9 +821,9 @@ def db_get_sensor_ids_by_category():
     cursor = conn.cursor()
 
     cursor.execute("""
-        SELECT id, catagory 
+        SELECT id, category 
         FROM sensors 
-        WHERE catagory IN ('light', 'temp', 'radar')
+        WHERE category IN ('light', 'temp', 'radar')
     """)
 
     results = cursor.fetchall()
@@ -824,3 +875,26 @@ def generate_random_sensor_value(sensor_type):
         return random.randint(0, 1)  # 0 for no motion, 1 for motion detected
     else:
         return 0
+
+def db_select_debug():
+    try:
+        with db_lock:
+            conn = sqlite3.connect(DB_NAME, timeout=10)
+            conn.execute("PRAGMA journal_mode=WAL;")
+            cursor = conn.cursor()
+
+            # Select all rows from the table
+            cursor.execute("SELECT * FROM sensor_data")
+            rows = cursor.fetchall()
+
+            # Print the results
+            for row in rows:
+                print(row)
+
+    except sqlite3.Error as e:
+        print(f"Database error: {e}")
+    finally:
+        try:
+            conn.close()
+        except:
+            pass

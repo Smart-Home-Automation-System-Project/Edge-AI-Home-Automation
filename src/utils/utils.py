@@ -11,11 +11,6 @@ def get_localtime(utc_time_str):
 
 def get_local_ip():
     try:
-        # Create a temporary socket to get the local IP
-        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        s.connect(("8.8.8.8", 80))  # Google's public DNS
-        local_ip = s.getsockname()[0]
-        s.close()
-        return local_ip
+        return socket.gethostbyname(socket.gethostname())
     except Exception as e:
         return f"Error: {e}"

@@ -12,6 +12,7 @@ import random
 
 # Client ID to exclude from this virtual module
 Exclusions = []
+Light_Brightness = {}
 
 
 
@@ -19,7 +20,15 @@ def on_message(client, userdata, msg):
     print(f"{BLUE}\n --> Received message from {msg.topic}: {msg.payload.decode()}")
 
     client_id = msg.topic.split('/')[2]
-    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    # Current time
+    timestamp = datetime.now()
+
+    # Subtract 5 hours and 30 minutes
+    adjusted_time = timestamp - timedelta(hours=5, minutes=30)
+
+    # Format to string if needed
+    formatted = adjusted_time.strftime("%Y-%m-%d %H:%M:%S")
+
     S_TYPE = None
     for mod in modules:
         if mod['client_id'] == client_id:
@@ -28,20 +37,40 @@ def on_message(client, userdata, msg):
     data_val = None
 
     if S_TYPE == 'switch':
-        if _data['state'] == "1":
+        if (_data['state'] == 'on'):
             data_val = random.randint(2, 40)
         else:
             data_val = 0
     elif S_TYPE == 'light':
         if 'state' in _data:
-            if (3 >= int(_data['state']) > 0):
-                data_val = random.randint(2, 40)
+            if (_data['state'] == 'on'):
+                if client_id in Light_Brightness:
+                    data_val = Light_Brightness[client_id]
+                else:
+                    data_val = Light_Brightness[client_id] = 3
             else:
                 data_val = 0
         elif 'irgb' in _data:
             values = _data['irgb'].strip("()").split(",")
-            data_val = int(values[0])
+            val = int(values[0])
+            if (val > 0):
+                Light_Brightness[client_id] = val
+                data_val = val
+            elif val == 0:
+                data_val = 0
             print(f" --> Color changed to {_data['irgb']}, I {data_val}")
+
+        data = {
+                "type": S_TYPE,
+                "time": formatted,
+                'client_id': client_id,
+                "data": data_val,
+                "power": data_val * random.randint(8, 11)
+        }
+        
+        client.publish(T_SENSOR_PUBLISH, json.dumps(data))
+        print(f'{RESET}')
+        return
     
     elif S_TYPE == 'door':
         if _data['state'] == "lock":
@@ -51,7 +80,7 @@ def on_message(client, userdata, msg):
 
     data = {
             "type": S_TYPE,
-            "time": timestamp,
+            "time": formatted,
             'client_id': client_id,
             "data": data_val
     }
@@ -109,10 +138,16 @@ def update_page(modIndex):
             return -1
         
         if (0 <=  _input and _input < 5000):
-            timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            timestamp = datetime.now()
+
+            # Subtract 5 hours and 30 minutes
+            adjusted_time = timestamp - timedelta(hours=5, minutes=30)
+
+            # Format to string if needed
+            formatted = adjusted_time.strftime("%Y-%m-%d %H:%M:%S")
             data = {
                     "type": category,
-                    "time": timestamp,
+                    "time": formatted,
                     'client_id': client_id,
                     "data": _input
             }
