@@ -12,8 +12,6 @@ from ai.ai import init_ai
 
 
 if __name__ == "__main__":
-
-    
     client = MQTTConnection.get_client("central_main_ai")
 
     try:
