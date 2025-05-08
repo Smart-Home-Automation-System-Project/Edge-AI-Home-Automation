@@ -44,7 +44,7 @@ edge_ai_project/
 
 ## Running the Tests
 
-You can run all tests using the run_tests.py script:
+You can run all tests using the `run_tests.py` script:
 
 ```bash
 python tests/run_tests.py
@@ -81,10 +81,10 @@ The integration tests verify that components work together correctly:
 
 ## Mocking
 
-The tests use Python's unittest.mock module to replace external dependencies like:
+The tests use Python's `pytest-mock` module to replace external dependencies like:
 
 - Database calls
-- TensorFlow model operations 
+- TensorFlow model operations
 - File system operations
 - MQTT client publishing
 
@@ -110,25 +110,26 @@ This will show the percentage of code that's covered by tests.
 
 When making changes to the AI modules:
 
-1. Update the corresponding tests
-2. Add new tests for new functionality
-3. Run the tests to make sure everything still works
-4. Check the test coverage to ensure new code is properly tested
+1. Update the corresponding tests.
+2. Add new tests for new functionality.
+3. Run the tests to make sure everything still works.
+4. Check the test coverage to ensure new code is properly tested.
 
 ## Common Testing Patterns
 
 The tests demonstrate several useful testing patterns:
 
-- **Patching external dependencies**: Using `@patch` to replace functions like database calls
-- **Mocking objects**: Creating mock models and clients
-- **Error handling**: Testing how functions handle exceptions
-- **Integration testing**: Testing the entire workflow from training to prediction
+- **Patching external dependencies**: Using `@patch` to replace functions like database calls.
+- **Mocking objects**: Creating mock models and clients.
+- **Error handling**: Testing how functions handle exceptions.
+- **Integration testing**: Testing the entire workflow from training to prediction.
 
 ## Best Practices
 
-- Keep tests independent of each other
-- Test both normal and error conditions
-- Mock external dependencies
-- Use descriptive test names
-- Keep tests simple and focused
-- Regularly run tests when making changes
+- Keep tests independent of each other.
+- Test both normal and error conditions.
+- Mock external dependencies.
+- Use descriptive test names.
+- Keep tests simple and focused.
+- Regularly run tests when making changes.
+- Check test coverage to ensure critical code paths are tested.
