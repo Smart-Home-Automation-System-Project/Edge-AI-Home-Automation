@@ -11,7 +11,7 @@ client = MQTTConnection.get_client()
 light_power_data = {}
 
 def on_message(client, userdata, msg):
-    # print(f"{GREEN} TOPIC : {msg.topic}, MSG : {msg.payload.decode()}")
+    print(f"{GREEN} TOPIC : {msg.topic}, MSG : {msg.payload.decode()}")
     try:
         if msg.topic == T_SENSOR_PUBLISH:
             sensor_publish_handler(client, userdata, msg)
@@ -103,7 +103,7 @@ def sensor_ctrl_handler(client, userdata, msg):
                 client.publish(f"{T_SENSOR_CTRL_PREFIX}/{cid}", json.dumps({'state': state}))
             elif mod_type == 'temp':
                 value = data['value']
-                print(f"Command received. Setting client {cid} to value {value} C.")
+                print(f"Command received. Setting client {cid} to value {value}C.")
                 client.publish(f"{T_SENSOR_CTRL_PREFIX}/{cid}", json.dumps({'value': value}))
         # Batch Mode
         else:

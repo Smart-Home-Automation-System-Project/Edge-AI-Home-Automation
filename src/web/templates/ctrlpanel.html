@@ -265,6 +265,22 @@
     </div>
   </div>
 
+
+  <!-- Temperature Popup -->
+  <div class="popup-overlay" id="temp-popup">
+    <div class="popup-card">
+      <h3>Set Temperature</h3>
+      <label>Temperature:
+        <input type="range" id="temperature-slider" min="0" max="50" value="35" />
+      </label>
+      <div style="margin-top: 1rem;">
+        <button onclick="submitTemp()">Apply</button>
+        <button onclick="closeTempPopup()">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+
   <!-- Color Picker Popup -->
   <div class="popup-overlay" id="color-popup">
     <div class="popup-card">
@@ -497,6 +513,39 @@
       });
   }
 
+
+  function openTempPopup(mod) {
+    currentColorModule = mod;
+    document.getElementById("temp-popup").style.display = "flex";
+  }
+
+  function closeTempPopup() {
+    currentColorModule = null;
+    document.getElementById("temp-popup").style.display = "none";
+  }
+
+  function submitTemp() {
+    const temp = parseInt(document.getElementById("temperature-slider").value);
+
+    fetch(`/api/set-temp`, {
+      method: "POST",
+      credentials: 'include',
+      headers: {
+      'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ id: currentColorModule.id, value: temp })
+    })
+      .then(res => {
+        if (!res.ok) throw new Error("Failed to set temperature");
+        alert("Temperature updated successfully!");
+        closeTempPopup();
+      })
+      .catch(err => {
+        console.error("Temperature update error:", err);
+        alert("Failed to update temperature");
+      });
+  }
+
   let intervalId_loadModules = null
 
   function loadModules() {
@@ -609,9 +658,26 @@
 
               colorBtn.addEventListener('click', (e) => {
                 e.stopPropagation();
-                openColorPopup(mod);
+                openColorPopup(mod); 
               });
               card.appendChild(colorBtn);
+            } else if (mod.category === 'temp') {
+              const setTempBtn = document.createElement('button');
+              setTempBtn.textContent = "SET";
+              setTempBtn.style.marginTop = '0.5rem';
+              setTempBtn.style.background = '#4A90E2';
+              setTempBtn.style.color = 'white';
+              setTempBtn.style.border = 'none';
+              setTempBtn.style.padding = '0.4rem 0.8rem';
+              setTempBtn.style.borderRadius = '5px';
+              setTempBtn.style.cursor = 'pointer';
+
+              setTempBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                openTempPopup(mod);
+              });
+
+              card.appendChild(setTempBtn);
             }
 
 
@@ -619,7 +685,7 @@
               const toggleBtn = document.createElement('button');
               toggleBtn.textContent = btnLabel;
               toggleBtn.style.marginTop = '0.5rem';
-              toggleBtn.style.background = '#4A90E2';
+              toggleBtn.style.background = '#28a745';
               toggleBtn.style.color = 'white';
               toggleBtn.style.border = 'none';
               toggleBtn.style.padding = '0.4rem 0.8rem';

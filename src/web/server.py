@@ -246,6 +246,34 @@ def set_color():
         return jsonify({"error": "DatabaseError: Please reinstall database"}), 500
 
     
+@app.route('/api/set-temp', methods=['POST'])
+@jwt_required
+def set_temp():
+    # Get the JSON data from the POST request
+    data = request.get_json()
+
+    # Ensure that the data contains the expected fields
+    if not data or 'id' not in data or 'value' not in data:
+        return jsonify({'error': 'Missing required fields'}), 400
+
+    # Extract the data from the JSON
+    id = str(data['id'])
+    value = int(data['value'])
+
+    try:
+        name = db_get_client_name(id)
+        result = 1
+        client.publish(T_SENSOR_MAIN_CTRL, json.dumps({'name': name, 'value': value}))
+
+        # Respond with the result
+        if result > 0:
+            return jsonify({'message': 'Module Updated.'}), 200
+        else:
+            return jsonify({'error': 'No sensor found with the given id.'}), 404
+    except DatabaseError:
+        return jsonify({"error": "DatabaseError: Please reinstall database"}), 500
+
+    
 
 
 
