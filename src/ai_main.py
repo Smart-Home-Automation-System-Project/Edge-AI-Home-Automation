@@ -1,6 +1,6 @@
 from utils.console import *
 from utils.mqtt import MQTTConnection
-
+import utils.globals
 print(f"""
 ===================================================
 AI Home Automation System - AI
@@ -12,6 +12,7 @@ from ai.ai import init_ai
 
 
 if __name__ == "__main__":
+    utils.globals.client_id = "central_main_ai"
     client = MQTTConnection.get_client("central_main_ai")
 
     try:

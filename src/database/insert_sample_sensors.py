@@ -3,7 +3,11 @@ FOR DEMONSTRATION
 -----------------
 To populate 'sensors' db table easily with sample sensors .
 """
+import os, sys
+# Add database directory to path to import database module
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 from database import db_add_sensor
+
 
 # Sample sensors with client_id, name, and category information
 sample_sensors = [

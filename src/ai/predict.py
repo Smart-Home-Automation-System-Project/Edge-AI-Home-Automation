@@ -21,6 +21,7 @@ def load_and_preprocess_data():
     try:
         # Get sensor data for the last day
         df = db_get_sensor_data_for_prediction(days=1)
+
         print(f"Loaded sensor data with {len(df)} records")
 
         # Get light and temperature sensor names

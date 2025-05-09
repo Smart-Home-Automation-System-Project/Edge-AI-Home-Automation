@@ -18,14 +18,11 @@ def run_predictions_and_publish(model, client):
             # After running predictions, invoke lights_temp_publish.py
             print("Sending prediction data via MQTT...")
             for k, v in results['temperatures'].items():
-                # TODO : fix the logic
-                continue
-                client.publish(T_SENSOR_MAIN_CTRL, json.dumps({"name": k, "state": v}))
+                client.publish(T_SENSOR_MAIN_CTRL, json.dumps({"name": k, "value": v}))
                 
             for k, v in results['lights'].items():
                 irgb_value = f"{v},N,N,N"  # TODO : fix the RBG part
                 client.publish(T_SENSOR_MAIN_CTRL, json.dumps({"name": k, "irgb": irgb_value}))
-
 
     except Exception as e:
         print(f"Exception in run_predictions_and_publish: {e}")

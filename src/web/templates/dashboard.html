@@ -13,7 +13,7 @@
 
     body {
       font-family: Arial, sans-serif;
-      background: #f0f2f5;
+      background: #181818;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -21,18 +21,19 @@
     }
 
     .dashboard-container {
-      background: white;
+      background: #242424;
       padding: 2rem;
-      border-radius: 8px;
+      border-radius: 16px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
       width: 100%;
-      max-width: 600px;
+      max-width: 400px;
     }
 
     h2 {
       text-align: center;
       margin-bottom: 1.5rem;
       font-size: 1.6rem;
+      color: rgb(221, 221, 221);
     }
 
     .button-container {
@@ -43,11 +44,11 @@
 
     button {
       padding: 1rem;
-      background-color: #007BFF;
-      color: white;
+      background-color: #006de2;
+      color: rgb(228, 228, 228);
       border: none;
       font-size: 1rem;
-      border-radius: 4px;
+      border-radius: 8px;
       cursor: pointer;
       transition: background-color 0.3s ease;
       width: 100%;
@@ -74,15 +75,40 @@
     <div class="button-container">
       <button onclick="window.location.href='/control-panel'">Control Panel</button>
       <button onclick="window.location.href='/camera'">Camera</button>
-      <button onclick="window.location.href='/otherpage'">Other Page</button> <!-- Add more buttons as needed -->
+      <button id='btn_power'>Energy Optimizer</button>
     </div>
   </div>
-
   <script>
-    // Ensure the user is logged in; if not, redirect to login page
-    if (!localStorage.getItem('token')) {
-      window.location.href = '/'; // Redirect to login page if no token found
+    async function loadPowerURL() {
+      try {
+        const response = await fetch('/api/power_url');
+        if (!response.ok) throw new Error('Failed to get URL');
+        const data = await response.json();
+        document.getElementById('btn_power').onclick = () => window.location.href = data.url;
+      } catch (err) {
+        alert('Failed to load power data page');
+      }
     }
+
+    loadPowerURL();
+
+
+    window.onload = () => {
+      function extend_session() {
+        fetch(`/api/session/extend`, {
+          method: "POST",
+          credentials: 'include',
+        })
+          .then(res => {
+            if (!res.ok) throw new Error("Failed to extend session");
+          })
+          .catch(err => {
+            console.error("Session extend error:", err);
+            alert("Failed to extend session");
+          });
+      }
+      setInterval(extend_session, 60000);
+    };
   </script>
 </body>
 </html>

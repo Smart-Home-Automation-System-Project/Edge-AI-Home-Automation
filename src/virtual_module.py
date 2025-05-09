@@ -8,10 +8,10 @@ import ast, json
 from utils.console import *
 import time
 import random
-
+import utils.globals
 
 # Client ID to exclude from this virtual module
-Exclusions = []
+Exclusions = ['SW-2025.04.19-21.09-0001']
 Light_Brightness = {}
 
 
@@ -77,6 +77,9 @@ def on_message(client, userdata, msg):
             data_val = "LOCK"
         else:
             data_val = "UNLOCK"
+
+    elif S_TYPE == 'temp':
+        data_val = _data['value']
 
     data = {
             "type": S_TYPE,
@@ -173,6 +176,7 @@ Status: {GREEN}Running...{RESET}
 ===================================================
 """)
     global client
+    utils.globals.client_id = "virtual_module"
     client = MQTTConnection.get_client("virtual_module")
     load_modules()
 
