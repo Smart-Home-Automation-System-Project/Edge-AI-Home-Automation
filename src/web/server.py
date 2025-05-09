@@ -4,9 +4,10 @@ from database.database import *
 from sensor.topics import *
 import json
 from dotenv import load_dotenv
-import os, time
+import os
 import jwt
 from functools import wraps
+import subprocess
 
 load_dotenv(dotenv_path='config/.env')
 UI_PASSWORD = os.getenv("UI_PASSWORD")
@@ -274,8 +275,68 @@ def recovery():
 @app.route('/api/restore/db', methods=['POST'])
 @jwt_required
 def restoreDB():
-    time.sleep(5)
-    return jsonify({'error': 'Missing required fields'}), 200
+    # Use absolute paths to ensure correct file locations
+    script_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'database', 'backup_restore_script.py')
+    firebase_credentials_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'config', 'firebase_credentials.json')
+    output_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'database', 'database.db')
+
+    # Make sure the directories exist
+    os.makedirs(os.path.dirname(output_path), exist_ok=True)
+    
+    # Check if script exists
+    if not os.path.exists(script_path):
+        return jsonify({'error': f'Script not found at: {script_path}'}), 500
+        
+    # Check if credentials exist
+    if not os.path.exists(firebase_credentials_path):
+        return jsonify({'error': f'Firebase credentials not found at: {firebase_credentials_path}'}), 500
+    
+    # Build the command - using the latest backup (no backup-id specified)
+    command = [
+        "python", 
+        script_path, 
+        'restore', 
+        '--cred-path', firebase_credentials_path, 
+        '--target-path', output_path,
+    ]
+    
+    try:
+        # Print the command for debugging
+        print(f"Executing: {' '.join(command)}")
+        
+        # Run with timeout to prevent hanging
+        result = subprocess.run(
+            command, 
+            check=True, 
+            text=True, 
+            capture_output=True,
+            timeout=300  # 5 minute timeout
+        )
+        
+        # Log the output for debugging
+        print(f"Command output: {result.stdout}")
+        
+        return jsonify({
+            'msg': 'DB restore success',
+            'details': result.stdout
+        }), 200
+        
+    except subprocess.CalledProcessError as e:
+        error_msg = f"Command failed with return code {e.returncode}: {e.stderr}"
+        print(error_msg)
+        return jsonify({'error': error_msg}), 500
+        
+    except subprocess.TimeoutExpired as e:
+        error_msg = f"Command timed out after {e.timeout} seconds"
+        print(error_msg)
+        return jsonify({'error': error_msg}), 504
+        
+    except Exception as e:
+        error_msg = f"Unexpected error: {str(e)}"
+        print(error_msg)
+        return jsonify({'error': error_msg}), 500
+
+
 
 
 
