@@ -944,6 +944,43 @@ def db_save_predicted_values(predictions_dict):
         except:
             pass
 
+def db_get_radar_current_data():
+    """Get latest radar sensor data from the database"""
+    app_client_id = utils.globals.client_id
+    try:
+        with db_lock:
+            conn = sqlite3.connect(DB_NAME, timeout=10)
+            conn.execute("PRAGMA journal_mode=WAL;")
+
+            cursor = conn.cursor()
+
+            cursor.execute("""
+                SELECT last_val
+                FROM sensors
+                WHERE category = 'radar' AND name IS NOT NULL
+                ORDER BY name
+            """)
+
+            _sensors = [row[0].lower() for row in cursor.fetchall()]
+            conn.close()
+
+            return _sensors
+
+
+    except sqlite3.OperationalError:
+        conn.close()
+        if ui_client_id == app_client_id:
+            raise DatabaseError("Database is broken!")
+        else:
+            print(f"{RED}DatabaseError : Retrying in 5 mins...{RESET}")
+            time.sleep(DB_ERROR_RETRY_TIMEOUT)
+            return db_get_radar_sensor_data()
+    finally:
+        try:
+            conn.close()
+        except:
+            pass
+
 
 # predictions database table
 def db_save_predictions(timestamp, predictions_dict):
@@ -994,6 +1031,7 @@ def db_save_predictions(timestamp, predictions_dict):
             conn.close()
         except:
             pass
+
 
 
 # mqtt publish
