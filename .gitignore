@@ -30,3 +30,6 @@ src/test.py
 src/stream.py
 src/logs/mosquitto.log
 src/pub.py
+src/database/view_db.ipynb
+src/logs/mosquitto.log
+src/config/firebase_credentials.json
