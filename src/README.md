@@ -22,13 +22,14 @@ A smart home system with customizable controls for lights, switches, temperature
 ![Image](https://github.com/user-attachments/assets/20e881aa-7fc8-4f50-be0d-15bafb0ea184)
 ![Image](https://github.com/user-attachments/assets/0d8feff6-4bc4-4a7e-9f80-e3ae5d600192)
 ![Image](https://github.com/user-attachments/assets/02cefbfd-7407-4c85-a9b7-de968ab112f8)
+
 ## Installation
 
 - Run the following command to clone the required repositories:
     ```bash
     git clone https://github.com/Smart-Home-Automation-System-Project/Edge-AI-Home-Automation
     ```
-For Ubuntu:
+### For Ubuntu:
 - Install Mosquitto and client tools:
     ```bash
     sudo apt install -y mosquitto mosquitto-clients
@@ -68,9 +69,9 @@ For Ubuntu:
         IP_SAS_SYSTEM=[IP OF Secure-Access-Surveillance-System]
         IP_ECO_SYSTEM=[IP OF Energy-Consumption-Optimization]
         ```
-    - Run it:
+    - Run the system:
         ```bash
-        ./start-system.sh
+        ./run.sh
         ```
 - Setup auto-start
     - Create a systemd service
@@ -91,6 +92,54 @@ For Ubuntu:
 
         [Install]
         WantedBy=multi-user.target
+        ```
+- Setup auto-backup and auto-train-model
+    1. Open the crontab editor:
+        ```bash
+        crontab -e
+        ```
+    2. Add these two lines at the bottom of the file:
+        ```bash
+        # Backup DB daily at 4:00 AM
+        0 4 * * * [/full/path/to]/backup-db.sh
+
+        # Train model every Monday at 12:00 AM
+        0 0 * * 1 /usr/bin/python3 [/full/path/to]/database/train.py
+        ```
+
+### For Windows:
+- Install Mosquitto and client tools: https://mosquitto.org/download
+- Add install directory to `PATH`
+    ```bash
+    setx PATH "%PATH%;[C:\path\to\install]"
+    ```
+- Navigate to `src`:
+    ```bash
+    cd Edge-AI-Home-Automation/src/
+    ```
+- Generate a password file for your system. Default username and password are `admin` and `1234`. You can generate a new password file:
+    ```bash
+    mosquitto_passwd -c /config/passwordfile.txt [your_username]
+    ```
+    Then enter a secure password when prompted.
+- Install dependencies
+    ```bash
+    pip install -r requirements.txt
+    ```
+- Start system
+    - Modify 'config/.env' and update IPs, `JWT_SECRET_KEY`,  username and passwords:
+        ```bash
+        MQTT_USERNAME=admin
+        MQTT_PASSWORD=1234
+        MQTT_PORT=1883
+        JWT_SECRET_KEY=MTI3LjAuMC4xIC0gLSBbMjAvQXByLzIwMjUgMTA6NTU6MDFdICJHRVQgL2F
+        UI_PASSWORD=abcd
+        IP_SAS_SYSTEM=[IP OF Secure-Access-Surveillance-System]
+        IP_ECO_SYSTEM=[IP OF Energy-Consumption-Optimization]
+        ```
+    - Run the system:
+        ```bash
+        run.bat
         ```
 
 ## Authors
