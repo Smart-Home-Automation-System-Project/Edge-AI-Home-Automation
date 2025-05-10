@@ -6,8 +6,8 @@ import datetime
 import os
 import sys
 
-# Add the parent directory to sys.path to import the modules
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+# Update path to account for new location in tests/test-ai/
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 
 # Import the functions to test
 from ai.predict import (
