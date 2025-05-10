@@ -7,7 +7,7 @@ import sys
 import tensorflow as tf
 
 # Add the parent directory to sys.path to import the modules
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 
 # Import the functions to test
 from ai.train import (
