@@ -1,8 +1,9 @@
-numpy
+numpy==1.26.4
 pandas
 tensorflow
 firebase-admin
 flask
-paho-mqtt
+paho_mqtt==2.1.0
 python-dotenv
 zeroconf
+tensorflow==2.16.1
