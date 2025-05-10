@@ -59,12 +59,24 @@ pivot_df = df.pivot_table(
     aggfunc='first'  # In case of duplicates, take the first value
 ).reset_index()
 
+# Ensure timestamp column is datetime for feature extraction
+pivot_df['timestamp'] = pd.to_datetime(pivot_df['timestamp'])
+
 # Add calculated columns for day_of_week and hour
-pivot_df['day_of_week'] = pd.to_datetime(pivot_df['timestamp']).dt.dayofweek
-pivot_df['hour'] = pd.to_datetime(pivot_df['timestamp']).dt.hour
+pivot_df['day_of_week'] = pivot_df['timestamp'].dt.dayofweek
+pivot_df['hour'] = pivot_df['timestamp'].dt.hour
+
+# Define all required sensor columns that should be in the final output
+all_sensor_columns = ['l1', 'l2', 'l3', 'l4', 'l5', 'l6', 'l7', 'l8', 't1', 't2', 't3', 't4']
+
+# Ensure all required sensor columns exist in pivot_df, add them with pd.NA if not
+for col in all_sensor_columns:
+    if col not in pivot_df.columns:
+        pivot_df[col] = pd.NA # Use pandas' standard NA for missing data
 
 # Reorder columns to match the desired format
-final_df = pivot_df[['timestamp', 'day_of_week', 'hour', 'l1', 'l2', 'l3','l4', 'l5', 'l6','l7', 'l8','t1', 't2', 't3','t4']]
+final_column_order = ['timestamp', 'day_of_week', 'hour'] + all_sensor_columns
+final_df = pivot_df[final_column_order]
 
 # Save as train.csv in the specified directory
 final_df.to_csv(csv_path, index=False, float_format='%.2f')
