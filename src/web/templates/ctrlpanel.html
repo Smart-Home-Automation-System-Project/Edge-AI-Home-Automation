@@ -5,21 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Control Panel</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
   <style>
     body {
-      font-family: 'Inter', sans-serif;
+      font-family: 'Arial', sans-serif;
       margin: 0;
       padding: 0;
-      background-color: #f2f4f7;
-      color: #333;
+      background-color: #181818; /* near-black */
+      color: #f0f0f0;
     }
 
     header {
-      background-color: #4A90E2;
-      color: white;
+      background-color: #242424; /* deeper black */
+      color: #d4d4d4;
       padding: 1rem;
       text-align: center;
       font-size: 1.5rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
     }
 
     .container {
@@ -28,41 +31,39 @@
       margin: auto;
     }
 
-    .category {
-      margin-top: 2rem;
-    }
-
     .category h2 {
       font-size: 1.3rem;
-      border-bottom: 2px solid #4A90E2;
+      border-bottom: 2px solid #868686;
       padding-bottom: 0.3rem;
       margin-bottom: 1rem;
+      color: #e0e0e0;
     }
 
     .module-list {
-      display: flex;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
       gap: 1rem;
     }
 
     .module-card {
-      background-color: white;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      background-color: #1f1f1f; /* very dark gray */
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
       padding: 1rem;
-      width: 100%;
       max-width: 250px;
       cursor: pointer;
-      transition: transform 0.2s ease;
+      transition: transform 0.2s ease, background-color 0.2s;
     }
 
     .module-card:hover {
-      transform: scale(1.02);
+      transform: scale(1.03);
+      background-color: #222;
     }
 
     .module-name {
       font-weight: 600;
       font-size: 1.1rem;
+      color: #dadada;
     }
 
     #add-btn {
@@ -71,13 +72,13 @@
       right: 1rem;
       background-color: #4A90E2;
       color: white;
-      font-size:x-large;
+      font-size: x-large;
       width: 4rem;
       height: 4rem;
       border: none;
       border-radius: 50%;
       padding: 1rem;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
       cursor: pointer;
       z-index: 1000;
     }
@@ -89,7 +90,7 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background-color: rgba(0,0,0,0.5);
+      background-color: rgba(0,0,0,0.75);
       align-items: center;
       justify-content: center;
       z-index: 10;
@@ -97,10 +98,12 @@
 
     #add-form input, #add-form select {
       width: 100%;
-      padding: 0.5rem;
+      padding: 0.6rem;
       margin: 0.3rem 0 1rem;
-      border-radius: 5px;
-      border: 1px solid #ccc;
+      border-radius: 6px;
+      border: 1px solid #444;
+      background-color: #1b1b1b;
+      color: #f0f0f0;
     }
 
     .popup-overlay {
@@ -109,7 +112,7 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background-color: rgba(0,0,0,0.5);
+      background-color: rgba(0,0,0,0.75);
       display: none;
       align-items: center;
       justify-content: center;
@@ -117,17 +120,19 @@
     }
 
     .popup-card {
-      background: white;
+      background: #1a1a1a;
       padding: 1.5rem;
       border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.6);
       max-width: 400px;
       width: 90%;
       text-align: left;
+      color: #f0f0f0;
     }
 
-    .popup-card h3 {
+    .popup-card h3, .popup-card h2 {
       margin-top: 0;
+      color: #ffffff;
     }
 
     .popup-card p {
@@ -140,12 +145,17 @@
       color: white;
       padding: 0.6rem 1rem;
       border: none;
-      border-radius: 5px;
+      border-radius: 6px;
       cursor: pointer;
+      transition: background-color 0.2s;
     }
 
     .popup-card button:hover {
-      background-color: #357bd8;
+      background-color: #3a78c2;
+    }
+
+    #action-buttons button {
+      margin-right: 0.5rem;
     }
 
     @media (max-width: 600px) {
@@ -153,11 +163,67 @@
         width: 100%;
       }
     }
+
+    input[type="range"] {
+      width: 100%;
+    }
+
+    input[type="color"] {
+      width: 100%;
+      height: 2.5rem;
+      border: none;
+      padding: 0;
+      margin-top: 0.5rem;
+      background-color: transparent;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: #ccc;
+    }
+
+    button2 {
+      padding: 0.6rem;
+      background-color: #ca0234;
+      color: rgb(228, 228, 228);
+      border: none;
+      font-size: 0.8rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      width: 100%;
+    }
+
+    button2:hover {
+      background-color: #a10028;
+    }
+
+    #restore-btn {
+      position: fixed;
+      bottom: 1rem;
+      left: 1rem;
+      background-color: #cc1818;
+      color: white;
+      font-size: x-large;
+      width: 4rem;
+      height: 4rem;
+      border: none;
+      border-radius: 50%;
+      padding: 1rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+      cursor: pointer;
+      z-index: 1000;
+    }
   </style>
+  
 </head>
 <body>
-  <header>Modules</header>
-  <button id="add-btn" onclick="openAddForm()">+</button>
+  <header>Control Panel</header>
+  <button id="add-btn" onclick="openAddForm()"><i class="fas fa-plus"></i></button>
+  <button id="restore-btn" onclick="window.location.href='/recovery/main-ctrl'"><i class="fas fa-cloud-download-alt"></i></button>
+
+
   <div class="container" id="modules-container"></div>
 
   <!-- Module detail popup -->
@@ -199,6 +265,22 @@
     </div>
   </div>
 
+
+  <!-- Temperature Popup -->
+  <div class="popup-overlay" id="temp-popup">
+    <div class="popup-card">
+      <h3>Set Temperature</h3>
+      <label>Temperature:
+        <input type="range" id="temperature-slider" min="0" max="50" value="35" />
+      </label>
+      <div style="margin-top: 1rem;">
+        <button onclick="submitTemp()">Apply</button>
+        <button onclick="closeTempPopup()">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+
   <!-- Color Picker Popup -->
   <div class="popup-overlay" id="color-popup">
     <div class="popup-card">
@@ -216,7 +298,8 @@
     </div>
   </div>
 
-
+  <div class="container"></div>
+  <div class="container"></div>
 
 <script>
   let currentModule = null;
@@ -241,17 +324,9 @@
   }
 
   function loadUnassignedClients() {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      alert("Not authorized. Please login.");
-      window.location.href = "/";
-      return;
-    }
-
     fetch("/api/unassigned-modules", {
-    headers: {
-      "Authorization": "Bearer " + token
-    }
+      method: "GET",
+      credentials: 'include',
     })
       .then(res => res.json())
       .then(data => {
@@ -292,28 +367,21 @@
   }
 
   function toggleDevice(module, e, desiredState) {
-  if (e) e.stopPropagation();
-  if (!module) return;
-  const token = localStorage.getItem("token");
-  if (!token) {
-    alert("Not authorized. Please login.");
-    window.location.href = "/";
-    return;
-  }
+    if (e) e.stopPropagation();
+    if (!module) return;
 
-  fetch(`/api/toggle-module`, {
+    fetch(`/api/toggle-module`, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "Authorization": "Bearer " + token
-    },
-    body: JSON.stringify({ id: module.id, state: desiredState })
-  })
+      credentials: 'include',
+      headers: {
+      'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ id: module.id, state: desiredState })
+    })
     .then(res => {
       if (!res.ok) throw new Error("Send failed");
       alert(`Request sent: ${desiredState} ${module.name}`);
       closePopup();
-      location.reload();
     })
     .catch(err => {
       console.error("Send error:", err);
@@ -324,18 +392,12 @@
   function deleteDevice() {
     if (!currentModule) return;
     if (!confirm(`Delete ${currentModule.name}?`)) return;
-    const token = localStorage.getItem("token");
-    if (!token) {
-      alert("Not authorized. Please login.");
-      window.location.href = "/";
-      return;
-    }
 
     fetch(`/api/delete-module`, {
       method: "POST",
+      credentials: 'include',
       headers: {
-        "Content-Type": "application/json",
-        "Authorization": "Bearer " + token
+      'Content-Type': 'application/json'
       },
       body: JSON.stringify({ id: currentModule.id })
     })
@@ -357,18 +419,12 @@
     // This is a placeholder. You should implement a proper replace dialog.
     const newClientId = prompt("Enter new client ID to replace with:");
     if (!newClientId) return;
-    const token = localStorage.getItem("token");
-    if (!token) {
-      alert("Not authorized. Please login.");
-      window.location.href = "/";
-      return;
-    }
 
     fetch(`/api/replace-module`, {
       method: "POST",
+      credentials: 'include',
       headers: {
-        "Content-Type": "application/json",
-        "Authorization": "Bearer " + token
+      'Content-Type': 'application/json'
       },
       body: JSON.stringify({ id: currentModule.id, new_client_id: newClientId })
     })
@@ -387,25 +443,18 @@
   function submitNewSensor() {
     const name = document.getElementById("new-name").value.trim();
     const client_id = document.getElementById("client-select").value;
-    const token = localStorage.getItem("token");
-    if (!token) {
-      alert("Not authorized. Please login.");
-      window.location.href = "/";
-      return;
-    }
-
     if (!name || !client_id) {
       alert("Please enter a name and select a client ID.");
       return;
     }
-
     const payload = { name, client_id };
 
     fetch("/api/assign-module", {
       method: "POST",
-      headers: { "Content-Type": "application/json",
-                 "Authorization": "Bearer " + token
-       },
+      credentials: 'include',
+      headers: {
+      'Content-Type': 'application/json'
+      },
       body: JSON.stringify(payload)
     })
       .then(res => {
@@ -437,12 +486,6 @@
   function submitColor() {
     const colorHex = document.getElementById("color-picker").value;
     const intensity = parseInt(document.getElementById("intensity-slider").value);
-    const token = localStorage.getItem("token");
-    if (!token) {
-      alert("Not authorized. Please login.");
-      window.location.href = "/";
-      return;
-    }
 
     // Convert hex to RGB
     const r = parseInt(colorHex.substring(1, 3), 16);
@@ -453,9 +496,10 @@
 
     fetch(`/api/set-color`, {
       method: "POST",
-      headers: { "Content-Type": "application/json",
-                 "Authorization": "Bearer " + token
-       },
+      credentials: 'include',
+      headers: {
+      'Content-Type': 'application/json'
+      },
       body: JSON.stringify({ id: currentColorModule.id, irgb })
     })
       .then(res => {
@@ -469,19 +513,66 @@
       });
   }
 
-  function loadModules() {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      alert("Not authorized. Please login.");
-      window.location.href = "/";
-      return;
-    }
-    fetch('/api/modules', {
-        headers: {
-          "Authorization": "Bearer " + token
-        }
+
+  function openTempPopup(mod) {
+    currentColorModule = mod;
+    document.getElementById("temp-popup").style.display = "flex";
+  }
+
+  function closeTempPopup() {
+    currentColorModule = null;
+    document.getElementById("temp-popup").style.display = "none";
+  }
+
+  function submitTemp() {
+    const temp = parseInt(document.getElementById("temperature-slider").value);
+
+    fetch(`/api/set-temp`, {
+      method: "POST",
+      credentials: 'include',
+      headers: {
+      'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ id: currentColorModule.id, value: temp })
+    })
+      .then(res => {
+        if (!res.ok) throw new Error("Failed to set temperature");
+        alert("Temperature updated successfully!");
+        closeTempPopup();
       })
-      .then(response => response.json())
+      .catch(err => {
+        console.error("Temperature update error:", err);
+        alert("Failed to update temperature");
+      });
+  }
+
+  let intervalId_loadModules = null
+
+  function loadModules() {
+    fetch('/api/modules', {
+        method: 'GET',
+        credentials: 'include'
+      })
+      .then(response => {
+        if (response.status === 401) {
+          alert('Session expired or unauthorized. Redirecting to login...');
+          window.location.href = '/';
+          return;
+        } else if (response.status === 500) {
+          clearInterval(intervalId_loadModules);
+          if (confirm("DatabaseError: Database crash detected. Do you want to reinstall the database from the cloud?")) {
+              // User clicked OK
+              console.log("User confirmed reinstall.");
+              window.location.href = '/recovery/main-ctrl';
+
+          } else {
+              // User clicked Cancel
+              console.log("User declined reinstall.");
+          }
+        }
+
+        return response.json();
+      })
       .then(data => {
         const container = document.getElementById('modules-container');
         container.innerHTML = ''; // Clear old content before re-adding
@@ -567,9 +658,26 @@
 
               colorBtn.addEventListener('click', (e) => {
                 e.stopPropagation();
-                openColorPopup(mod);
+                openColorPopup(mod); 
               });
               card.appendChild(colorBtn);
+            } else if (mod.category === 'temp') {
+              const setTempBtn = document.createElement('button');
+              setTempBtn.textContent = "SET";
+              setTempBtn.style.marginTop = '0.5rem';
+              setTempBtn.style.background = '#4A90E2';
+              setTempBtn.style.color = 'white';
+              setTempBtn.style.border = 'none';
+              setTempBtn.style.padding = '0.4rem 0.8rem';
+              setTempBtn.style.borderRadius = '5px';
+              setTempBtn.style.cursor = 'pointer';
+
+              setTempBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                openTempPopup(mod);
+              });
+
+              card.appendChild(setTempBtn);
             }
 
 
@@ -577,7 +685,7 @@
               const toggleBtn = document.createElement('button');
               toggleBtn.textContent = btnLabel;
               toggleBtn.style.marginTop = '0.5rem';
-              toggleBtn.style.background = '#4A90E2';
+              toggleBtn.style.background = '#28a745';
               toggleBtn.style.color = 'white';
               toggleBtn.style.border = 'none';
               toggleBtn.style.padding = '0.4rem 0.8rem';
@@ -602,18 +710,28 @@
       });
   }
 
+
+  function extend_session() {
+    fetch(`/api/session/extend`, {
+      method: "POST",
+      credentials: 'include',
+    })
+      .then(res => {
+        if (!res.ok) throw new Error("Failed to extend session");
+      })
+      .catch(err => {
+        console.error("Session extend error:", err);
+        alert("Failed to extend session");
+        location.reload();
+      });
+  }
+
   window.onload = () => {
-    const token = localStorage.getItem('token');
-    if (!token) {
-      window.location.href = '/';  // back to login
-    } else {
-      loadModules(); // your existing function to load modules
-      // Refresh every 1 second
-      setInterval(loadModules, 1000);
-    }
+    loadModules();
+    intervalId_loadModules = setInterval(loadModules, 1000);
+    setInterval(extend_session, 60000);
   };
 
-  
 </script>
 
 

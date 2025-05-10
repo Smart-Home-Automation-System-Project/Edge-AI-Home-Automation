@@ -4,13 +4,14 @@ from utils.utils import get_localtime
 from database.database import *
 from sensor.topics import *
 from utils.console import *
+import time
 
 client = MQTTConnection.get_client()
 
 light_power_data = {}
 
 def on_message(client, userdata, msg):
-    # print(f"{GREEN} TOPIC : {msg.topic}, MSG : {msg.payload.decode()}")
+    print(f"{GREEN} TOPIC : {msg.topic}, MSG : {msg.payload.decode()}")
     try:
         if msg.topic == T_SENSOR_PUBLISH:
             sensor_publish_handler(client, userdata, msg)
@@ -34,11 +35,27 @@ def sensor_publish_handler(client, userdata, msg):
             if data["type"] == 'switch':
                 pass
             elif data["type"] == 'light':
+                modules = db_get_available_all_modules()
+                for mod in modules:
+                    if mod['category'] == 'temp' or mod['category'] == 'light':
+                        if mod['id'] == id:
+                            db_add_sensor_data(data["time"], mod['id'], data["data"])
+                        else:
+                            db_add_sensor_data(data["time"], mod['id'], mod["last_val"])
                 light_power_data[data["client_id"]] = data["power"]
+                return
+
             elif data["type"] == 'radar':
                 pass
             elif data["type"] == 'temp':
-                pass
+                modules = db_get_available_all_modules()
+                for mod in modules:
+                    if mod['category'] == 'temp' or mod['category'] == 'light':
+                        if mod['id'] == id:
+                            db_add_sensor_data(data["time"], mod['id'], data["data"])
+                        else:
+                            db_add_sensor_data(data["time"], mod['id'], mod["last_val"])
+                return
             elif data["type"] == 'door':
                 if data["data"] == "LOCK":
                     data["data"] = 1
@@ -84,6 +101,10 @@ def sensor_ctrl_handler(client, userdata, msg):
                 state = data['state']
                 print(f"Command received. Setting client {cid} to state {state}.")
                 client.publish(f"{T_SENSOR_CTRL_PREFIX}/{cid}", json.dumps({'state': state}))
+            elif mod_type == 'temp':
+                value = data['value']
+                print(f"Command received. Setting client {cid} to value {value}C.")
+                client.publish(f"{T_SENSOR_CTRL_PREFIX}/{cid}", json.dumps({'value': value}))
         # Batch Mode
         else:
             modules = db_get_available_all_modules()
@@ -132,6 +153,7 @@ def init_modules():
 
     # Turn off all modules when load the system
     modules = db_get_available_all_modules()
+    
     for mod in modules:
         if mod['category'] == 'light' or mod['category'] == 'switch':
             cid = mod['client_id']

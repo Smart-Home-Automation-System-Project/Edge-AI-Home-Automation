@@ -2,10 +2,11 @@
 Database Tables
 """
 
-import sqlite3
+import sqlite3, os
 
 # Connect to the new database name
-conn = sqlite3.connect("database.db")
+
+conn = sqlite3.connect(os.path.join(os.path.dirname(__file__), 'database.db'))
 cursor = conn.cursor()
 
 # Create table named 'sensor_data' with a composite primary key
@@ -46,3 +47,5 @@ END
 print("Database and table created: database.db")
 conn.commit()
 conn.close()
+
+
