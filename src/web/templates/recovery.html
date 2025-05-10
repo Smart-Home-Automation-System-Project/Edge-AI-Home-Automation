@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Restore Cloud Backup</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #181818;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .form-container {
+      background: #242424;
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 400px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      font-size: 1.6rem;
+      color: rgb(221, 221, 221);
+    }
+
+    h4 {
+      text-align: left;
+      margin-bottom: 1.5rem;
+      font-size: 0.8rem;
+      color: rgb(206, 206, 206);
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: right;
+    }
+
+    button {
+      flex: 1;
+      max-width: 3rem;
+      max-height: 1.5rem;
+      padding: 0.2rem;
+      background-color: #006de2;
+      color: rgb(228, 228, 228);
+      border: none;
+      font-size: 0.9rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin: 0 0.15rem;
+      text-align: center;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    @media (max-width: 480px) {
+      .form-container {
+        padding: 1.5rem;
+      }
+
+      h2 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h2>Restore</h2>
+    <h4 name="msg"></h4>
+    <div class="button-container">
+      <button id="btn_no" onclick="window.location.href='/dashboard'">No</button>
+      <button id="btn_yes">Yes</button>
+    </div>
+  </div>
+  <script>
+    window.onload = () => {
+      function extend_session() {
+        fetch(`/api/session/extend`, {
+          method: "POST",
+          credentials: 'include',
+        })
+          .then(res => {
+            if (!res.ok) throw new Error("Failed to extend session");
+          })
+          .catch(err => {
+            console.error("Session extend error:", err);
+            alert("Failed to extend session");
+          });
+      }
+      setInterval(extend_session, 60000);
+
+      fetch('/api/modules', {
+        method: 'GET',
+        credentials: 'include'
+      })
+      .then(response => {
+        if (response.status === 401) {
+          alert('Session expired or unauthorized. Redirecting to login...');
+          window.location.href = '/';
+          return;
+        } else if (response.status === 500) {
+          document.getElementsByName('msg')[0].innerHTML = "A database crash has been detected. We will attempt to restore it from the cloud. Would you like to proceed?";
+        } else {
+          document.getElementsByName('msg')[0].innerHTML = "No database crash has been detected. Would you like to proceed to restore from the cloud?";
+        }
+      })
+      .then(data => {
+      })
+      .catch(err => {
+        console.error("Fetch error:", err);
+      });
+
+      document.getElementById("btn_yes").addEventListener("click", function() {
+        document.getElementsByName('msg')[0].innerHTML = 'Database restoration is in progress. <span style="color: red;">This may take some time.</span> Please do not close this window.';
+
+        document.getElementById('btn_no').style.display = "none";
+        document.getElementById('btn_yes').style.display = "none";
+        const controller = new AbortController();
+        const signal = controller.signal;
+        
+
+        // Set timeout to cancel request after 20 minutes
+        setTimeout(() => {
+            controller.abort();
+            document.getElementsByName('msg')[0].innerHTML = "Database restoration timed out. Please try again.";
+        }, 1200000);
+
+        fetch('/api/restore/db', {
+            method: 'POST',
+            credentials: 'include',
+            signal: signal
+        })
+        .then(response => {
+            if (response.status === 200) {
+                alert('Database restoration success');
+                window.location.href = '/dashboard';
+            } else {
+                document.getElementsByName('msg')[0].innerHTML = '<span style="color: red;">Database restoration failed. Please contact support for assistance.';
+            }
+        })
+        .catch(err => {
+            if (err.name === 'AbortError') {
+                console.error("Fetch request aborted due to timeout");
+            } else {
+                console.error("Fetch error:", err);
+            }
+        });
+
+
+
+      });
+    };
+  </script>
+</body>
+</html>

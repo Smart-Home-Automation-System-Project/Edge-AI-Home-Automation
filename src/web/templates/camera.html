@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Main Camera</title>
+  <style>
+    body {
+      background-color: #181818;
+      color: #f0f0f0;
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 80vh;
+      overflow-x: hidden;
+    }
+
+    header {
+      width: 100%;
+      padding: 1rem;
+      text-align: center;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+      font-size: 1.5rem;
+      background-color: #242424;
+      color: #d4d4d4;
+    }
+
+    .video-container {
+      margin-top: 2rem;
+      background: #2c2f3e;
+      border-radius: 12px;
+      box-shadow: 0 0 12px rgba(0,0,0,0.4);
+      overflow: hidden;
+      max-width: 90%;
+      width: 640px;
+    }
+
+    .video-container img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .error {
+      color: #ff6b6b;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <header>Main Camera</header>
+  <div class="video-container">
+    <img id="video-stream" alt="Loading camera..." />
+  </div>
+  <div id="error-msg" class="error"></div>
+
+  <script>
+    async function loadCameraFeed() {
+      try {
+        const response = await fetch('/api/camera_url');
+        if (!response.ok) throw new Error('Failed to get stream URL');
+        const data = await response.json();
+        document.getElementById('video-stream').src = data.url;
+      } catch (err) {
+        document.getElementById('error-msg').textContent = err.message;
+      }
+    }
+
+    loadCameraFeed();
+
+    function extend_session() {
+      fetch(`/api/session/extend`, {
+        method: "POST",
+        credentials: 'include',
+      })
+        .then(res => {
+          if (!res.ok) throw new Error("Failed to extend session");
+        })
+        .catch(err => {
+          console.error("Session extend error:", err);
+          alert("Failed to extend session");
+        });
+    }
+
+    window.onload = () => {
+      setInterval(extend_session, 60000);
+    };
+  </script>
+</body>
+</html>

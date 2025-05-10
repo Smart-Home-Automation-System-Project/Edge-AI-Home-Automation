@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #181818;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .dashboard-container {
+      background: #242424;
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 400px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      font-size: 1.6rem;
+      color: rgb(221, 221, 221);
+    }
+
+    .button-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    button {
+      padding: 1rem;
+      background-color: #006de2;
+      color: rgb(228, 228, 228);
+      border: none;
+      font-size: 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      width: 100%;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    @media (max-width: 480px) {
+      .dashboard-container {
+        padding: 1.5rem;
+      }
+
+      h2 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="dashboard-container">
+    <h2>Dashboard</h2>
+    <div class="button-container">
+      <button onclick="window.location.href='/control-panel'">Control Panel</button>
+      <button onclick="window.location.href='/camera'">Camera</button>
+      <button id='btn_power'>Energy Optimizer</button>
+    </div>
+  </div>
+  <script>
+    async function loadPowerURL() {
+      try {
+        const response = await fetch('/api/power_url');
+        if (!response.ok) throw new Error('Failed to get URL');
+        const data = await response.json();
+        document.getElementById('btn_power').onclick = () => window.location.href = data.url;
+      } catch (err) {
+        alert('Failed to load power data page');
+      }
+    }
+
+    loadPowerURL();
+
+
+    window.onload = () => {
+      function extend_session() {
+        fetch(`/api/session/extend`, {
+          method: "POST",
+          credentials: 'include',
+        })
+          .then(res => {
+            if (!res.ok) throw new Error("Failed to extend session");
+          })
+          .catch(err => {
+            console.error("Session extend error:", err);
+            alert("Failed to extend session");
+          });
+      }
+      setInterval(extend_session, 60000);
+    };
+  </script>
+</body>
+</html>

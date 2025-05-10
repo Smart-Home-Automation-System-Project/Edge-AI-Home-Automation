@@ -1,5 +1,6 @@
 # Ignore virtual environment
 venv/
+.venv/
 
 
 # Ignore AWS folder
@@ -21,3 +22,15 @@ __pycache__/
 # Ignore compressed files
 model.tar.gz
 
+
+
+database/edgeaihomeauto-firebase-adminsdk-fbsvc-e3ff352f44.json
+src/logs/mosquitto.log
+src/test.py
+src/test.py
+src/stream.py
+src/logs/mosquitto.log
+src/pub.py
+src/database/view_db.ipynb
+src/logs/mosquitto.log
+src/config/firebase_credentials.json
