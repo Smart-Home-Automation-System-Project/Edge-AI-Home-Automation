@@ -21,4 +21,4 @@ if gas_level >= gas_threshold:
     close_gas_valve()          # Signal to close the gas valve
     turn_on_exhaust_fan()      # Turn on exhaust fan to vent the gas
     trigger_alarm()            # Sound the alarm for immediate action
-    send_email_alerts()
+    send_email_alerts() using firebase

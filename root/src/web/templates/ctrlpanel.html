@@ -500,8 +500,17 @@
           categories[catName].forEach(mod => {
             const card = document.createElement('div');
             card.className = 'module-card';
+            
 
-            const val = mod.last_val ?? "N/A";
+            let val; // declare once
+
+            if (mod.category === 'switch' || mod.category === 'light') {
+                val = (mod.last_val !== undefined && mod.last_val !== null) ? `${mod.last_val} W` : "N/A";
+            } else if (mod.category === 'door') {
+                val = (mod.last_val == 1) ? "LOCKED" : "UNLOCKED";
+            } else {
+                val = mod.last_val ?? "N/A";
+            }
 
             card.innerHTML = `
               <div class="module-name">${mod.name}</div>

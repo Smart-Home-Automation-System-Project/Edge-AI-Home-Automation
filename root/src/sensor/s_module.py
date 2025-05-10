@@ -3,6 +3,7 @@ from utils.mqtt import MQTTConnection
 from utils.utils import get_localtime
 from database.database import *
 from sensor.topics import *
+from utils.console import *
 
 client = MQTTConnection.get_client()
 
@@ -21,20 +22,26 @@ def sensor_publish_handler(client, userdata, msg):
     try:
         payload = str(msg.payload.decode())
         data = json.loads(payload)
+        print(f"{BLUE} --> Received message from {msg.topic}: {data}{RESET}")
+
         data["time"] = get_localtime(data["time"])
 
         if data["data"] != "imOnline":
-            if data["data"] == "ON":
-                data["data"] = 1
-            else:
-                data["data"] = 0
-
+            if data["type"] == 'switch':
+                pass
+            if data["type"] == 'light':
+                pass
+            elif data["type"] == 'door':
+                if data["data"] == "LOCK":
+                    data["data"] = 1
+                else:
+                    data["data"] = 0
+            
             db_add_sensor_data(data["time"], data["client_id"], data["data"])
 
         else:
             db_add_module(data["client_id"], None, data["type"])
-        print(f"Received message from {msg.topic}: {data}")
-
+            
     except json.JSONDecodeError as e:
         print("JSON decode failed:", e)
         print("Raw message:", msg.payload)
