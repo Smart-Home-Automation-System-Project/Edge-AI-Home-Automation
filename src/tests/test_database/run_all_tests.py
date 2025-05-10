@@ -15,6 +15,8 @@ from test_initialization import TestDatabaseInitialization
 from test_prediction import TestDatabasePrediction
 from test_category_queries import TestDatabaseCategoryQueries
 from test_error_handling import TestDatabaseErrorHandling
+from test_delete_tables import TestDeleteTables
+from test_db_setup import TestDatabaseSetup
 
 def run_all_tests():
     """Run all database tests."""
@@ -28,6 +30,8 @@ def run_all_tests():
     test_suite.addTest(unittest.makeSuite(TestDatabasePrediction))
     test_suite.addTest(unittest.makeSuite(TestDatabaseCategoryQueries))
     test_suite.addTest(unittest.makeSuite(TestDatabaseErrorHandling))
+    test_suite.addTest(unittest.makeSuite(TestDeleteTables))
+    test_suite.addTest(unittest.makeSuite(TestDatabaseSetup))
     
     # Create a test runner
     test_runner = unittest.TextTestRunner(verbosity=2)
