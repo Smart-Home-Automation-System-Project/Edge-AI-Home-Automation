@@ -11,7 +11,7 @@ import random
 import utils.globals
 
 # Client ID to exclude from this virtual module
-Exclusions = ['SW-2025.04.19-21.09-0001']
+Exclusions = ['SW-21.09-0001']
 Light_Brightness = {}
 
 

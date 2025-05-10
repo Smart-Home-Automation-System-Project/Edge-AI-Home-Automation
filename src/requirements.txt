@@ -1,0 +1,8 @@
+numpy
+pandas
+tensorflow
+firebase-admin
+flask
+paho-mqtt
+python-dotenv
+zeroconf

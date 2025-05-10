@@ -8,11 +8,11 @@ from umqtt.simple import MQTTClient
 import random
 
 # Constants
-client_id = "SW-21.09-0001"
+client_id = "L-21.09-0001"
 csv_file = "buffer.csv"
 T_SENSOR_PUBLISH = b"sensor/publish"
 T_SENSOR_CTRL_PREFIX = b"sensor/update/" + client_id.encode()
-S_TYPE = 'switch'
+S_TYPE = 'light'
 
 # Load config
 try:
@@ -94,6 +94,7 @@ button = Pin(14, Pin.IN, Pin.PULL_UP)
 OUTPUT = Pin(5, Pin.OUT)  # OUTPUT pin
 switch_state = False
 last_button_state = 1
+brightness = 3
 
 
 def save_to_csv(timestamp, state):
@@ -102,7 +103,8 @@ def save_to_csv(timestamp, state):
             "type": S_TYPE,
             "time": timestamp,
             'client_id': client_id,
-            "data": state
+            "data": state,
+            "power": '0' #####################
         }
         with open(csv_file, "a") as f:
             f.write(ujson.dumps(data) + "\n")
@@ -145,7 +147,8 @@ def mqtt_submit_current_state():
         "client_id": client_id,
         "type": S_TYPE,
         "time": timestamp,
-        "data":SENSOR_READ
+        "data":SENSOR_READ,
+        "power": '0' #####################
     }
 
     if not wlan.isconnected():
@@ -171,10 +174,9 @@ def mqtt_submit_current_state():
         mqtt_ok = connect_mqtt()
 
 
-def read_sensor_value():
-    # This is a dummy function that return a sensor value.
-    # This need to be changed based on the hardware that use to monitor the power of the application.
-    return random.randint(20, 25)
+def set_color(i,r,g,b):
+    pass
+    
 
 
 def mqtt_callback(topic, msg):
@@ -191,7 +193,7 @@ def mqtt_callback(topic, msg):
             switch_state = (cmd == "ON")
             OUTPUT.value(switch_state)
             if switch_state:
-                SENSOR_READ = read_sensor_value();
+                SENSOR_READ = brightness;
             else:
                 SENSOR_READ = 0;
             print("OUTPUT set via MQTT:", cmd)
@@ -220,7 +222,7 @@ client.publish(T_SENSOR_PUBLISH, ujson.dumps({
                 "client_id": client_id,
                 "type": S_TYPE,
                 "time": timestamp,
-                "data": "imOnline"
+                "data": "imOnline",
             }));
 
 # Main loop
@@ -242,7 +244,7 @@ while True:
             switch_state = not switch_state
             OUTPUT.value(switch_state)
             if switch_state:
-                SENSOR_READ = read_sensor_value();
+                SENSOR_READ = brightness;
             else:
                 SENSOR_READ = 0;
             
