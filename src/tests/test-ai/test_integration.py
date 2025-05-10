@@ -24,8 +24,10 @@ class TestAiIntegration(unittest.TestCase):
         self.test_model = tf.keras.Sequential([
             tf.keras.layers.Input(shape=(24, 4)),
             tf.keras.layers.LSTM(4, return_sequences=False),
-            tf.keras.layers.Dense(4)
+            tf.keras.layers.Dense(2)  # Changed to 2 outputs (1 light + 1 temp)
         ])
+        # Compile the model to avoid the "You must call `compile()` before using the model" error
+        self.test_model.compile(optimizer='adam', loss='mse')
     
     @patch('ai.predict.db_get_sensor_data_for_prediction')
     @patch('ai.predict.db_get_light_and_temp_sensors')
@@ -33,19 +35,27 @@ class TestAiIntegration(unittest.TestCase):
         """Test the full prediction pipeline with a real model."""
         # Setup test data
         test_timestamp = datetime.datetime(2025, 5, 1, 12, 0)
+        
+        # Create arrays of the same length (24)
+        timestamps = [test_timestamp - datetime.timedelta(hours=i) for i in range(24)]
+        light_values = [2] * 24
+        temp_values = [22.5] * 24
+        hour_values = [(12 - i) % 24 for i in range(24)]
+        day_values = [3] * 24  # Wednesday
+        
         test_df = pd.DataFrame({
-            'timestamp': [test_timestamp - datetime.timedelta(hours=i) for i in range(24)],
-            'light_sensor1': [2] * 24,
-            'temp_sensor1': [22.5] * 24,
-            'hour': list(range(12, 12-24, -1)) + [0],  # Handle wrap-around
-            'day_of_week': [3] * 24  # Wednesday
+            'timestamp': timestamps,
+            'light_sensor1': light_values,
+            'temp_sensor1': temp_values,
+            'hour': hour_values,
+            'day_of_week': day_values
         })
         
         mock_get_data.return_value = test_df
         mock_get_sensors.return_value = (['light_sensor1'], ['temp_sensor1'])
         
         # Mock model prediction to return a known value
-        self.test_model.predict = MagicMock(return_value=np.array([[2.5, 0.5, 22.7, 23.1]]))
+        self.test_model.predict = MagicMock(return_value=np.array([[2.5, 22.7]]))  # 1 light, 1 temp
         
         # Execute prediction
         results = ai_predict(self.test_model)
@@ -64,15 +74,19 @@ class TestAiIntegration(unittest.TestCase):
         mock_model = MagicMock()
         mock_client = MagicMock()
         
-        # Mock ai_predict to return realistic results
+        # Mock ai_predict to return realistic results with the correct structure
         mock_results = {
-            'lights': {'living_room': 2, 'kitchen': 1},
+            'lights': {'l1': 2, 'l2': 1},
             'temperatures': {'living_room_temp': 22.8, 'kitchen_temp': 21.5}
         }
         mock_predict.return_value = mock_results
         
-        # Execute
-        run_predictions_and_publish(mock_model, mock_client)
+        # Mock db_get_light_sensor_names to return the correct light keys
+        with patch('ai.ai.db_get_light_sensor_names', return_value=['living_room', 'kitchen']):
+            # Mock db_get_radar_current_data to return presence data
+            with patch('ai.ai.db_get_radar_current_data', return_value=[1, 0]):
+                # Execute
+                run_predictions_and_publish(mock_model, mock_client)
         
         # Assert
         mock_predict.assert_called_once_with(mock_model)
@@ -83,15 +97,17 @@ class TestAiIntegration(unittest.TestCase):
     @patch('ai.train.save_model')
     def test_train_to_predict_workflow(self, mock_save, mock_create_model, mock_get_data):
         """Test the end-to-end workflow from training to prediction."""
-        # Setup - mock database data
+        # Setup - mock database data with varied timestamps
+        base_time = pd.Timestamp('2025-05-01 12:00:00')
+        timestamps = [base_time - pd.Timedelta(hours=i) for i in range(50)]
         mock_sensor_data = {
             'light_sensor1': {
                 'category': 'light',
-                'data': [(pd.Timestamp('2025-05-01 12:00:00'), 2) for _ in range(50)]
+                'data': [(timestamps[i], 2) for i in range(50)]
             },
             'temp_sensor1': {
                 'category': 'temp',
-                'data': [(pd.Timestamp('2025-05-01 12:00:00'), 22.5) for _ in range(50)]
+                'data': [(timestamps[i], 22.5) for i in range(50)]
             }
         }
         mock_get_data.return_value = mock_sensor_data
@@ -114,7 +130,7 @@ class TestAiIntegration(unittest.TestCase):
                         'timestamp': [datetime.datetime.now() - datetime.timedelta(hours=i) for i in range(24)],
                         'light_sensor1': [2] * 24,
                         'temp_sensor1': [22.5] * 24,
-                        'hour': list(range(12, 12-24, -1)),
+                        'hour': [(12 - i) % 24 for i in range(24)],
                         'day_of_week': [3] * 24  # Wednesday
                     })
                     
@@ -122,7 +138,7 @@ class TestAiIntegration(unittest.TestCase):
                     mock_get_pred_sensors.return_value = (['light_sensor1'], ['temp_sensor1'])
                     
                     # Mock model prediction
-                    self.test_model.predict = MagicMock(return_value=np.array([[2.0, 22.5]]))
+                    self.test_model.predict = MagicMock(return_value=np.array([[2.0, 22.5]]))  # 1 light, 1 temp
                     
                     # Execute prediction with the "trained" model
                     model_path = "dummy_path.h5"

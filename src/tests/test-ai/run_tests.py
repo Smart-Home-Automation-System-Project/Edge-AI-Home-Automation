@@ -9,8 +9,8 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(
 # Import test modules
 from test_predict import TestPredictFunctions
 from test_train import TestTrainFunctions
-# from test_ai import TestAiFunctions
-# from test_integration import TestAiIntegration
+from test_ai import TestAI
+from test_integration import TestAiIntegration
 
 if __name__ == '__main__':
     # Create test suite
@@ -20,8 +20,8 @@ if __name__ == '__main__':
     loader = unittest.TestLoader()
     test_suite.addTests(loader.loadTestsFromTestCase(TestPredictFunctions))
     test_suite.addTests(loader.loadTestsFromTestCase(TestTrainFunctions))
-    # test_suite.addTests(loader.loadTestsFromTestCase(TestAiFunctions))
-    # test_suite.addTests(loader.loadTestsFromTestCase(TestAiIntegration))
+    test_suite.addTests(loader.loadTestsFromTestCase(TestAI))
+    test_suite.addTests(loader.loadTestsFromTestCase(TestAiIntegration))
     
     # print("\n\n\nTests to be run:\n")
     # print(test_suite)
