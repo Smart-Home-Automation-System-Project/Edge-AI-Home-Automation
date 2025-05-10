@@ -4,6 +4,7 @@ import sqlite3
 
 
 def clear_sensor_data_table(db_name="database1.db"):
+    conn = None # Ensure conn is defined in the outer scope for the finally block
     try:
         conn = sqlite3.connect(db_name)
         cursor = conn.cursor()
@@ -16,5 +17,5 @@ def clear_sensor_data_table(db_name="database1.db"):
         if conn:
             conn.close()
 
-
-clear_sensor_data_table()
+if __name__ == "__main__":
+    clear_sensor_data_table()
